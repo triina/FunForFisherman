@@ -17,7 +17,7 @@ namespace ForTheFisherman.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            ViewBag.Message = "Fun for fishermen!";
 
             return View();
         }
