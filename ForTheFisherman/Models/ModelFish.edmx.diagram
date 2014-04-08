@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d3d36b6dc5684be690b2b239635733b9" Name="Diagram1">
+        <EntityTypeShape EntityType="FishermanDBModel.Catch" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FishermanDBModel.Fisherman" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FishermanDBModel.FishingMethod" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FishermanDBModel.FishingSession" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FishermanDBModel.FishSpecies" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FishermanDBModel.GeoCoordinates" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FishermanDBModel.LocationMarking" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FishermanDBModel.Lure" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FishermanDBModel.LureType" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FishermanDBModel.Water" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <AssociationConnector Association="FishermanDBModel.fk_Catch_FishSpecies" ManuallyRouted="false" />
+        <AssociationConnector Association="FishermanDBModel.fk_Catch_Lure" ManuallyRouted="false" />
+        <AssociationConnector Association="FishermanDBModel.fk_FishingSession_Catch" ManuallyRouted="false" />
+        <AssociationConnector Association="FishermanDBModel.fk_FishingSession_Fisherman" ManuallyRouted="false" />
+        <AssociationConnector Association="FishermanDBModel.fk_FishingSession_FishingMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="FishermanDBModel.fk_FishingSession_LocationMarking" ManuallyRouted="false" />
+        <AssociationConnector Association="FishermanDBModel.fk_LocationMarking_GeoCoordinates" ManuallyRouted="false" />
+        <AssociationConnector Association="FishermanDBModel.fk_LocationMarking_Water" ManuallyRouted="false" />
+        <AssociationConnector Association="FishermanDBModel.fk_Lure_LureType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
