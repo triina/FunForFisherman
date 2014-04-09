@@ -766,3 +766,8 @@ tr.pager td {
 header {
     padding-bottom: 25px;
 }
+
+.text-wrap {
+    float: left;
+    margin: 5px 20px 0px 0px;
+}
