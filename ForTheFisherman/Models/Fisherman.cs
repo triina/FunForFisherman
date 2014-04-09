@@ -22,11 +22,17 @@ namespace ForTheFisherman.Models
             this.FishingSession = new HashSet<FishingSession>();
         }
 
+        /// <summary>
+        /// A list of genders for textbox validation
+        /// </summary>
         //public enum Gender
         //{
         //    M, F
         //}
 
+        /// <summary>
+        /// A list of genders for drop-down lists
+        /// </summary>
         public static List<SelectListItem> GenderSelectList
         {
             get
