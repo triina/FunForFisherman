@@ -74,7 +74,7 @@
           <Property Name="lastName" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="phone" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="eMail" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="genre" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="gender" Type="char" Nullable="false" MaxLength="1" />
           <Property Name="passwordHashFields" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <EntityType Name="FishingMethod">
@@ -267,7 +267,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FishermanDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="FishermanDBEntities" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="FishermanDBEntities1" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Catch" EntityType="FishermanDBModel.Catch" />
           <EntitySet Name="Fisherman" EntityType="FishermanDBModel.Fisherman" />
           <EntitySet Name="FishingMethod" EntityType="FishermanDBModel.FishingMethod" />
@@ -343,7 +343,7 @@
           <Property Name="lastName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="phone" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="eMail" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="genre" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
           <Property Name="passwordHashFields" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="FishingSession" Relationship="FishermanDBModel.fk_FishingSession_Fisherman" FromRole="Fisherman" ToRole="FishingSession" />
         </EntityType>
@@ -547,7 +547,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FishermanDBModelStoreContainer" CdmEntityContainer="FishermanDBEntities">
+        <EntityContainerMapping StorageEntityContainer="FishermanDBModelStoreContainer" CdmEntityContainer="FishermanDBEntities1">
           <EntitySetMapping Name="Catch">
             <EntityTypeMapping TypeName="FishermanDBModel.Catch">
               <MappingFragment StoreEntitySet="Catch">
@@ -569,7 +569,7 @@
                 <ScalarProperty Name="lastName" ColumnName="lastName" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="eMail" ColumnName="eMail" />
-                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="passwordHashFields" ColumnName="passwordHashFields" />
               </MappingFragment>
             </EntityTypeMapping>

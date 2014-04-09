@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d3d36b6dc5684be690b2b239635733b9" Name="Diagram1">
+      <Diagram DiagramId="5985523cfb524a8d99fea4c515f5462a" Name="Diagram1">
         <EntityTypeShape EntityType="FishermanDBModel.Catch" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="FishermanDBModel.Fisherman" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="FishermanDBModel.FishingMethod" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />

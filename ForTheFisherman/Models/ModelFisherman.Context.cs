@@ -16,10 +16,10 @@ namespace ForTheFisherman.Models
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class FishermanDBEntities : DbContext
+    public partial class FishermanDBEntities1 : DbContext
     {
-        public FishermanDBEntities()
-            : base("name=FishermanDBEntities")
+        public FishermanDBEntities1()
+            : base("name=FishermanDBEntities1")
         {
         }
     
