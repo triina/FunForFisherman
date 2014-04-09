@@ -44,7 +44,7 @@ namespace ForTheFisherman.Models
 
         [DisplayName("Gender")]
         [EnumDataType(typeof(Gender))]
-        public string genre { get; set; }
+        public string genre { get; set; } // genre?!
 
         public string passwordHashFields { get; set; }
 
