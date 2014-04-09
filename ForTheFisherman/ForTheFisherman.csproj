@@ -192,49 +192,49 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Catch.cs">
-      <DependentUpon>ModelFish.tt</DependentUpon>
+      <DependentUpon>ModelFisherman.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Fisherman.cs">
-      <DependentUpon>ModelFish.tt</DependentUpon>
+      <DependentUpon>ModelFisherman.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FishingMethod.cs">
-      <DependentUpon>ModelFish.tt</DependentUpon>
+      <DependentUpon>ModelFisherman.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FishingSession.cs">
-      <DependentUpon>ModelFish.tt</DependentUpon>
+      <DependentUpon>ModelFisherman.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FishSpecies.cs">
-      <DependentUpon>ModelFish.tt</DependentUpon>
+      <DependentUpon>ModelFisherman.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GeoCoordinates.cs">
-      <DependentUpon>ModelFish.tt</DependentUpon>
+      <DependentUpon>ModelFisherman.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LocationMarking.cs">
-      <DependentUpon>ModelFish.tt</DependentUpon>
+      <DependentUpon>ModelFisherman.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Lure.cs">
-      <DependentUpon>ModelFish.tt</DependentUpon>
+      <DependentUpon>ModelFisherman.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LureType.cs">
-      <DependentUpon>ModelFish.tt</DependentUpon>
+      <DependentUpon>ModelFisherman.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelFish.Context.cs">
+    <Compile Include="Models\ModelFisherman.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelFish.Context.tt</DependentUpon>
+      <DependentUpon>ModelFisherman.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelFish.cs">
+    <Compile Include="Models\ModelFisherman.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelFish.tt</DependentUpon>
+      <DependentUpon>ModelFisherman.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelFish.Designer.cs">
+    <Compile Include="Models\ModelFisherman.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelFish.edmx</DependentUpon>
+      <DependentUpon>ModelFisherman.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Water.cs">
-      <DependentUpon>ModelFish.tt</DependentUpon>
+      <DependentUpon>ModelFisherman.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -299,22 +299,22 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="Models\ModelFish.edmx">
+    <EntityDeploy Include="Models\ModelFisherman.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelFish.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelFisherman.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ModelFish.Context.tt">
+    <Content Include="Models\ModelFisherman.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelFish.edmx</DependentUpon>
-      <LastGenOutput>ModelFish.Context.cs</LastGenOutput>
+      <DependentUpon>ModelFisherman.edmx</DependentUpon>
+      <LastGenOutput>ModelFisherman.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ModelFish.edmx.diagram">
-      <DependentUpon>ModelFish.edmx</DependentUpon>
+    <Content Include="Models\ModelFisherman.edmx.diagram">
+      <DependentUpon>ModelFisherman.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\ModelFish.tt">
+    <Content Include="Models\ModelFisherman.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelFish.edmx</DependentUpon>
-      <LastGenOutput>ModelFish.cs</LastGenOutput>
+      <DependentUpon>ModelFisherman.edmx</DependentUpon>
+      <LastGenOutput>ModelFisherman.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
