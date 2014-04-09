@@ -24,7 +24,7 @@ namespace ForTheFisherman.Models
         public string lastName { get; set; }
         public string phone { get; set; }
         public string eMail { get; set; }
-        public string genre { get; set; }
+        public string gender { get; set; }
         public string passwordHashFields { get; set; }
     
         public virtual ICollection<FishingSession> FishingSession { get; set; }
