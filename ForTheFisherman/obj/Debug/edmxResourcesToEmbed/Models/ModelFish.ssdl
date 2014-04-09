@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FishermanDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="FishermanDBModelStoreContainer">
+    <EntitySet Name="Catch" EntityType="FishermanDBModel.Store.Catch" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Fisherman" EntityType="FishermanDBModel.Store.Fisherman" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FishingMethod" EntityType="FishermanDBModel.Store.FishingMethod" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FishingSession" EntityType="FishermanDBModel.Store.FishingSession" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FishSpecies" EntityType="FishermanDBModel.Store.FishSpecies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GeoCoordinates" EntityType="FishermanDBModel.Store.GeoCoordinates" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LocationMarking" EntityType="FishermanDBModel.Store.LocationMarking" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Lure" EntityType="FishermanDBModel.Store.Lure" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LureType" EntityType="FishermanDBModel.Store.LureType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Water" EntityType="FishermanDBModel.Store.Water" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="fk_Catch_FishSpecies" Association="FishermanDBModel.Store.fk_Catch_FishSpecies">
+      <End Role="FishSpecies" EntitySet="FishSpecies" />
+      <End Role="Catch" EntitySet="Catch" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Catch_Lure" Association="FishermanDBModel.Store.fk_Catch_Lure">
+      <End Role="Lure" EntitySet="Lure" />
+      <End Role="Catch" EntitySet="Catch" />
+    </AssociationSet>
+    <AssociationSet Name="fk_FishingSession_Catch" Association="FishermanDBModel.Store.fk_FishingSession_Catch">
+      <End Role="Catch" EntitySet="Catch" />
+      <End Role="FishingSession" EntitySet="FishingSession" />
+    </AssociationSet>
+    <AssociationSet Name="fk_FishingSession_Fisherman" Association="FishermanDBModel.Store.fk_FishingSession_Fisherman">
+      <End Role="Fisherman" EntitySet="Fisherman" />
+      <End Role="FishingSession" EntitySet="FishingSession" />
+    </AssociationSet>
+    <AssociationSet Name="fk_FishingSession_FishingMethod" Association="FishermanDBModel.Store.fk_FishingSession_FishingMethod">
+      <End Role="FishingMethod" EntitySet="FishingMethod" />
+      <End Role="FishingSession" EntitySet="FishingSession" />
+    </AssociationSet>
+    <AssociationSet Name="fk_FishingSession_LocationMarking" Association="FishermanDBModel.Store.fk_FishingSession_LocationMarking">
+      <End Role="LocationMarking" EntitySet="LocationMarking" />
+      <End Role="FishingSession" EntitySet="FishingSession" />
+    </AssociationSet>
+    <AssociationSet Name="fk_LocationMarking_GeoCoordinates" Association="FishermanDBModel.Store.fk_LocationMarking_GeoCoordinates">
+      <End Role="GeoCoordinates" EntitySet="GeoCoordinates" />
+      <End Role="LocationMarking" EntitySet="LocationMarking" />
+    </AssociationSet>
+    <AssociationSet Name="fk_LocationMarking_Water" Association="FishermanDBModel.Store.fk_LocationMarking_Water">
+      <End Role="Water" EntitySet="Water" />
+      <End Role="LocationMarking" EntitySet="LocationMarking" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Lure_LureType" Association="FishermanDBModel.Store.fk_Lure_LureType">
+      <End Role="LureType" EntitySet="LureType" />
+      <End Role="Lure" EntitySet="Lure" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Catch">
+    <Key>
+      <PropertyRef Name="cId" />
+    </Key>
+    <Property Name="cId" Type="int" Nullable="false" />
+    <Property Name="weight" Type="decimal" Nullable="false" />
+    <Property Name="lureweight" Type="int" Nullable="false" />
+    <Property Name="depth" Type="int" Nullable="false" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="lId" Type="int" Nullable="false" />
+    <Property Name="fiId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fisherman">
+    <Key>
+      <PropertyRef Name="fId" />
+    </Key>
+    <Property Name="fId" Type="int" Nullable="false" />
+    <Property Name="firstName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="lastName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="phone" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="eMail" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="genre" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="passwordHashFields" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="FishingMethod">
+    <Key>
+      <PropertyRef Name="fmId" />
+    </Key>
+    <Property Name="fmId" Type="int" Nullable="false" />
+    <Property Name="methodname" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="FishingSession">
+    <Key>
+      <PropertyRef Name="fsId" />
+    </Key>
+    <Property Name="fsId" Type="int" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="fId" Type="int" Nullable="false" />
+    <Property Name="fmId" Type="int" Nullable="false" />
+    <Property Name="cId" Type="int" Nullable="false" />
+    <Property Name="lmId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FishSpecies">
+    <Key>
+      <PropertyRef Name="fiId" />
+    </Key>
+    <Property Name="fiId" Type="int" Nullable="false" />
+    <Property Name="fishname" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="GeoCoordinates">
+    <Key>
+      <PropertyRef Name="gcId" />
+    </Key>
+    <Property Name="gcId" Type="int" Nullable="false" />
+    <Property Name="latitude" Type="decimal" Nullable="false" />
+    <Property Name="longitude" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LocationMarking">
+    <Key>
+      <PropertyRef Name="lmId" />
+    </Key>
+    <Property Name="lmId" Type="int" Nullable="false" />
+    <Property Name="sublocation" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="compaslocation" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="wId" Type="int" Nullable="false" />
+    <Property Name="gcId" Type="int" />
+  </EntityType>
+  <EntityType Name="Lure">
+    <Key>
+      <PropertyRef Name="lId" />
+    </Key>
+    <Property Name="lId" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="ltId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LureType">
+    <Key>
+      <PropertyRef Name="ltId" />
+    </Key>
+    <Property Name="ltId" Type="int" Nullable="false" />
+    <Property Name="typename" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Water">
+    <Key>
+      <PropertyRef Name="wId" />
+    </Key>
+    <Property Name="wId" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="municipality" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+  </EntityType>
+  <Association Name="fk_Catch_FishSpecies">
+    <End Role="FishSpecies" Type="FishermanDBModel.Store.FishSpecies" Multiplicity="1" />
+    <End Role="Catch" Type="FishermanDBModel.Store.Catch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FishSpecies">
+        <PropertyRef Name="fiId" />
+      </Principal>
+      <Dependent Role="Catch">
+        <PropertyRef Name="fiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Catch_Lure">
+    <End Role="Lure" Type="FishermanDBModel.Store.Lure" Multiplicity="1" />
+    <End Role="Catch" Type="FishermanDBModel.Store.Catch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lure">
+        <PropertyRef Name="lId" />
+      </Principal>
+      <Dependent Role="Catch">
+        <PropertyRef Name="lId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_FishingSession_Catch">
+    <End Role="Catch" Type="FishermanDBModel.Store.Catch" Multiplicity="1" />
+    <End Role="FishingSession" Type="FishermanDBModel.Store.FishingSession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catch">
+        <PropertyRef Name="cId" />
+      </Principal>
+      <Dependent Role="FishingSession">
+        <PropertyRef Name="cId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_FishingSession_Fisherman">
+    <End Role="Fisherman" Type="FishermanDBModel.Store.Fisherman" Multiplicity="1" />
+    <End Role="FishingSession" Type="FishermanDBModel.Store.FishingSession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fisherman">
+        <PropertyRef Name="fId" />
+      </Principal>
+      <Dependent Role="FishingSession">
+        <PropertyRef Name="fId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_FishingSession_FishingMethod">
+    <End Role="FishingMethod" Type="FishermanDBModel.Store.FishingMethod" Multiplicity="1" />
+    <End Role="FishingSession" Type="FishermanDBModel.Store.FishingSession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FishingMethod">
+        <PropertyRef Name="fmId" />
+      </Principal>
+      <Dependent Role="FishingSession">
+        <PropertyRef Name="fmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_FishingSession_LocationMarking">
+    <End Role="LocationMarking" Type="FishermanDBModel.Store.LocationMarking" Multiplicity="1" />
+    <End Role="FishingSession" Type="FishermanDBModel.Store.FishingSession" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LocationMarking">
+        <PropertyRef Name="lmId" />
+      </Principal>
+      <Dependent Role="FishingSession">
+        <PropertyRef Name="lmId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_LocationMarking_GeoCoordinates">
+    <End Role="GeoCoordinates" Type="FishermanDBModel.Store.GeoCoordinates" Multiplicity="0..1" />
+    <End Role="LocationMarking" Type="FishermanDBModel.Store.LocationMarking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GeoCoordinates">
+        <PropertyRef Name="gcId" />
+      </Principal>
+      <Dependent Role="LocationMarking">
+        <PropertyRef Name="gcId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_LocationMarking_Water">
+    <End Role="Water" Type="FishermanDBModel.Store.Water" Multiplicity="1" />
+    <End Role="LocationMarking" Type="FishermanDBModel.Store.LocationMarking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Water">
+        <PropertyRef Name="wId" />
+      </Principal>
+      <Dependent Role="LocationMarking">
+        <PropertyRef Name="wId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Lure_LureType">
+    <End Role="LureType" Type="FishermanDBModel.Store.LureType" Multiplicity="1" />
+    <End Role="Lure" Type="FishermanDBModel.Store.Lure" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LureType">
+        <PropertyRef Name="ltId" />
+      </Principal>
+      <Dependent Role="Lure">
+        <PropertyRef Name="ltId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Create_Tables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Drop_Tables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Insert_Test_Data" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Rebuild" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+</Schema>
