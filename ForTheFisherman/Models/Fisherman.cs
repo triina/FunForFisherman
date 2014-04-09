@@ -63,8 +63,19 @@ namespace ForTheFisherman.Models
         //[EnumDataType(typeof(Gender))]
         public string gender { get; set; }
 
-        [Required]
-        public string passwordHashFields { get; set; }
+        // passwordHashFields is required, but we'll just hide it for now
+        private string _passwordHashFields;
+        public string passwordHashFields { 
+            get
+            {
+                return _passwordHashFields;
+            }
+            set
+            {
+                if (value != null && value != "") _passwordHashFields = value;
+                else _passwordHashFields = "N/A";
+            }
+        }
 
         public virtual ICollection<FishingSession> FishingSession { get; set; }
     }
