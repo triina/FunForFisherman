@@ -1,0 +1,64 @@
+﻿@model ForTheFisherman.Models.Fisherman
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Fisherman</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.firstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.firstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.phone)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.phone)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.eMail)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.eMail)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.genre)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.genre)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.passwordHashFields)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.passwordHashFields)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.fId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
