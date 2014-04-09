@@ -423,3 +423,6 @@ C:\Users\a1300566\Documents\EBA\Repos\FunForFisherman\ForTheFisherman\bin\zh-Han
 C:\Users\a1300566\Documents\EBA\Repos\FunForFisherman\ForTheFisherman\obj\Debug\ForTheFisherman.csprojResolveAssemblyReference.cache
 C:\Users\a1300566\Documents\EBA\Repos\FunForFisherman\ForTheFisherman\obj\Debug\ForTheFisherman.dll
 C:\Users\a1300566\Documents\EBA\Repos\FunForFisherman\ForTheFisherman\obj\Debug\ForTheFisherman.pdb
+C:\Users\a1300539\Source\Repos\FunForFisherman\ForTheFisherman\obj\Debug\ForTheFisherman.csprojResolveAssemblyReference.cache
+C:\Users\a1300539\Source\Repos\FunForFisherman\ForTheFisherman\obj\Debug\ForTheFisherman.dll
+C:\Users\a1300539\Source\Repos\FunForFisherman\ForTheFisherman\obj\Debug\ForTheFisherman.pdb

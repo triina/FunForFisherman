@@ -11,7 +11,7 @@ namespace ForTheFisherman.Controllers
 {
     public class FishermanController : Controller
     {
-        private FishermanDBEntities db = new FishermanDBEntities();
+        private FishermanDBEntities1 db = new FishermanDBEntities1();
 
         //fgkjfdlkgkjfdlögkfdgöldfg
         // GET: /Fisherman/
