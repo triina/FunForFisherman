@@ -13,7 +13,6 @@ namespace ForTheFisherman.Controllers
     {
         private FishermanDBEntities1 db = new FishermanDBEntities1();
 
-        //fgkjfdlkgkjfdlögkfdgöldfg
         // GET: /Fisherman/
 
         public ActionResult Index()
