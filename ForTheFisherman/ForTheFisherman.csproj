@@ -186,6 +186,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FishermanController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LureTypeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -377,6 +378,11 @@
     <Content Include="Views\Fisherman\Create.cshtml" />
     <Content Include="Views\Fisherman\Edit.cshtml" />
     <Content Include="Views\Fisherman\Delete.cshtml" />
+    <Content Include="Views\LureType\Index.cshtml" />
+    <Content Include="Views\LureType\Details.cshtml" />
+    <Content Include="Views\LureType\Create.cshtml" />
+    <Content Include="Views\LureType\Edit.cshtml" />
+    <Content Include="Views\LureType\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

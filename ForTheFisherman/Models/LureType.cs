@@ -11,6 +11,8 @@ namespace ForTheFisherman.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class LureType
     {
@@ -18,9 +20,15 @@ namespace ForTheFisherman.Models
         {
             this.Lure = new HashSet<Lure>();
         }
-    
+
         public int ltId { get; set; }
+
+        [Required(ErrorMessage = "Lure name is necessary")]
+        [DisplayName("Lure name")]
         public string typename { get; set; }
+
+        [Required(ErrorMessage = "Description is necessary")]
+        [DisplayName("Description of lure type")]
         public string description { get; set; }
     
         public virtual ICollection<Lure> Lure { get; set; }

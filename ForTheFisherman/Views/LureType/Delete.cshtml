@@ -1,0 +1,38 @@
+﻿@model ForTheFisherman.Models.LureType
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>LureType</legend>
+
+    <div class="hidden">
+        @Html.DisplayNameFor(model => model.ltId)
+        @Html.DisplayFor(model => model.ltId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.typename)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.typename)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
