@@ -3,3 +3,7 @@
 ################################################################################
 
 *.cache
+*.suo
+ForTheFisherman/obj/
+ForTheFisherman/bin/
+packages/
