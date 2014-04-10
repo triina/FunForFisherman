@@ -54,20 +54,22 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.genre)
+            @Html.LabelFor(model => model.gender)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.genre)
-            @Html.ValidationMessageFor(model => model.genre)
+            @* @Html.EditorFor(model => model.gender)
+            @Html.ValidationMessageFor(model => model.gender) *@
+            @Html.DropDownListFor(model => model.gender, ForTheFisherman.Models.Fisherman.GenderSelectList)
         </div>
 
-        <div class="editor-label">
+        @* <div class="editor-label">
             @Html.LabelFor(model => model.passwordHashFields)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.passwordHashFields)
             @Html.ValidationMessageFor(model => model.passwordHashFields)
-        </div>
+        </div> *@
+        @Html.HiddenFor(model => model.passwordHashFields)
 
         <p>
             <input type="submit" value="Create" />
