@@ -37,15 +37,9 @@ namespace ForTheFisherman.Controllers
         //
         // GET: /LureType/Create
 
-
         public ActionResult Create()
         {
-
-            //Create empty lure and store the next available id for lure id
-            LureType luretype = new LureType();
-            var lureType = db.LureType.OrderByDescending(lt => lt.ltId).FirstOrDefault();
-            luretype.ltId = (lureType.ltId) + 1;
-            return View(luretype);
+            return View();
         }
 
         //
