@@ -62,13 +62,14 @@
             @Html.DropDownListFor(model => model.gender, ForTheFisherman.Models.Fisherman.GenderSelectList)
         </div>
 
-        <div class="editor-label">
+        @* <div class="editor-label">
             @Html.LabelFor(model => model.passwordHashFields)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.passwordHashFields)
             @Html.ValidationMessageFor(model => model.passwordHashFields)
-        </div>
+        </div> *@
+        @Html.HiddenFor(model => model.passwordHashFields)
 
         <p>
             <input type="submit" value="Create" />
