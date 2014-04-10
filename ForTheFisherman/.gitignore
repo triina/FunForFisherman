@@ -3,8 +3,5 @@
 ################################################################################
 
 *.cache
-*.suo
-[Ff]or[Tt]he[Ff]isherman[/\][Oo]bj[/\]
-[Ff]or[Tt]he[Ff]isherman[/\][Bb]in[/\]
-packages/
-.nuget/
+[Oo]bj/
+[Bb]in/
