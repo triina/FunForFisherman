@@ -9,56 +9,50 @@
 <fieldset>
     <legend>Fisherman</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.fId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.fId)
+    <div class="hidden">
+        @Html.HiddenFor(model => model.fId)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.firstName)
+        @Html.DisplayNameFor(model => model.firstName)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.firstName)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.lastName)
+        @Html.DisplayNameFor(model => model.lastName)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.lastName)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.phone)
+        @Html.DisplayNameFor(model => model.phone)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.phone)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.eMail)
+        @Html.DisplayNameFor(model => model.eMail)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.eMail)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.gender)
+        @Html.DisplayNameFor(model => model.gender)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.gender)
     </div>
 
-    <!-- <div class="display-label">
-         @Html.DisplayNameFor(model => model.passwordHashFields)
+    <div class="hidden">
+        @Html.HiddenFor(model => model.passwordHashFields)
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.passwordHashFields)
-    </div> -->
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.fId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.fId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

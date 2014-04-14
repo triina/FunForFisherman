@@ -6,19 +6,16 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>Fisherman</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.fId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.fId)
-            @Html.ValidationMessageFor(model => model.fId)
+        <div class="hidden">
+            @Html.HiddenFor(model => model.fId)
         </div>
 
         <div class="editor-label">
@@ -57,19 +54,12 @@
             @Html.LabelFor(model => model.gender)
         </div>
         <div class="editor-field">
-            @* @Html.EditorFor(model => model.gender)
-            @Html.ValidationMessageFor(model => model.gender) *@
             @Html.DropDownListFor(model => model.gender, ForTheFisherman.Models.Fisherman.GenderSelectList)
         </div>
 
-        @* <div class="editor-label">
-            @Html.LabelFor(model => model.passwordHashFields)
+        <div class="hidden">
+            @Html.HiddenFor(model => model.passwordHashFields)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.passwordHashFields)
-            @Html.ValidationMessageFor(model => model.passwordHashFields)
-        </div> *@
-        @Html.HiddenFor(model => model.passwordHashFields)
 
         <p>
             <input type="submit" value="Save" />

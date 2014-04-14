@@ -48,15 +48,21 @@ namespace ForTheFisherman.Models
         public int fId { get; set; }
 
         [DisplayName("Fist Name")]
+        [Required(ErrorMessage = "Please enter your first name.")]
         public string firstName { get; set; }
 
         [DisplayName("Last Name")]
+        [Required(ErrorMessage = "Please enter your last name.")]
         public string lastName { get; set; }
 
         [DisplayName("Phone Number")]
+        [Required(ErrorMessage = "Please enter your phone number.")]
         public string phone { get; set; }
 
         [DisplayName("E-mail")]
+        [Required(ErrorMessage = "Please enter your e-mail address.")]
+        [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Please enter a valid e-mail address.")]
+        [Remote("CheckEmail", "Fisherman", AdditionalFields = "fId", ErrorMessage = "This e-mail address is already taken.")]
         public string eMail { get; set; }
 
         [DisplayName("Gender")]
@@ -65,7 +71,8 @@ namespace ForTheFisherman.Models
 
         // passwordHashFields is required, but we'll just hide it for now
         private string _passwordHashFields;
-        public string passwordHashFields { 
+        public string passwordHashFields
+        {
             get
             {
                 return _passwordHashFields;

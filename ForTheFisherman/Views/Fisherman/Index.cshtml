@@ -11,7 +11,7 @@
 </p>
 <table>
     <tr>
-        <th>
+        <th class="hidden">
             @Html.DisplayNameFor(model => model.fId)
         </th>
         <th>
@@ -29,16 +29,16 @@
         <th>
             @Html.DisplayNameFor(model => model.gender)
         </th>
-        <!-- <th>
+        <th class="hidden">
             @Html.DisplayNameFor(model => model.passwordHashFields)
-        </th> -->
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fId)
+        <td class="hidden">
+            @Html.HiddenFor(modelItem => item.fId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.firstName)
@@ -55,12 +55,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.gender)
         </td>
-        <!-- <td>
+        <td class="hidden">
             @Html.DisplayFor(modelItem => item.passwordHashFields)
-        </td> -->
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.fId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.fId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.fId })
         </td>
     </tr>

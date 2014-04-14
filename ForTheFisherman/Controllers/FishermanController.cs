@@ -38,7 +38,11 @@ namespace ForTheFisherman.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            // Create a new fisherman and store the next available id for fisherman id
+            Fisherman fisherman = new Fisherman();
+            var fishermanT = db.Fisherman.OrderByDescending(f => f.fId).FirstOrDefault();
+            fisherman.fId = fishermanT.fId + 1;
+            return View(fisherman);
         }
 
         //
@@ -117,6 +121,17 @@ namespace ForTheFisherman.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// A check for unique constraint
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public JsonResult CheckEmail(string email, string fId)
+        {
+            var result = db.Fisherman.SqlQuery("SELECT * FROM Fisherman WHERE eMail='" + email + "' AND fId <> '" + fId + "'").Count() == 0;
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }
