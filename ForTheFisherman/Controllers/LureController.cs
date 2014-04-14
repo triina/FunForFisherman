@@ -9,113 +9,116 @@ using ForTheFisherman.Models;
 
 namespace ForTheFisherman.Controllers
 {
-    public class LureTypeController : Controller
+    public class LureController : Controller
     {
         private FishermanDBEntities1 db = new FishermanDBEntities1();
 
         //
-        // GET: /LureType/
+        // GET: /Lure/
 
         public ActionResult Index()
         {
-            return View(db.LureType.ToList());
+            var lure = db.Lure.Include(l => l.LureType);
+            return View(lure.ToList());
         }
 
-        //
-        // GET: /LureType/Details/5
+        /*
+        // GET: /Lure/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            LureType luretype = db.LureType.Find(id);
-            if (luretype == null)
+            Lure lure = db.Lure.Find(id);
+            if (lure == null)
             {
                 return HttpNotFound();
             }
-            return View(luretype);
-        }
+            return View(lure);
+        }*/
 
         //
-        // GET: /LureType/Create
-
+        // GET: /Lure/Create
 
         public ActionResult Create()
         {
-
-            //Create empty luretype and store the next available id for luretypes in its id
-            LureType lureType = new LureType();
-            var lastLureType = db.LureType.OrderByDescending(lt => lt.ltId).FirstOrDefault();
-            lureType.ltId = (lastLureType.ltId) + 1;
-            return View(lureType);
+            //Create empty lure and store the next available id for lures in its id
+            ViewBag.ltId = new SelectList(db.LureType, "ltId", "typename");
+            Lure lure = new Lure();
+            var lastLure = db.Lure.OrderByDescending(lt => lt.lId).FirstOrDefault();
+            lure.lId = (lastLure.ltId) + 1;
+            return View(lure);
         }
 
         //
-        // POST: /LureType/Create
+        // POST: /Lure/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(LureType luretype)
+        public ActionResult Create(Lure lure)
         {
             if (ModelState.IsValid)
             {
-                db.LureType.Add(luretype);
+                db.Lure.Add(lure);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(luretype);
+            ViewBag.ltId = new SelectList(db.LureType, "ltId", "typename", lure.ltId);
+            return View(lure);
         }
 
         //
-        // GET: /LureType/Edit/5
+        // GET: /Lure/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            LureType luretype = db.LureType.Find(id);
-            if (luretype == null)
+            Lure lure = db.Lure.Find(id);
+            if (lure == null)
             {
                 return HttpNotFound();
             }
-            return View(luretype);
+            ViewBag.ltId = new SelectList(db.LureType, "ltId", "typename", lure.ltId);
+            return View(lure);
         }
 
         //
-        // POST: /LureType/Edit/5
+        // POST: /Lure/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(LureType luretype)
+        public ActionResult Edit(Lure lure)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(luretype).State = EntityState.Modified;
+                db.Entry(lure).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(luretype);
+            ViewBag.ltId = new SelectList(db.LureType, "ltId", "typename", lure.ltId);
+            return View(lure);
         }
 
         //
-        // GET: /LureType/Delete/5
+        // GET: /Lure/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            LureType luretype = db.LureType.Find(id);
-            if (luretype == null)
+            Lure lure = db.Lure.Find(id);
+            if (lure == null)
             {
                 return HttpNotFound();
             }
-            return View(luretype);
+            return View(lure);
         }
 
         //
-        // POST: /LureType/Delete/5
+        // POST: /Lure/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            LureType luretype = db.LureType.Find(id);
-            db.LureType.Remove(luretype);
+            Lure lure = db.Lure.Find(id);
+            db.Lure.Remove(lure);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
