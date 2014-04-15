@@ -772,6 +772,15 @@ header {
     margin: 5px 20px 0px 0px;
 }
 
+table {
+    border-collapse: separate;
+    border-spacing: 15px;
+}
+
+.controls-width {
+    width: 115px;
+}
+
 /*temporary elements for icons*/
 .temp-outer {
     width: 100px;
