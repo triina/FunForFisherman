@@ -307,6 +307,10 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelFisherman.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\icon-fly.png" />
+    <Content Include="Images\icon-ice.png" />
+    <Content Include="Images\icon-net.png" />
+    <Content Include="Images\icon-trolling.png" />
     <Content Include="Models\ModelFisherman.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelFisherman.edmx</DependentUpon>
