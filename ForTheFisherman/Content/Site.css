@@ -772,7 +772,29 @@ header {
     margin: 5px 20px 0px 0px;
 }
 
+table {
+    border-collapse: separate;
+    border-spacing: 15px;
+}
+
+.controls-width {
+    width: 115px;
+}
+
+/*temporary elements for icons*/
+.temp-outer {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.temp-inner {
+    vertical-align: middle;
+}
+
 /*Hidden class*/
 .hidden {
-display:none;
+    display: none;
 }

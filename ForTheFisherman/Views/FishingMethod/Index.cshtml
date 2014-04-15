@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ForTheFisherman.Models.FishingMethod>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <!---hidden id-->
+        <th class="hidden">
+            @Html.DisplayNameFor(model => model.fmId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.methodname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th class="controls-width"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <!---hidden id-->
+        <td class="hidden">
+            @Html.DisplayFor(modelItem => item.fmId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.methodname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.fmId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.fmId })
+        </td>
+    </tr>
+}
+
+</table>

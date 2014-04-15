@@ -187,6 +187,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FishermanController.cs" />
+    <Compile Include="Controllers\FishingMethodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LureController.cs" />
     <Compile Include="Controllers\LureTypeController.cs" />
@@ -308,6 +309,10 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelFisherman.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\icon-fly.png" />
+    <Content Include="Images\icon-ice.png" />
+    <Content Include="Images\icon-net.png" />
+    <Content Include="Images\icon-trolling.png" />
     <Content Include="Models\ModelFisherman.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelFisherman.edmx</DependentUpon>
@@ -392,6 +397,11 @@
     <Content Include="Views\Lure\Create.cshtml" />
     <Content Include="Views\Lure\Edit.cshtml" />
     <Content Include="Views\Lure\Delete.cshtml" />
+    <Content Include="Views\FishingMethod\Index.cshtml" />
+    <Content Include="Views\FishingMethod\Details.cshtml" />
+    <Content Include="Views\FishingMethod\Create.cshtml" />
+    <Content Include="Views\FishingMethod\Edit.cshtml" />
+    <Content Include="Views\FishingMethod\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
