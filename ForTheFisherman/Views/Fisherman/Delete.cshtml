@@ -46,7 +46,7 @@
         @Html.DisplayNameFor(model => model.gender)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.gender)
+        @(Model.gender == "M" ? "Male": "Female")
     </div>
 
     <div class="hidden">

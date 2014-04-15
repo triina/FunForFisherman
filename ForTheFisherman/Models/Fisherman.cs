@@ -62,7 +62,7 @@ namespace ForTheFisherman.Models
         [DisplayName("E-mail")]
         [Required(ErrorMessage = "Please enter your e-mail address.")]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Please enter a valid e-mail address.")]
-        [Remote("CheckEmail", "Fisherman", AdditionalFields = "fId", ErrorMessage = "This e-mail address is already taken.")]
+        [Remote("CheckEmail", "Validation", AdditionalFields = "fId", ErrorMessage = "This e-mail address is already taken.")]
         public string eMail { get; set; }
 
         [DisplayName("Gender")]
