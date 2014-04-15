@@ -49,18 +49,22 @@ namespace ForTheFisherman.Models
 
         [DisplayName("Fist Name")]
         [Required(ErrorMessage = "Please enter your first name.")]
+        [StringLength(100)]
         public string firstName { get; set; }
 
         [DisplayName("Last Name")]
         [Required(ErrorMessage = "Please enter your last name.")]
+        [StringLength(100)]
         public string lastName { get; set; }
 
         [DisplayName("Phone Number")]
         [Required(ErrorMessage = "Please enter your phone number.")]
+        [StringLength(100)]
         public string phone { get; set; }
 
         [DisplayName("E-mail")]
         [Required(ErrorMessage = "Please enter your e-mail address.")]
+        [StringLength(100)]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Please enter a valid e-mail address.")]
         [Remote("CheckEmail", "Validation", AdditionalFields = "fId", ErrorMessage = "This e-mail address is already taken.")]
         public string eMail { get; set; }
