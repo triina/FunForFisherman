@@ -63,10 +63,10 @@ namespace ForTheFisherman.Models
         public string phone { get; set; }
 
         [DisplayName("E-mail")]
-        [Required(ErrorMessage = "Please enter your e-mail address.")]
+        [Required(ErrorMessage = "Please enter your email address.")]
         [StringLength(100)]
         [DataType(DataType.EmailAddress)]
-        [Remote("CheckEmail", "Validation", AdditionalFields = "fId", ErrorMessage = "This e-mail address is already taken.")]
+        [Remote("CheckEmail", "Validation", AdditionalFields = "fId", ErrorMessage = "This email address is already taken.")]
         public string eMail { get; set; }
 
         [DisplayName("Gender")]

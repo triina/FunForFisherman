@@ -25,9 +25,10 @@ namespace ForTheFisherman.Controllers
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public JsonResult CheckEmail(string email, string fId)
+        public JsonResult CheckEmail(string email, int fId)
         {
-            var result = db.Fisherman.SqlQuery("SELECT * FROM Fisherman WHERE eMail='" + email + "' AND fId <> '" + fId + "'").Count() == 0;
+            //var result = db.Fisherman.SqlQuery("SELECT * FROM Fisherman WHERE eMail='" + email + "' AND fId <> " + fId).Count() == 0;
+            var result = db.Fisherman.SingleOrDefault(f => f.eMail == email && f.fId != fId) == null;
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
