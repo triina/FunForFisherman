@@ -22,27 +22,27 @@ namespace ForTheFisherman.Models
             this.FishingSession = new HashSet<FishingSession>();
         }
 
-        /// <summary>
-        /// A list of genders for textbox validation
-        /// </summary>
+        ///// <summary>
+        ///// A list of genders for textbox validation
+        ///// </summary>
         //public enum Gender
         //{
         //    M, F
         //}
 
-        /// <summary>
-        /// A list of genders for drop-down lists
-        /// </summary>
-        public static List<SelectListItem> GenderSelectList
-        {
-            get
-            {
-                List<SelectListItem> genders = new List<SelectListItem>();
-                genders.Add(new SelectListItem { Text = "Male", Value = "M" });
-                genders.Add(new SelectListItem { Text = "Female", Value = "F" });
-                return genders;
-            }
-        }
+        ///// <summary>
+        ///// A list of genders for drop-down lists
+        ///// </summary>
+        //public static List<SelectListItem> GenderSelectList
+        //{
+        //    get
+        //    {
+        //        List<SelectListItem> genders = new List<SelectListItem>();
+        //        genders.Add(new SelectListItem { Text = "Male", Value = "M" });
+        //        genders.Add(new SelectListItem { Text = "Female", Value = "F" });
+        //        return genders;
+        //    }
+        //}
 
         [DisplayName("Id")]
         public int fId { get; set; }
@@ -70,6 +70,7 @@ namespace ForTheFisherman.Models
         public string eMail { get; set; }
 
         [DisplayName("Gender")]
+        [Required(ErrorMessage = "You do have a gender, don't you?")]
         //[EnumDataType(typeof(Gender))]
         public string gender { get; set; }
 

@@ -53,8 +53,15 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.gender)
         </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.gender, ForTheFisherman.Models.Fisherman.GenderSelectList)
+        <div class="editor-field radio">
+            @{string id = ViewData.TemplateInfo.GetFullHtmlFieldId("radioM");}
+            @Html.RadioButtonFor(model => model.gender, "M", new { id })
+            @Html.LabelFor(model => model.gender, "Male", new { @for = id })
+            @{id = ViewData.TemplateInfo.GetFullHtmlFieldId("radioF");}
+            @Html.RadioButtonFor(model => model.gender, "F", new { id })
+            @Html.LabelFor(model => model.gender, "Female", new { @for = id })
+            @Html.ValidationMessageFor(model => model.gender)
+            @*@Html.DropDownListFor(model => model.gender, ForTheFisherman.Models.Fisherman.GenderSelectList)*@
         </div>
 
         <div class="hidden">
