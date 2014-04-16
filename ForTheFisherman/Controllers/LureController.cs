@@ -116,11 +116,21 @@ namespace ForTheFisherman.Controllers
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
-        {
+        { 
             Lure lure = db.Lure.Find(id);
-            db.Lure.Remove(lure);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.Lure.Remove(lure);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            /// if the delete cannot be done an error message is created and the user is redirected to the lure index page where the error is displayed.
+            catch {
+                TempData["deleteErrorMessage"] = "Cannot delete this item";
+
+                return RedirectToAction("Index");
+            
+            }
         }
 
         protected override void Dispose(bool disposing)
