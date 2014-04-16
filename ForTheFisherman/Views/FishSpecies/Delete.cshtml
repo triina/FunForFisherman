@@ -1,0 +1,41 @@
+﻿@model ForTheFisherman.Models.FishSpecies
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Fish Species</legend>
+
+    <div class="hidden">
+        @Html.HiddenFor(model => model.fiId)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.fishname)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fishname)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+   
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" />
+        |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

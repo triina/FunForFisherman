@@ -1,0 +1,35 @@
+﻿@model ForTheFisherman.Models.FishSpecies
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Fish Species</legend>
+
+    <div class="hidden">
+        @Html.HiddenFor(model => model.fiId)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.fishname)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fishname)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.fiId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

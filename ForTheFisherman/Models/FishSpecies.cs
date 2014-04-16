@@ -11,6 +11,9 @@ namespace ForTheFisherman.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     
     public partial class FishSpecies
     {
@@ -20,9 +23,19 @@ namespace ForTheFisherman.Models
         }
     
         public int fiId { get; set; }
+        [Required(ErrorMessage = "Fish name is necessary")]
+        [DisplayName("Fish name")]
+        [StringLength(100)]
+        [Remote("CheckFishName", "Validation", AdditionalFields = "fiId", ErrorMessage = "This fish name is already taken.")]
         public string fishname { get; set; }
+
+        [Required(ErrorMessage = "Fish species description is necessary")]
+        [DisplayName("Description of fish species")]
+        [StringLength(100)]
         public string description { get; set; }
-    
+        
+
         public virtual ICollection<Catch> Catch { get; set; }
+       
     }
 }

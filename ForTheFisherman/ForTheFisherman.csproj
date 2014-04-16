@@ -186,14 +186,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CatchController.cs" />
     <Compile Include="Controllers\FishermanController.cs" />
     <Compile Include="Controllers\FishingMethodController.cs" />
     <Compile Include="Controllers\GeoCoordinatesController.cs" />
+    <Compile Include="Controllers\FishSpeciesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationMarkingController.cs" />
     <Compile Include="Controllers\LureController.cs" />
     <Compile Include="Controllers\LureTypeController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />
+    <Compile Include="Controllers\WaterController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -406,6 +409,16 @@
     <Content Include="Views\FishingMethod\Create.cshtml" />
     <Content Include="Views\FishingMethod\Edit.cshtml" />
     <Content Include="Views\FishingMethod\Delete.cshtml" />
+    <Content Include="Views\FishSpecies\Create.cshtml" />
+    <Content Include="Views\FishSpecies\Delete.cshtml" />
+    <Content Include="Views\FishSpecies\Details.cshtml" />
+    <Content Include="Views\FishSpecies\Edit.cshtml" />
+    <Content Include="Views\FishSpecies\Index.cshtml" />
+    <Content Include="Views\Water\Index.cshtml" />
+    <Content Include="Views\Water\Details.cshtml" />
+    <Content Include="Views\Water\Create.cshtml" />
+    <Content Include="Views\Water\Edit.cshtml" />
+    <Content Include="Views\Water\Delete.cshtml" />
     <Content Include="Views\LocationMarking\Index.cshtml" />
     <Content Include="Views\LocationMarking\Details.cshtml" />
     <Content Include="Views\LocationMarking\Create.cshtml" />
@@ -423,6 +436,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

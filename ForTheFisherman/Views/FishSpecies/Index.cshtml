@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ForTheFisherman.Models.FishSpecies>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Fish Species</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th class="hidden">
+            @Html.DisplayNameFor(model => model.fiId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fishname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="hidden">
+            @Html.HiddenFor(modelItem => item.fiId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fishname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.fiId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.fiId })
+        </td>
+    </tr>
+}
+
+</table>
