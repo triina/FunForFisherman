@@ -13,6 +13,7 @@ namespace ForTheFisherman.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     
     public partial class Lure
     {
@@ -25,10 +26,13 @@ namespace ForTheFisherman.Models
         
         [Required(ErrorMessage = "Lure name is necessary")]
         [DisplayName("Lure name")]
+        [StringLength(100)]
+        [Remote("CheckLureName", "Validation", AdditionalFields = "lId", ErrorMessage = "This lure name is already taken.")]
         public string name { get; set; }
         
         [Required(ErrorMessage = "Lure description is necessary")]
         [DisplayName("Description of lure")]
+        [StringLength(100)]
         public string description { get; set; }
         public int ltId { get; set; }
     

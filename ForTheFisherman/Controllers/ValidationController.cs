@@ -31,5 +31,17 @@ namespace ForTheFisherman.Controllers
             var result = db.Fisherman.SingleOrDefault(f => f.eMail == email && f.fId != fId) == null;
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult CheckLureTypeName(string typename, string ltId)
+        {
+            var result = db.LureType.SqlQuery("SELECT * FROM LureType WHERE typename='" + typename + "' AND ltId <> '" + ltId + "'").Count() == 0;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult CheckLureName(string name, string lId)
+        {
+            var result = db.Lure.SqlQuery("SELECT * FROM Lure WHERE name='" + name + "' AND lId <> '" + lId + "'").Count() == 0;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }
