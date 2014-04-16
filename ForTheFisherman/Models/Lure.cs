@@ -11,6 +11,8 @@ namespace ForTheFisherman.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Lure
     {
@@ -20,7 +22,13 @@ namespace ForTheFisherman.Models
         }
     
         public int lId { get; set; }
+        
+        [Required(ErrorMessage = "Lure name is necessary")]
+        [DisplayName("Lure name")]
         public string name { get; set; }
+        
+        [Required(ErrorMessage = "Lure description is necessary")]
+        [DisplayName("Description of lure")]
         public string description { get; set; }
         public int ltId { get; set; }
     

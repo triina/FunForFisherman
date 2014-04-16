@@ -23,8 +23,8 @@ namespace ForTheFisherman.Models
 
         public int ltId { get; set; }
 
-        [Required(ErrorMessage = "Lure name is necessary")]
-        [DisplayName("Lure name")]
+        [Required(ErrorMessage = "Lure type name is necessary")]
+        [DisplayName("Lure type name")]
         public string typename { get; set; }
 
         [Required(ErrorMessage = "Description is necessary")]
