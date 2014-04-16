@@ -43,5 +43,11 @@ namespace ForTheFisherman.Controllers
             var result = db.Lure.SqlQuery("SELECT * FROM Lure WHERE name='" + name + "' AND lId <> '" + lId + "'").Count() == 0;
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult CheckFishName(string name, int fiId)
+        {
+            var result = db.FishSpecies.SingleOrDefault(f => f.fishname == name && f.fiId != fiId) == null;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }
