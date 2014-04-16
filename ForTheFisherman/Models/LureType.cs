@@ -32,7 +32,7 @@ namespace ForTheFisherman.Models
 
         [Required(ErrorMessage = "Description is necessary")]
         [DisplayName("Description of lure type")]
-        [StringLength(100)]
+        [StringLength(200)]
         public string description { get; set; }
     
         public virtual ICollection<Lure> Lure { get; set; }

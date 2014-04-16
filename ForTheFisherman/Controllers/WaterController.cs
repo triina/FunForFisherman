@@ -9,118 +9,115 @@ using ForTheFisherman.Models;
 
 namespace ForTheFisherman.Controllers
 {
-    public class LureTypeController : Controller
+    public class WaterController : Controller
     {
         private FishermanDBEntities1 db = new FishermanDBEntities1();
 
         //
-        // GET: /LureType/
+        // GET: /Water/
 
         public ActionResult Index()
         {
-            return View(db.LureType.ToList());
+            return View(db.Water.ToList());
         }
 
         //
-        // GET: /LureType/Details/5
+        // GET: /Water/Details/5
 
         public ActionResult Details(int id = 0)
         {
-            LureType luretype = db.LureType.Find(id);
-            if (luretype == null)
+            Water water = db.Water.Find(id);
+            if (water == null)
             {
                 return HttpNotFound();
             }
-            return View(luretype);
+            return View(water);
         }
 
         //
-        // GET: /LureType/Create
-
+        // GET: /Water/Create
 
         public ActionResult Create()
         {
-
-            //Create empty luretype and store the next available id for luretypes in its id
-            LureType lureType = new LureType();
-            var lastLureType = db.LureType.OrderByDescending(lt => lt.ltId).FirstOrDefault();
-            lureType.ltId = (lastLureType.ltId) + 1;
-            return View(lureType);
+            //Create empty water and store the next available id for waters in its id
+            Water water = new Water();
+            var lastWater = db.Water.OrderByDescending(w => w.wId).FirstOrDefault();
+            water.wId = (lastWater.wId) + 1;
+            return View(water);
         }
 
         //
-        // POST: /LureType/Create
+        // POST: /Water/Create
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(LureType luretype)
+        public ActionResult Create(Water water)
         {
             if (ModelState.IsValid)
             {
-                db.LureType.Add(luretype);
+                db.Water.Add(water);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(luretype);
+            return View(water);
         }
 
         //
-        // GET: /LureType/Edit/5
+        // GET: /Water/Edit/5
 
         public ActionResult Edit(int id = 0)
         {
-            LureType luretype = db.LureType.Find(id);
-            if (luretype == null)
+            Water water = db.Water.Find(id);
+            if (water == null)
             {
                 return HttpNotFound();
             }
-            return View(luretype);
+            return View(water);
         }
 
         //
-        // POST: /LureType/Edit/5
+        // POST: /Water/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(LureType luretype)
+        public ActionResult Edit(Water water)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(luretype).State = EntityState.Modified;
+                db.Entry(water).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(luretype);
+            return View(water);
         }
 
         //
-        // GET: /LureType/Delete/5
+        // GET: /Water/Delete/5
 
         public ActionResult Delete(int id = 0)
         {
-            LureType luretype = db.LureType.Find(id);
-            if (luretype == null)
+            Water water = db.Water.Find(id);
+            if (water == null)
             {
                 return HttpNotFound();
             }
-            return View(luretype);
+            return View(water);
         }
 
         //
-        // POST: /LureType/Delete/5
+        // POST: /Water/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                LureType luretype = db.LureType.Find(id);
-                db.LureType.Remove(luretype);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            try{
+            Water water = db.Water.Find(id);
+            db.Water.Remove(water);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+             }
             /// if the delete cannot be done an error message is created and the user is redirected to the lure index page where the error is displayed.
             catch
             {
