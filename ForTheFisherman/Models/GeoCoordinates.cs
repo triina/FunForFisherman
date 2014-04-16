@@ -11,6 +11,8 @@ namespace ForTheFisherman.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class GeoCoordinates
     {
@@ -18,9 +20,16 @@ namespace ForTheFisherman.Models
         {
             this.LocationMarking = new HashSet<LocationMarking>();
         }
-    
+
+        [DisplayName("Id")]
         public int gcId { get; set; }
+
+        [DisplayName("Latitude")]
+        [Required(ErrorMessage = "Please enter latitude.")]
         public decimal latitude { get; set; }
+
+        [DisplayName("Longitude")]
+        [Required(ErrorMessage = "Please enter longitude.")]
         public decimal longitude { get; set; }
     
         public virtual ICollection<LocationMarking> LocationMarking { get; set; }

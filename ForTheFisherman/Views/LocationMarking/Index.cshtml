@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ForTheFisherman.Models.LocationMarking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.lmId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sublocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.compaslocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Water.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeoCoordinates.gcId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.lmId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sublocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.compaslocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Water.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeoCoordinates.gcId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.lmId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.lmId })
+        </td>
+    </tr>
+}
+
+</table>

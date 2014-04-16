@@ -1,0 +1,76 @@
+﻿@model ForTheFisherman.Models.LocationMarking
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>LocationMarking</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.lmId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.lmId)
+            @Html.ValidationMessageFor(model => model.lmId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.sublocation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.sublocation)
+            @Html.ValidationMessageFor(model => model.sublocation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.compaslocation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.compaslocation)
+            @Html.ValidationMessageFor(model => model.compaslocation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.wId, "Water")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("wId", String.Empty)
+            @Html.ValidationMessageFor(model => model.wId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.gcId, "GeoCoordinates")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("gcId", String.Empty)
+            @Html.ValidationMessageFor(model => model.gcId)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
