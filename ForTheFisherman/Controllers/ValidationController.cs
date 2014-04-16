@@ -32,15 +32,15 @@ namespace ForTheFisherman.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult CheckLureTypeName(string typename, string ltId)
+        public JsonResult CheckLureTypeName(string typename, int ltId)
         {
-            var result = db.LureType.SqlQuery("SELECT * FROM LureType WHERE typename='" + typename + "' AND ltId <> '" + ltId + "'").Count() == 0;
+            var result = db.LureType.SingleOrDefault(lt => lt. typename== typename && lt.ltId != ltId) == null;
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult CheckLureName(string name, string lId)
+        public JsonResult CheckLureName(string name, int lId)
         {
-            var result = db.Lure.SqlQuery("SELECT * FROM Lure WHERE name='" + name + "' AND lId <> '" + lId + "'").Count() == 0;
+            var result = db.Lure.SingleOrDefault(l => l.name == name && l.lId != lId) == null;
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
