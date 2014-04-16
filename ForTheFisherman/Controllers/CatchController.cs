@@ -18,30 +18,26 @@ namespace ForTheFisherman.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Catch.ToList());
+            var fishcatch = db.Catch.Include(c => c.FishSpecies);
+            return View(fishcatch.ToList());
         }
 
         //
         // GET: /Catch/Details/5
 
-        public ActionResult Details(int id = 0)
-        {
-            Catch fishcatch = db.Catch.Find(id);
-            if (fishcatch == null)
-            {
-                return HttpNotFound();
-            }
-            return View(fishcatch);
-        }
+        
 
         //
         // GET: /Catch/Create
 
         public ActionResult Create()
         {
+           
+
+            ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname");
             Catch fishcatch = new Catch();
-            var lastCatch = db.Catch.OrderByDescending(ci => ci.cId).FirstOrDefault();
-            fishcatch.fiId = (lastCatch.cId) + 1;
+            var lastCatch = db.Catch.OrderByDescending(fs => fs.cId).FirstOrDefault();
+            fishcatch.cId = (lastCatch.fiId) + 1;
             return View(fishcatch);
         }
 
@@ -58,7 +54,8 @@ namespace ForTheFisherman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
+            
             return View(fishcatch);
         }
 
