@@ -186,8 +186,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CatchController.cs" />
     <Compile Include="Controllers\FishermanController.cs" />
     <Compile Include="Controllers\FishingMethodController.cs" />
+    <Compile Include="Controllers\FishSpeciesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LureController.cs" />
     <Compile Include="Controllers\LureTypeController.cs" />
@@ -403,6 +405,11 @@
     <Content Include="Views\FishingMethod\Create.cshtml" />
     <Content Include="Views\FishingMethod\Edit.cshtml" />
     <Content Include="Views\FishingMethod\Delete.cshtml" />
+    <Content Include="Views\FishSpecies\Create.cshtml" />
+    <Content Include="Views\FishSpecies\Delete.cshtml" />
+    <Content Include="Views\FishSpecies\Details.cshtml" />
+    <Content Include="Views\FishSpecies\Edit.cshtml" />
+    <Content Include="Views\FishSpecies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -410,6 +417,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
