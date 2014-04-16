@@ -11,6 +11,9 @@ namespace ForTheFisherman.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     
     public partial class Water
     {
@@ -20,8 +23,20 @@ namespace ForTheFisherman.Models
         }
     
         public int wId { get; set; }
+
+        [Required(ErrorMessage = "Water name is necessary")]
+        [DisplayName("Water name")]
+        [StringLength(100)]
         public string name { get; set; }
+
+        [Required(ErrorMessage = "Municipality is necessary")]
+        [DisplayName("Municipality")]
+        [StringLength(100)]
         public string municipality { get; set; }
+
+        [Required(ErrorMessage = "Description is necessary")]
+        [DisplayName("Description")]
+        [StringLength(200)]
         public string description { get; set; }
     
         public virtual ICollection<LocationMarking> LocationMarking { get; set; }

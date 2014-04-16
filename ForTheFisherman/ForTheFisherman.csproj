@@ -194,6 +194,7 @@
     <Compile Include="Controllers\LureController.cs" />
     <Compile Include="Controllers\LureTypeController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />
+    <Compile Include="Controllers\WaterController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -410,6 +411,11 @@
     <Content Include="Views\FishSpecies\Details.cshtml" />
     <Content Include="Views\FishSpecies\Edit.cshtml" />
     <Content Include="Views\FishSpecies\Index.cshtml" />
+    <Content Include="Views\Water\Index.cshtml" />
+    <Content Include="Views\Water\Details.cshtml" />
+    <Content Include="Views\Water\Create.cshtml" />
+    <Content Include="Views\Water\Edit.cshtml" />
+    <Content Include="Views\Water\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
