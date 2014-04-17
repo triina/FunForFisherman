@@ -49,5 +49,11 @@ namespace ForTheFisherman.Controllers
             var result = db.FishSpecies.SingleOrDefault(fi => fi.fishname == fishname && fi.fiId != fiId) == null;
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult CheckMethodName(string methodname, int fmId)
+        {
+            var result = db.FishingMethod.SingleOrDefault(m => m.methodname == methodname && m.fmId != fmId) == null;
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

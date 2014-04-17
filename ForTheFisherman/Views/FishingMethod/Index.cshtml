@@ -4,6 +4,12 @@
     ViewBag.Title = "Index";
 }
 
+   @{if(null != TempData["deleteErrorMessage"])
+   {
+      <script type="text/javascript">
+       alert("@TempData["deleteErrorMessage"]");
+      </script>
+   }}
 <h2>Index</h2>
 
 <p>

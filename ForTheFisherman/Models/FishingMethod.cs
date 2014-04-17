@@ -11,6 +11,9 @@ namespace ForTheFisherman.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     
     public partial class FishingMethod
     {
@@ -20,7 +23,16 @@ namespace ForTheFisherman.Models
         }
     
         public int fmId { get; set; }
+
+        [Required(ErrorMessage = "Method name is required.")]
+        [DisplayName("Method Name")]
+        [Remote("CheckMethodName", "Validation", AdditionalFields = "fmId", ErrorMessage = "This fishing method name is already used.")]
+        [StringLength(100)]
         public string methodname { get; set; }
+
+        [Required(ErrorMessage = "Description is required.")]
+        [DisplayName("Description")]
+        [StringLength(200)]
         public string description { get; set; }
     
         public virtual ICollection<FishingSession> FishingSession { get; set; }

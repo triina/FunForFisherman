@@ -111,10 +111,18 @@ namespace ForTheFisherman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            FishingMethod fishingmethod = db.FishingMethod.Find(id);
-            db.FishingMethod.Remove(fishingmethod);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                FishingMethod fishingmethod = db.FishingMethod.Find(id);
+                db.FishingMethod.Remove(fishingmethod);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                TempData["deleteErrorMessage"] = "This item cannot be deleted.";
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)
