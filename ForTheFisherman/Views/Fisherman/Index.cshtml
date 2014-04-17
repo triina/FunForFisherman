@@ -4,6 +4,14 @@
     ViewBag.Title = "Index";
 }
 
+<!-- If the user is redirected to this page after trying to delete a fisherman unsuccessfully a message box is displayed-->
+   @{if(null != TempData["deleteErrorMessage"])
+   {
+      <script type="text/javascript">
+       alert("@TempData["deleteErrorMessage"]");
+      </script>
+   }}
+
 <h2>Index</h2>
 
 <p>
