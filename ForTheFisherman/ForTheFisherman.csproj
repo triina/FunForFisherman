@@ -333,7 +333,6 @@
       <LastGenOutput>ModelFisherman.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Scripts\geo.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -434,6 +433,7 @@
     <Content Include="Views\Catch\Details.cshtml" />
     <Content Include="Views\Catch\Edit.cshtml" />
     <Content Include="Views\Catch\Index.cshtml" />
+    <Content Include="Views\GeoCoordinates\CultureSensitiveDecimal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

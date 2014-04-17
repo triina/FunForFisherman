@@ -6,6 +6,9 @@
 
 <h2>Edit</h2>
 
+@* Disables the client-side validation that causes problems with decimal comma *@
+@{ Html.EnableClientValidation(false); }
+
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)

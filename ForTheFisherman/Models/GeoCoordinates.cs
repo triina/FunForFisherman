@@ -25,10 +25,12 @@ namespace ForTheFisherman.Models
         public int gcId { get; set; }
 
         [DisplayName("Latitude")]
+        [DisplayFormat(DataFormatString = "{0:n7}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Please enter latitude.")]
         public decimal latitude { get; set; }
 
         [DisplayName("Longitude")]
+        [DisplayFormat(DataFormatString = "{0:n7}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Please enter longitude.")]
         public decimal longitude { get; set; }
     

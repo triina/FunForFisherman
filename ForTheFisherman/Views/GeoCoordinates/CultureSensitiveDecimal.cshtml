@@ -1,0 +1,23 @@
+﻿<script>
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success);
+    } else {
+        error("Geolocation is not supported."); // This line came from some tutorial, will be changed later
+    }
+
+    function success(position) {
+        var lat = (position.coords.latitude).toString();
+        var long = (position.coords.longitude).toString();
+        var sep = "@System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator";
+            if (sep == ",") {
+                lat = lat.replace(".", ",");
+                long = long.replace(".", ",");
+            }
+            else if (sep == ".") {
+                lat = lat.replace(",", ".");
+                long = long.replace(",", ".");
+            }
+            document.getElementById("latitude").innerText = lat;
+            document.getElementById("longitude").innerText = long;
+        }
+</script>
