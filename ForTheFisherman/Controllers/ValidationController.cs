@@ -44,9 +44,9 @@ namespace ForTheFisherman.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult CheckFishName(string name, int fiId)
+        public JsonResult CheckFishName(string fishname, int fiId)
         {
-            var result = db.FishSpecies.SingleOrDefault(f => f.fishname == name && f.fiId != fiId) == null;
+            var result = db.FishSpecies.SingleOrDefault(fi => fi.fishname == fishname && fi.fiId != fiId) == null;
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }

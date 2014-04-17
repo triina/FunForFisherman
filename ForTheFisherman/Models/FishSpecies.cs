@@ -23,15 +23,16 @@ namespace ForTheFisherman.Models
         }
     
         public int fiId { get; set; }
+
         [Required(ErrorMessage = "Fish name is necessary")]
         [DisplayName("Fish name")]
-        [StringLength(100)]
         [Remote("CheckFishName", "Validation", AdditionalFields = "fiId", ErrorMessage = "This fish name is already taken.")]
+        [StringLength(100)]
         public string fishname { get; set; }
 
         [Required(ErrorMessage = "Fish species description is necessary")]
         [DisplayName("Description of fish species")]
-        [StringLength(100)]
+        [StringLength(200)]
         public string description { get; set; }
         
 
