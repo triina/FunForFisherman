@@ -19,25 +19,28 @@ namespace ForTheFisherman.Controllers
         public ActionResult Index()
         {
             var fishcatch = db.Catch.Include(c => c.FishSpecies);
+            var lure = db.Catch.Include(l => l.Lure);
             return View(fishcatch.ToList());
         }
 
         //
         // GET: /Catch/Details/5
 
-        
+
 
         //
         // GET: /Catch/Create
 
         public ActionResult Create()
         {
-           
+
 
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname");
+            ViewBag.lId = new SelectList(db.Lure, "lId", "name");
             Catch fishcatch = new Catch();
-            var lastCatch = db.Catch.OrderByDescending(fs => fs.cId).FirstOrDefault();
+            var lastCatch = db.Catch.OrderByDescending(fi => fi.cId).FirstOrDefault();
             fishcatch.cId = (lastCatch.fiId) + 1;
+            fishcatch.cId = (lastCatch.lId) + 1;
             return View(fishcatch);
         }
 
@@ -55,7 +58,8 @@ namespace ForTheFisherman.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
-            
+            ViewBag.lId = new SelectList(db.Lure, "lId", "name", fishcatch.lId);
+
             return View(fishcatch);
         }
 
@@ -108,10 +112,22 @@ namespace ForTheFisherman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Catch fishspecies = db.Catch.Find(id);
-            db.Catch.Remove(fishspecies);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Catch fishcatch = db.Catch.Find(id);
+
+            try
+            {
+                db.Catch.Remove(fishcatch);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+             /// if the delete cannot be done an error message is created and the user is redirected to the lure index page where the error is displayed.
+            catch
+            {
+                TempData["deleteErrorMessage"] = "Cannot delete this item";
+
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)
