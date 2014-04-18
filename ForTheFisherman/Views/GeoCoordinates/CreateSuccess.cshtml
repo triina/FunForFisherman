@@ -1,0 +1,10 @@
+﻿@model ForTheFisherman.Models.GeoCoordinates
+
+<h2>Success</h2>
+
+<div>@Model.latitude, @Model.longitude</div>
+
+<div>
+    @Html.ActionLink("Update", "Update", new { id = @Model.gcId })
+    @Html.ActionLink("Edit", "Edit", new { id = @Model.gcId })
+</div>

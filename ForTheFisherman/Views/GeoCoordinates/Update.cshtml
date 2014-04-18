@@ -1,9 +1,5 @@
 ﻿@model ForTheFisherman.Models.GeoCoordinates
 
-@* Old solution to the decimal comma problem: *@
-@* @{ Html.EnableClientValidation(false); } *@
-@* The new solution is validate.fix.js *@
-
 @* The correct overload to assign an id to a form takes 4 parameters *@
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "geoForm" }))
 {
@@ -21,10 +17,12 @@
 
             @Html.HiddenFor(model => model.longitude)
             @Html.ValidationMessageFor(model => model.longitude)
+
+            @* Carried over from Create view, left here for compatibility *@
+            <input type="button" id="createButton" value="Get coordinates" onclick="getCoordinates()" />
         </div>
 
         <p>
-            <input type="button" id="createButton" value="Get coordinates" onclick="getCoordinates()" />
             <span id="errorMessage"></span>
         </p>
     </fieldset>
@@ -39,4 +37,8 @@
 
     @* Decimal comma fix: *@
     <script src="~/Scripts/jquery.validate.fix.js"></script>
+
+    <script>
+        $(function () { getCoordinates(); }); // Submits the form automatically
+    </script>
 }

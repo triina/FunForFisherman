@@ -57,10 +57,47 @@ namespace ForTheFisherman.Controllers
             {
                 db.GeoCoordinates.Add(geocoordinates);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return View("CreateSuccess", geocoordinates);
             }
 
             return View(geocoordinates);
+        }
+
+        //
+        // GET: /GeoCoordinates/Update/5
+
+        /// <summary>
+        /// Updates the coordinates for a given id by recreating them automatically
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+        public ActionResult Update(int id = 0)
+        {
+            GeoCoordinates geocoordinates = db.GeoCoordinates.Find(id);
+            if (geocoordinates == null)
+            {
+                return HttpNotFound();
+            }
+            return View(geocoordinates);
+        }
+
+        //
+        // POST: /GeoCoordinates/Update/5
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(GeoCoordinates geocoordinates)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(geocoordinates).State = EntityState.Modified;
+                db.SaveChanges();
+                //return RedirectToAction("Index");
+                return View("CreateSuccess", geocoordinates);
+            }
+            return View("Create", geocoordinates);
         }
 
         //
@@ -87,7 +124,8 @@ namespace ForTheFisherman.Controllers
             {
                 db.Entry(geocoordinates).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return View("CreateSuccess", geocoordinates);
             }
             return View(geocoordinates);
         }

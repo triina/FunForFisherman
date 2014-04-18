@@ -340,6 +340,7 @@
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.fix.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -434,6 +435,8 @@
     <Content Include="Views\Catch\Edit.cshtml" />
     <Content Include="Views\Catch\Index.cshtml" />
     <Content Include="Views\GeoCoordinates\CultureSensitiveDecimal.cshtml" />
+    <Content Include="Views\GeoCoordinates\CreateSuccess.cshtml" />
+    <Content Include="Views\GeoCoordinates\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

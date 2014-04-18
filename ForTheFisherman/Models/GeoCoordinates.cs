@@ -25,13 +25,15 @@ namespace ForTheFisherman.Models
         public int gcId { get; set; }
 
         [DisplayName("Latitude")]
-        [DisplayFormat(DataFormatString = "{0:n7}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:f7}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Please enter latitude.")]
+        [Range(-90, 90)]
         public decimal latitude { get; set; }
 
         [DisplayName("Longitude")]
-        [DisplayFormat(DataFormatString = "{0:n7}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:f7}", ApplyFormatInEditMode = true)]
         [Required(ErrorMessage = "Please enter longitude.")]
+        [Range(-180, 180)]
         public decimal longitude { get; set; }
     
         public virtual ICollection<LocationMarking> LocationMarking { get; set; }
