@@ -18,15 +18,26 @@ namespace ForTheFisherman.Controllers
 
         public ActionResult Index()
         {
-            var fishcatch = db.Catch.Include(c => c.FishSpecies);
-            var lure = db.Catch.Include(l => l.Lure);
+            var fishcatch = db.Catch.Include(fi => fi.FishSpecies).Include(l => l.Lure);
             return View(fishcatch.ToList());
         }
+
+
+
+       
 
         //
         // GET: /Catch/Details/5
 
-
+        public ActionResult Details(int id = 0)
+        {
+            Catch fishcatch = db.Catch.Find(id);
+            if (fishcatch == null)
+            {
+                return HttpNotFound();
+            }
+            return View(fishcatch);
+        }
 
         //
         // GET: /Catch/Create
@@ -38,9 +49,9 @@ namespace ForTheFisherman.Controllers
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname");
             ViewBag.lId = new SelectList(db.Lure, "lId", "name");
             Catch fishcatch = new Catch();
-            var lastCatch = db.Catch.OrderByDescending(fi => fi.cId).FirstOrDefault();
-            fishcatch.cId = (lastCatch.fiId) + 1;
-            fishcatch.cId = (lastCatch.lId) + 1;
+            var lastCatch = db.Catch.OrderByDescending(fi => fi.cId).OrderByDescending(l => l.lId).FirstOrDefault();
+            fishcatch.cId = (lastCatch.fiId + lastCatch.lId) + 1;
+            
             return View(fishcatch);
         }
 
@@ -73,6 +84,8 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
+            ViewBag.lId = new SelectList(db.Lure, "lId", "name", fishcatch.lId);
             return View(fishcatch);
         }
 
@@ -89,6 +102,8 @@ namespace ForTheFisherman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
+            ViewBag.lId = new SelectList(db.Lure, "lId", "name", fishcatch.lId);
             return View(fishcatch);
         }
 
