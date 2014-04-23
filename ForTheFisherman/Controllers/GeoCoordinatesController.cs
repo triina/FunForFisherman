@@ -40,10 +40,10 @@ namespace ForTheFisherman.Controllers
         public ActionResult Create()
         {
             // Create new coordinates and store the next available id for coordinates id
-            GeoCoordinates gc = new GeoCoordinates();
-            var gcT = db.GeoCoordinates.OrderByDescending(f => f.gcId).FirstOrDefault();
-            gc.gcId = gcT.gcId + 1;
-            return View(gc);
+            GeoCoordinates geocoordinates = new GeoCoordinates();
+            var geocoordinatesT = db.GeoCoordinates.OrderByDescending(f => f.gcId).FirstOrDefault();
+            geocoordinates.gcId = geocoordinatesT.gcId + 1;
+            return View(geocoordinates);
         }
 
         //
@@ -58,10 +58,31 @@ namespace ForTheFisherman.Controllers
                 db.GeoCoordinates.Add(geocoordinates);
                 db.SaveChanges();
                 //return RedirectToAction("Index");
-                return View("CreateSuccess", geocoordinates);
+                TempData["geocoordinates"] = geocoordinates;
+                return RedirectToAction("CreateSuccess");
             }
-
             return View(geocoordinates);
+        }
+
+        //
+        // GET: /GeoCoordinates/CreateSuccess
+
+        /// <summary>
+        /// Provides the options to manually edit or update the coordinates after successful creation
+        /// </summary>
+        /// <returns></returns>
+
+        public ActionResult CreateSuccess()
+        {
+            if (TempData["geocoordinates"] != null)
+            {
+                var geocoordinates = TempData["geocoordinates"];
+                return View(geocoordinates);
+            }
+            else
+            {
+                return RedirectToAction("Create");
+            }
         }
 
         //
@@ -95,9 +116,10 @@ namespace ForTheFisherman.Controllers
                 db.Entry(geocoordinates).State = EntityState.Modified;
                 db.SaveChanges();
                 //return RedirectToAction("Index");
-                return View("CreateSuccess", geocoordinates);
+                TempData["geocoordinates"] = geocoordinates;
+                return RedirectToAction("CreateSuccess");
             }
-            return View("Create", geocoordinates);
+            return View(geocoordinates);
         }
 
         //
@@ -125,7 +147,8 @@ namespace ForTheFisherman.Controllers
                 db.Entry(geocoordinates).State = EntityState.Modified;
                 db.SaveChanges();
                 //return RedirectToAction("Index");
-                return View("CreateSuccess", geocoordinates);
+                TempData["geocoordinates"] = geocoordinates;
+                return RedirectToAction("CreateSuccess");
             }
             return View(geocoordinates);
         }
