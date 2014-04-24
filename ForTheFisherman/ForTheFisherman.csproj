@@ -434,7 +434,7 @@
     <Content Include="Views\Catch\Details.cshtml" />
     <Content Include="Views\Catch\Edit.cshtml" />
     <Content Include="Views\Catch\Index.cshtml" />
-    <Content Include="Views\GeoCoordinates\CultureSensitiveDecimal.cshtml" />
+    <Content Include="Views\GeoCoordinates\GetCoordinates.cshtml" />
     <Content Include="Views\GeoCoordinates\CreateSuccess.cshtml" />
     <Content Include="Views\GeoCoordinates\Update.cshtml" />
   </ItemGroup>

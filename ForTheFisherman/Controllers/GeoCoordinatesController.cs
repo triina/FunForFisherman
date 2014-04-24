@@ -43,14 +43,7 @@ namespace ForTheFisherman.Controllers
             GeoCoordinates geocoordinates = new GeoCoordinates();
             var geocoordinatesT = db.GeoCoordinates.OrderByDescending(f => f.gcId).FirstOrDefault();
             geocoordinates.gcId = geocoordinatesT.gcId + 1;
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(geocoordinates);
-            }
-            else
-            {
-                return View(geocoordinates);
-            }
+            return PartialView(geocoordinates);
         }
 
         //
@@ -68,14 +61,7 @@ namespace ForTheFisherman.Controllers
                 TempData["geocoordinates"] = geocoordinates;
                 return RedirectToAction("CreateSuccess");
             }
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(geocoordinates);
-            }
-            else
-            {
-                return View(geocoordinates);
-            }
+            return PartialView(geocoordinates);
         }
 
         //
@@ -91,14 +77,7 @@ namespace ForTheFisherman.Controllers
             if (TempData["geocoordinates"] != null)
             {
                 var geocoordinates = TempData["geocoordinates"];
-                if (Request.IsAjaxRequest())
-                {
-                    return PartialView(geocoordinates);
-                }
-                else
-                {
-                    return View(geocoordinates);
-                }
+                return PartialView(geocoordinates);
             }
             else
             {
@@ -122,14 +101,7 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(geocoordinates);
-            }
-            else
-            {
-                return View(geocoordinates);
-            }
+            return PartialView(geocoordinates);
         }
 
         //
@@ -147,14 +119,7 @@ namespace ForTheFisherman.Controllers
                 TempData["geocoordinates"] = geocoordinates;
                 return RedirectToAction("CreateSuccess");
             }
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(geocoordinates);
-            }
-            else
-            {
-                return View(geocoordinates);
-            }
+            return PartialView(geocoordinates);
         }
 
         //
@@ -167,14 +132,7 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(geocoordinates);
-            }
-            else
-            {
-                return View(geocoordinates);
-            }
+            return PartialView(geocoordinates);
         }
 
         //
@@ -192,14 +150,7 @@ namespace ForTheFisherman.Controllers
                 TempData["geocoordinates"] = geocoordinates;
                 return RedirectToAction("CreateSuccess");
             }
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView(geocoordinates);
-            }
-            else
-            {
-                return View(geocoordinates);
-            }
+            return PartialView(geocoordinates);
         }
 
         //

@@ -23,8 +23,8 @@
             lat = lat.replace(",", ".");
             long = long.replace(",", ".");
         }
-        document.getElementById("latitude").innerText = lat;
-        document.getElementById("longitude").innerText = long;
+        document.getElementById("latitude").value = lat;
+        document.getElementById("longitude").value = long;
         // Had to add this to make sure the form is submitted _after_ the fields have been populated:
         $("#geoForm").submit();
     }

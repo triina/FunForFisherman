@@ -67,8 +67,8 @@
         </p>
     </fieldset>
 }
-<div id="geoWrapper">
-    @*@Html.Action("Create", "GeoCoordinates")*@
+<div id="geo">
+    @Html.Action("Create", "GeoCoordinates")
 </div>
 
 <div>
@@ -78,12 +78,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/jquery.validate.fix.js"></script>
-    <script>
-        $.ajax({
-            url: '/GeoCoordinates/Create',
-            success: function (result) {
-                $('#geoWrapper').html(result);
-            }
-        });
-    </script>
 }
