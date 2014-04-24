@@ -6,7 +6,8 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -66,8 +67,9 @@
         </p>
     </fieldset>
 }
-
-@Html.Partial("~/Views/GeoCoordinates/Create.cshtml")
+<div id="geoWrapper">
+    @*@Html.Action("Create", "GeoCoordinates")*@
+</div>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -75,4 +77,13 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.validate.fix.js"></script>
+    <script>
+        $.ajax({
+            url: '/GeoCoordinates/Create',
+            success: function (result) {
+                $('#geoWrapper').html(result);
+            }
+        });
+    </script>
 }
