@@ -11,6 +11,8 @@ namespace ForTheFisherman.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Catch
     {
@@ -20,11 +22,29 @@ namespace ForTheFisherman.Models
         }
     
         public int cId { get; set; }
+        [DisplayName("Weight of catch")]
+        [Required(ErrorMessage = "Weight is necessary")]
         public decimal weight { get; set; }
+       
+        [DisplayName("Weight of lure")]
+        [Required(ErrorMessage = "Weight is necessary")]
         public int lureweight { get; set; }
+       
+        [DisplayName("Depth")]
+        [Required(ErrorMessage = "Depth is necessary")]
         public int depth { get; set; }
+       
+        [DisplayName("Description of catch")]
+        [Required(ErrorMessage = "Description is necessary")]
+        [StringLength(200)]
         public string description { get; set; }
+       
+        [DisplayName("Lure")]
+        [Required(ErrorMessage = "Lure is necessary")]
         public int lId { get; set; }
+      
+        [DisplayName("Fish species")]
+        [Required(ErrorMessage = "Species is necessary")]
         public int fiId { get; set; }
     
         public virtual FishSpecies FishSpecies { get; set; }

@@ -49,8 +49,8 @@ namespace ForTheFisherman.Controllers
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname");
             ViewBag.lId = new SelectList(db.Lure, "lId", "name");
             Catch fishcatch = new Catch();
-            var lastCatch = db.Catch.OrderByDescending(fi => fi.cId).OrderByDescending(l => l.lId).FirstOrDefault();
-            fishcatch.cId = (lastCatch.fiId + lastCatch.lId) + 1;
+            var lastCatch = db.Catch.OrderByDescending(fi => fi.cId).OrderByDescending(fi => fi.cId).FirstOrDefault();
+            fishcatch.cId = (lastCatch.cId) + 1;
             
             return View(fishcatch);
         }
