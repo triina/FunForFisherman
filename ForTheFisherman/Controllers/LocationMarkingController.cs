@@ -42,7 +42,11 @@ namespace ForTheFisherman.Controllers
         {
             ViewBag.gcId = new SelectList(db.GeoCoordinates, "gcId", "gcId");
             ViewBag.wId = new SelectList(db.Water, "wId", "name");
-            return View();
+
+            LocationMarking locationMarking = new LocationMarking();
+            var locationMarkingT = db.LocationMarking.OrderByDescending(l => l.lmId).FirstOrDefault();
+            locationMarking.lmId = locationMarkingT.lmId + 1;
+            return View(locationMarking);
         }
 
         //
@@ -117,10 +121,19 @@ namespace ForTheFisherman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            LocationMarking locationmarking = db.LocationMarking.Find(id);
-            db.LocationMarking.Remove(locationmarking);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                LocationMarking locationmarking = db.LocationMarking.Find(id);
+                db.LocationMarking.Remove(locationmarking);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            catch
+            {
+                TempData["deleteErrorMessage"] = "Cannot delete this item";
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

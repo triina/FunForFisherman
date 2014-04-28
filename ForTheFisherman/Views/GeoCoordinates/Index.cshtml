@@ -4,10 +4,20 @@
     ViewBag.Title = "Index";
 }
 
+<!-- If the user is redirected to this page after trying to delete coordinates unsuccessfully a message box is displayed-->
+@{if (null != TempData["deleteErrorMessage"])
+  {
+    <script type="text/javascript">
+        alert("@TempData["deleteErrorMessage"]");
+    </script>
+  }}
+
+
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    This page is for testing only and will be removed from the final version.<br />
+    You can create and edit coordinates from the Location page.
 </p>
 <table>
     <tr>
@@ -23,22 +33,22 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.gcId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.longitude)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.gcId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.gcId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.gcId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.longitude)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.gcId })
+            </td>
+        </tr>
+    }
 
 </table>

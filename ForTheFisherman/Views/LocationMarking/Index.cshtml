@@ -4,6 +4,14 @@
     ViewBag.Title = "Index";
 }
 
+<!-- If the user is redirected to this page after trying to delete a location unsuccessfully a message box is displayed-->
+@{if (null != TempData["deleteErrorMessage"])
+  {
+    <script type="text/javascript">
+        alert("@TempData["deleteErrorMessage"]");
+    </script>
+  }}
+
 <h2>Index</h2>
 
 <p>
@@ -27,36 +35,43 @@
             @Html.DisplayNameFor(model => model.Water.name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GeoCoordinates.gcId)
+            @Html.DisplayNameFor(model => model.GeoCoordinates.latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeoCoordinates.longitude)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.lmId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sublocation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.compaslocation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Water.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GeoCoordinates.gcId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.lmId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.lmId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.lmId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sublocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.compaslocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Water.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeoCoordinates.latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeoCoordinates.longitude)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.lmId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.lmId })
+            </td>
+        </tr>
+    }
 
 </table>

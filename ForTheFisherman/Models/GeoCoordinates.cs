@@ -21,7 +21,7 @@ namespace ForTheFisherman.Models
             this.LocationMarking = new HashSet<LocationMarking>();
         }
 
-        [DisplayName("Id")]
+        [DisplayName("Coordinates Id")]
         public int gcId { get; set; }
 
         [DisplayName("Latitude")]

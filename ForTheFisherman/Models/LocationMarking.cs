@@ -11,6 +11,8 @@ namespace ForTheFisherman.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class LocationMarking
     {
@@ -18,12 +20,28 @@ namespace ForTheFisherman.Models
         {
             this.FishingSession = new HashSet<FishingSession>();
         }
-    
+
+        [DisplayName("Id")]
         public int lmId { get; set; }
+
+        [DisplayName("Sublocation")]
+        [StringLength(100)]
+        [Required(ErrorMessage = "Please enter sublocation name.")]
         public string sublocation { get; set; }
+
+        [DisplayName("Compass Location")]
+        [StringLength(100)]
+        [Required(ErrorMessage = "Please enter compass location.")]
         public string compaslocation { get; set; }
+
+        [DisplayName("Description")]
+        [StringLength(200)]
+        [Required(ErrorMessage = "Please enter description.")]
         public string description { get; set; }
+
+        [Required(ErrorMessage = "Please select water.")]
         public int wId { get; set; }
+
         public Nullable<int> gcId { get; set; }
     
         public virtual ICollection<FishingSession> FishingSession { get; set; }

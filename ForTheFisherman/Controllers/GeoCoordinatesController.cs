@@ -31,7 +31,7 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
-            return View(geocoordinates);
+            return PartialView(geocoordinates);
         }
 
         //
@@ -173,10 +173,19 @@ namespace ForTheFisherman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            GeoCoordinates geocoordinates = db.GeoCoordinates.Find(id);
-            db.GeoCoordinates.Remove(geocoordinates);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                GeoCoordinates geocoordinates = db.GeoCoordinates.Find(id);
+                db.GeoCoordinates.Remove(geocoordinates);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            catch
+            {
+                TempData["deleteErrorMessage"] = "Cannot delete this item";
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -1,36 +1,8 @@
 ﻿@model ForTheFisherman.Models.GeoCoordinates
 
-@{
-    ViewBag.Title = "Details";
-}
+<div>@Model.latitude, @Model.longitude</div>
 
-<h2>Details</h2>
-
-<fieldset>
-    <legend>GeoCoordinates</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.gcId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.gcId)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.latitude)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.latitude)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.longitude)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.longitude)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div>
+    @Ajax.ActionLink("Update", "Update", new { id = @Model.gcId }, new AjaxOptions { UpdateTargetId="geo" })
+    @Ajax.ActionLink("Edit", "Edit", new { id = @Model.gcId }, new AjaxOptions { UpdateTargetId="geo" })
+</div>
