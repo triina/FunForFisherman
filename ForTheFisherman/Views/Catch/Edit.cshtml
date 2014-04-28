@@ -1,0 +1,84 @@
+﻿@model ForTheFisherman.Models.Catch
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Catch</legend>
+
+         <div class="hidden">
+            @Html.LabelFor(model => model.cId)
+            @Html.EditorFor(model => model.cId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.weight)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.weight)
+            @Html.ValidationMessageFor(model => model.weight)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.lureweight)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.lureweight)
+            @Html.ValidationMessageFor(model => model.lureweight)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.depth)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.depth)
+            @Html.ValidationMessageFor(model => model.depth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.lId, "Lure")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("lId", String.Empty)
+            @Html.ValidationMessageFor(model => model.lId)
+        </div>
+
+          <div class="editor-label">
+            @Html.LabelFor(model => model.fiId, "FishSpecies")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("fiId", String.Empty)
+            @Html.ValidationMessageFor(model => model.fiId)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+     @* Decimal comma fix: *@
+    <script src="~/Scripts/jquery.validate.fix.js"></script>
+}

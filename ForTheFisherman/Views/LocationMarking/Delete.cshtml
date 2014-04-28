@@ -1,0 +1,61 @@
+﻿@model ForTheFisherman.Models.LocationMarking
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>LocationMarking</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lmId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lmId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.sublocation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.sublocation)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.compaslocation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.compaslocation)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Water.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Water.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.GeoCoordinates.gcId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GeoCoordinates.gcId)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

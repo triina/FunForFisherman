@@ -1,0 +1,34 @@
+﻿@model ForTheFisherman.Models.FishingMethod
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>FishingMethod</legend>
+    <!---hidden id-->
+    <div class="hidden">
+         @Html.DisplayNameFor(model => model.fmId)
+        @Html.DisplayFor(model => model.fmId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.methodname)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.methodname)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.fmId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

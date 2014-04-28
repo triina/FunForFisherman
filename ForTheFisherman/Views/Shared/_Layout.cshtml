@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Fun For Fisherman - @ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        <link href="~/Content/Fisherman.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("'FUN' For Fisherman", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+@*                  Register/Login Section //MK
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>*@
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+
+@*                            let's ignore it for now
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                            <li>@Html.ActionLink("Fisherman", "Index", "Fisherman")</li>
+                            <li>@Html.ActionLink("Fishing Method", "Index", "FishingMethod")</li>
+                             <li>@Html.ActionLink("Lure Type", "Index", "LureType")</li>
+                            <li>@Html.ActionLink("Lure", "Index", "Lure")</li>
+                        <li>@Html.ActionLink("Location", "Index", "LocationMarking")</li>
+                        <li>@Html.ActionLink("Coordinates", "Index", "GeoCoordinates")</li>
+                            <li>@Html.ActionLink("Fish Species", "Index", "FishSpecies")</li>
+                            <li>@Html.ActionLink("Water", "Index", "Water")</li>
+                            <li>@Html.ActionLink("Catch", "Index", "Catch")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+          <div class="clear-fix">
+
+          </div>
+        </header>
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - Dobrianskii Evgenii, Klepikova Maria, Nezvitskaya Mirya, Tõugu Riina</p>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

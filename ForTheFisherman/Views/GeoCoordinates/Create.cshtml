@@ -1,0 +1,34 @@
+﻿@model ForTheFisherman.Models.GeoCoordinates
+
+@* Old solution to the decimal comma problem: *@
+@* @{ Html.EnableClientValidation(false); } *@
+@* The new solution is validate.fix.js *@
+
+@using (Ajax.BeginForm("Create", "GeoCoordinates", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "geo" }, new { id = "geoForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>GeoCoordinates</legend>
+
+        <div class="hidden">
+            @Html.HiddenFor(model => model.gcId)
+
+            @Html.HiddenFor(model => model.latitude)
+            @Html.ValidationMessageFor(model => model.latitude)
+
+            @Html.HiddenFor(model => model.longitude)
+            @Html.ValidationMessageFor(model => model.longitude)
+        </div>
+
+        <p>
+            <input type="button" id="createButton" value="Get coordinates" onclick="getCoordinates()" />
+            <span id="errorMessage"></span>
+        </p>
+    </fieldset>
+}
+
+@* The partial view contains a script that gets geolocation and changes decimal separator in accordance with CurrentCulture *@
+@* Putting the script in a partial view instead of a .js file allows Razor syntax inside it *@
+@Html.Partial("~/Views/GeoCoordinates/GetCoordinates.cshtml")

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ForTheFisherman.Models.Lure>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+    <!-- If the user is redirected to this page after trying to delete a lure unsuccessfully a message box is displayed-->
+   @{if(null != TempData["deleteErrorMessage"])
+   {
+      <script type="text/javascript">
+       alert("@TempData["deleteErrorMessage"]");
+      </script>
+   }}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th class="hidden">
+            @Html.DisplayNameFor(model => model.lId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LureType.typename)
+        </th>
+        <th class="controls-width"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="hidden">
+            @Html.DisplayFor(modelItem => item.lId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LureType.typename)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.lId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.lId })
+        </td>
+    </tr>
+}
+
+</table>

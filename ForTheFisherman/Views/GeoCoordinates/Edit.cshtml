@@ -1,0 +1,35 @@
+﻿@model ForTheFisherman.Models.GeoCoordinates
+
+@using (Ajax.BeginForm("Edit", "GeoCoordinates", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "geo" }, new { id = "geoForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>GeoCoordinates</legend>
+
+        <div class="hidden">
+            @Html.HiddenFor(model => model.gcId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.latitude)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.latitude, new { maxlength = "18" })
+            @Html.ValidationMessageFor(model => model.latitude)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.longitude)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.longitude, new { maxlength = "18" })
+            @Html.ValidationMessageFor(model => model.longitude)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}

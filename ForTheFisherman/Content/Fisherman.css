@@ -1,0 +1,9 @@
+﻿input[type="radio"] {
+    width: auto;
+}
+
+.editor-field.radio label {
+    font-weight: normal;
+    display: inline;
+    margin-right: 20px;
+}

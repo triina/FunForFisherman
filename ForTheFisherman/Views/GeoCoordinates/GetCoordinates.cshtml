@@ -1,0 +1,31 @@
+﻿<script>
+    function getCoordinates() {
+        // This check does not detect an error if you deny geolocation!
+        // May have some effect with browsers that don't support geolocation at all.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success);
+        } else {
+            error("Geolocation not supported."); // Line from some tutorial, purpose yet unclear :)
+            document.getElementById("errorMessage").innerText = "Geolocation not supported";
+            document.getElementById("createButton").disabled = true;
+        }
+    }
+
+    function success(position) {
+        var lat = (position.coords.latitude).toString();
+        var long = (position.coords.longitude).toString();
+        var sep = "@System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator";
+        if (sep == ",") {
+            lat = lat.replace(".", ",");
+            long = long.replace(".", ",");
+        }
+        else if (sep == ".") {
+            lat = lat.replace(",", ".");
+            long = long.replace(",", ".");
+        }
+        document.getElementById("latitude").value = lat;
+        document.getElementById("longitude").value = long;
+        // Had to add this to make sure the form is submitted _after_ the fields have been populated:
+        $("#geoForm").submit();
+    }
+</script>
