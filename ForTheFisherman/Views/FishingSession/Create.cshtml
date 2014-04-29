@@ -13,16 +13,16 @@
     <fieldset>
         <legend>FishingSession</legend>
 
-      <div class="hidden">
-        @Html.LabelFor(model => model.fsId)
-        @Html.EditorFor(model => model.fsId)
-      </div>
+        <div class="hidden">
+            @Html.LabelFor(model => model.fsId)
+            @Html.EditorFor(model => model.fsId)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.date)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.date)
+            @Html.TextBoxFor(model => model.date)
             @Html.ValidationMessageFor(model => model.date)
         </div>
 
@@ -78,4 +78,21 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    @* Can be placed in _Layout as well, but must be loaded before the script: *@
+    @Scripts.Render("~/bundles/jqueryui")
+
+    @* Affects the look of the datepicker: *@
+    @Styles.Render("~/Content/themes/base/css")
+
+    @* Note that the Scripts section is not rendered in partial views, so script placement is subject to change *@
+
+    <script>
+        $(document).ready(function () {
+            // Creates the datepicker and sets the format:
+            $("#date").datepicker().datepicker("option", "dateFormat", "dd/mm/yy");
+            // Sets current date:
+            $("#date").datepicker("setDate", new Date());
+        });
+    </script>
 }
