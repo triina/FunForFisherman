@@ -13,13 +13,10 @@
     <fieldset>
         <legend>FishingSession</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.fsId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.fsId)
-            @Html.ValidationMessageFor(model => model.fsId)
-        </div>
+      <div class="hidden">
+        @Html.LabelFor(model => model.fsId)
+        @Html.EditorFor(model => model.fsId)
+      </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.date)
