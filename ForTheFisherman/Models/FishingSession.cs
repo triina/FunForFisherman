@@ -11,12 +11,25 @@ namespace ForTheFisherman.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     
     public partial class FishingSession
     {
+
         public int fsId { get; set; }
+
+        [Required(ErrorMessage = "Date is required")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
+        [DataType(DataType.DateTime)]
         public System.DateTime date { get; set; }
+
+        [Required(ErrorMessage = "Desctiption is required")]
+        [DisplayName("Session description")]
+        [StringLength(200)]
         public string description { get; set; }
+
         public int fId { get; set; }
         public int fmId { get; set; }
         public int cId { get; set; }

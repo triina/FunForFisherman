@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ForTheFisherman.Models.FishingSession>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fsId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fisherman.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FishingMethod.methodname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Catch.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationMarking.sublocation)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fsId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fisherman.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FishingMethod.methodname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Catch.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationMarking.sublocation)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.fsId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.fsId })
+        </td>
+    </tr>
+}
+
+</table>

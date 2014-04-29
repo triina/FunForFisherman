@@ -1,0 +1,68 @@
+﻿@model ForTheFisherman.Models.FishingSession
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>FishingSession</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fsId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fsId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Fisherman.firstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fisherman.firstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FishingMethod.methodname)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FishingMethod.methodname)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Catch.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Catch.description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LocationMarking.sublocation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LocationMarking.sublocation)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

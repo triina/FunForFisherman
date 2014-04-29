@@ -1,0 +1,84 @@
+﻿@model ForTheFisherman.Models.FishingSession
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>FishingSession</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fsId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fsId)
+            @Html.ValidationMessageFor(model => model.fsId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.date)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.date)
+            @Html.ValidationMessageFor(model => model.date)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fId, "Fisherman")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("fId", String.Empty)
+            @Html.ValidationMessageFor(model => model.fId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fmId, "FishingMethod")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("fmId", String.Empty)
+            @Html.ValidationMessageFor(model => model.fmId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cId, "Catch")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("cId", String.Empty)
+            @Html.ValidationMessageFor(model => model.cId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.lmId, "LocationMarking")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("lmId", String.Empty)
+            @Html.ValidationMessageFor(model => model.lmId)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

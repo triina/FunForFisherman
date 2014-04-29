@@ -1,0 +1,64 @@
+﻿@model ForTheFisherman.Models.FishingSession
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>FishingSession</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.fsId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.fsId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.date)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Fisherman.firstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Fisherman.firstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FishingMethod.methodname)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FishingMethod.methodname)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Catch.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Catch.description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LocationMarking.sublocation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LocationMarking.sublocation)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

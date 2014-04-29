@@ -189,6 +189,7 @@
     <Compile Include="Controllers\CatchController.cs" />
     <Compile Include="Controllers\FishermanController.cs" />
     <Compile Include="Controllers\FishingMethodController.cs" />
+    <Compile Include="Controllers\FishingSessionController.cs" />
     <Compile Include="Controllers\GeoCoordinatesController.cs" />
     <Compile Include="Controllers\FishSpeciesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -437,6 +438,11 @@
     <Content Include="Views\GeoCoordinates\GetCoordinates.cshtml" />
     <Content Include="Views\GeoCoordinates\CreateSuccess.cshtml" />
     <Content Include="Views\GeoCoordinates\Update.cshtml" />
+    <Content Include="Views\FishingSession\Index.cshtml" />
+    <Content Include="Views\FishingSession\Details.cshtml" />
+    <Content Include="Views\FishingSession\Create.cshtml" />
+    <Content Include="Views\FishingSession\Edit.cshtml" />
+    <Content Include="Views\FishingSession\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
