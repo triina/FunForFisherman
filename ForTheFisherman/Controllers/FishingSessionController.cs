@@ -15,10 +15,15 @@ namespace ForTheFisherman.Controllers
 
         //
         // GET: /FishingSession/
-
+        [Authorize]
         public ActionResult Index()
         {
-            var fishingsession = db.FishingSession.Include(f => f.Catch).Include(f => f.Fisherman).Include(f => f.FishingMethod).Include(f => f.LocationMarking);
+            var fishingsession = db.FishingSession
+                .Include(f => f.Catch)
+                .Include(f => f.Fisherman)
+                .Include(f => f.FishingMethod)
+                .Include(f => f.LocationMarking)
+                .Where(f => f.Fisherman.eMail == User.Identity.Name);
             return View(fishingsession.ToList());
         }
 
@@ -45,14 +50,21 @@ namespace ForTheFisherman.Controllers
             //ViewBag.fmId = new SelectList(db.FishingMethod, "fmId", "methodname");
             //ViewBag.lmId = new SelectList(db.LocationMarking, "lmId", "sublocation");
             //return View();
+             
 
             ViewBag.cId = new SelectList(db.Catch, "cId", "description");
-            ViewBag.fId = new SelectList(db.Fisherman, "fId", "firstName");
+            //ViewBag.fId = new SelectList(db.Fisherman, "fId", "firstName");
             ViewBag.fmId = new SelectList(db.FishingMethod, "fmId", "methodname");
             ViewBag.lmId = new SelectList(db.LocationMarking, "lmId", "sublocation");
             FishingSession session = new FishingSession();
-            var lastSession = db.FishingSession.OrderByDescending(fs => fs.fsId).FirstOrDefault();
+            var lastSession = db.FishingSession
+                .OrderByDescending(fs => fs.fsId)
+                .FirstOrDefault();
             session.fsId = (lastSession.fsId) + 1;
+
+            var currentFisherman = db.Fisherman.Where(f => f.eMail == User.Identity.Name).First();
+            session.fId = currentFisherman.fId;
+
             return View(session);
         }
 
@@ -71,7 +83,7 @@ namespace ForTheFisherman.Controllers
             }
 
             ViewBag.cId = new SelectList(db.Catch, "cId", "description", fishingsession.cId);
-            ViewBag.fId = new SelectList(db.Fisherman, "fId", "firstName", fishingsession.fId);
+            //ViewBag.fId = new SelectList(db.Fisherman, "fId", "firstName", fishingsession.fId);
             ViewBag.fmId = new SelectList(db.FishingMethod, "fmId", "methodname", fishingsession.fmId);
             ViewBag.lmId = new SelectList(db.LocationMarking, "lmId", "sublocation", fishingsession.lmId);
             return View(fishingsession);
@@ -88,7 +100,7 @@ namespace ForTheFisherman.Controllers
                 return HttpNotFound();
             }
             ViewBag.cId = new SelectList(db.Catch, "cId", "description", fishingsession.cId);
-            ViewBag.fId = new SelectList(db.Fisherman, "fId", "firstName", fishingsession.fId);
+            //ViewBag.fId = new SelectList(db.Fisherman, "fId", "firstName", fishingsession.fId);
             ViewBag.fmId = new SelectList(db.FishingMethod, "fmId", "methodname", fishingsession.fmId);
             ViewBag.lmId = new SelectList(db.LocationMarking, "lmId", "sublocation", fishingsession.lmId);
             return View(fishingsession);
@@ -108,7 +120,7 @@ namespace ForTheFisherman.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.cId = new SelectList(db.Catch, "cId", "description", fishingsession.cId);
-            ViewBag.fId = new SelectList(db.Fisherman, "fId", "firstName", fishingsession.fId);
+            //ViewBag.fId = new SelectList(db.Fisherman, "fId", "firstName", fishingsession.fId);
             ViewBag.fmId = new SelectList(db.FishingMethod, "fmId", "methodname", fishingsession.fmId);
             ViewBag.lmId = new SelectList(db.LocationMarking, "lmId", "sublocation", fishingsession.lmId);
             return View(fishingsession);

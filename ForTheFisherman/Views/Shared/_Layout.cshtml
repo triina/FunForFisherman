@@ -16,15 +16,15 @@
                     <p class="site-title">@Html.ActionLink("'FUN' For Fisherman", "Index", "Home")</p>
                 </div>
                 <div class="float-right">
-@*                  Register/Login Section //MK
                     <section id="login">
                         @Html.Partial("_LoginPartial")
-                    </section>*@
+                    </section>
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
-
+                          
+@if (Request.IsAuthenticated) {
 @*                            let's ignore it for now
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                             <li>@Html.ActionLink("Fisherman", "Index", "Fisherman")</li>
@@ -37,6 +37,7 @@
                             <li>@Html.ActionLink("Water", "Index", "Water")</li>
                             <li>@Html.ActionLink("Catch", "Index", "Catch")</li>
                             <li>@Html.ActionLink("Fishing Session", "Index", "FishingSession")</li>
+}
                         </ul>
                     </nav>
                 </div>

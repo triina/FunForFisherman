@@ -16,6 +16,8 @@
         <div class="hidden">
             @Html.LabelFor(model => model.fsId)
             @Html.EditorFor(model => model.fsId)
+            @Html.LabelFor(model => model.fId, "Fisherman")
+            @Html.EditorFor(model => model.fId)
         </div>
 
         <div class="editor-label">
@@ -34,13 +36,13 @@
             @Html.ValidationMessageFor(model => model.description)
         </div>
 
-        <div class="editor-label">
+@*        <div class="editor-label">
             @Html.LabelFor(model => model.fId, "Fisherman")
         </div>
         <div class="editor-field">
             @Html.DropDownList("fId", String.Empty)
             @Html.ValidationMessageFor(model => model.fId)
-        </div>
+        </div>*@
 
         <div class="editor-label">
             @Html.LabelFor(model => model.fmId, "FishingMethod")

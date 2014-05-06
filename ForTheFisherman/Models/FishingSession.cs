@@ -21,6 +21,7 @@ namespace ForTheFisherman.Models
         public int fsId { get; set; }
 
         [Required(ErrorMessage = "Date is required")]
+        [DisplayName("Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         [DataType(DataType.DateTime)]
         public System.DateTime date { get; set; }
@@ -31,8 +32,14 @@ namespace ForTheFisherman.Models
         public string description { get; set; }
 
         public int fId { get; set; }
+
+        [DisplayName("Fishing Method")]
         public int fmId { get; set; }
+
+        [DisplayName("Catch")]
         public int cId { get; set; }
+
+        [DisplayName("Location")]
         public int lmId { get; set; }
     
         public virtual Catch Catch { get; set; }

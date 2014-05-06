@@ -20,17 +20,17 @@
         <th>
             @Html.DisplayNameFor(model => model.description)
         </th>
-        <th>
+        <th class="hidden">
             @Html.DisplayNameFor(model => model.Fisherman.firstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FishingMethod.methodname)
+            @Html.DisplayNameFor(model => model.fmId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Catch.description)
+            @Html.DisplayNameFor(model => model.cId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LocationMarking.sublocation)
+            @Html.DisplayNameFor(model => model.lmId)
         </th>
         <th></th>
     </tr>
@@ -46,7 +46,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.description)
         </td>
-        <td>
+        <td class="hidden">
             @Html.DisplayFor(modelItem => item.Fisherman.firstName)
         </td>
         <td>

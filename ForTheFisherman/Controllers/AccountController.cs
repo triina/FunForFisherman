@@ -33,15 +33,50 @@ namespace ForTheFisherman.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel model, string returnUrl)
+        public ActionResult Login(Fisherman model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            //if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            //{
+            //    return RedirectToLocal(returnUrl);
+            //}
+
+            //// If we got this far, something failed, redisplay form
+            //ModelState.AddModelError("", "The user name or password provided is incorrect.");
+            //return View(model);
+            using (FishermanDBEntities1 entities = new FishermanDBEntities1())
             {
-                return RedirectToLocal(returnUrl);
+                string username = model.eMail;
+                string password = model.passwordHashFields;
+
+                // Now if our password was enctypted or hashed we would have done the
+                // same operation on the user entered password here, But for now
+                // since the password is in plain text lets just authenticate directly
+
+                bool userValid = entities.Fisherman.Any(user => user.eMail == username && user.passwordHashFields == password);
+
+                // User found in the database
+                if (userValid)
+                {
+
+                    FormsAuthentication.SetAuthCookie(username, false);
+                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                }
             }
 
+
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
         }
 
@@ -52,7 +87,7 @@ namespace ForTheFisherman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            WebSecurity.Logout();
+            FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
         }
