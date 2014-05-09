@@ -31,7 +31,7 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
-            return View(water);
+            return PartialView(water);
         }
 
         //
@@ -43,7 +43,7 @@ namespace ForTheFisherman.Controllers
             Water water = new Water();
             var lastWater = db.Water.OrderByDescending(w => w.wId).FirstOrDefault();
             water.wId = (lastWater.wId) + 1;
-            return View(water);
+            return PartialView(water);
         }
 
         //
@@ -57,10 +57,10 @@ namespace ForTheFisherman.Controllers
             {
                 db.Water.Add(water);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CreateSuccess", water);
             }
 
-            return View(water);
+            return PartialView(water);
         }
 
         //
@@ -73,7 +73,7 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
-            return View(water);
+            return PartialView(water);
         }
 
         //
@@ -89,7 +89,7 @@ namespace ForTheFisherman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(water);
+            return PartialView(water);
         }
 
         //
@@ -124,6 +124,36 @@ namespace ForTheFisherman.Controllers
                 TempData["deleteErrorMessage"] = "Cannot delete this item";
                 return RedirectToAction("Index");
             }
+        }
+
+        //
+        // GET: /Water/CreateSuccess
+
+        public ActionResult CreateSuccess(Water water)
+        {
+            TempData["wId"] = water.wId;
+            return PartialView();
+        }
+
+        //
+        // GET: /Water/List
+
+        /// <summary>
+        /// Returns an updated list of waters to populate the dropdown list
+        /// </summary>
+        /// <returns></returns>
+
+        public ActionResult List()
+        {
+            List<SelectListItem> waters = new List<SelectListItem>();
+            waters.Add(new SelectListItem { Text = "", Value = "" });
+
+            foreach (Water water in db.Water)
+            {
+                waters.Add(new SelectListItem { Text = water.name, Value = water.wId.ToString() });
+            }
+
+            return Json(waters, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

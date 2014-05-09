@@ -348,6 +348,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\ListWater.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -443,6 +444,7 @@
     <Content Include="Views\FishingSession\Create.cshtml" />
     <Content Include="Views\FishingSession\Edit.cshtml" />
     <Content Include="Views\FishingSession\Delete.cshtml" />
+    <Content Include="Views\Water\CreateSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
