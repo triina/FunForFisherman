@@ -334,6 +334,7 @@
       <LastGenOutput>ModelFisherman.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\ListLureType.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -445,6 +446,7 @@
     <Content Include="Views\FishingSession\Edit.cshtml" />
     <Content Include="Views\FishingSession\Delete.cshtml" />
     <Content Include="Views\Water\CreateSuccess.cshtml" />
+    <Content Include="Views\LureType\CreateSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

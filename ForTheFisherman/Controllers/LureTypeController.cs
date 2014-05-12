@@ -31,7 +31,7 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
-            return View(luretype);
+            return PartialView(luretype);
         }
 
         //
@@ -45,7 +45,7 @@ namespace ForTheFisherman.Controllers
             LureType lureType = new LureType();
             var lastLureType = db.LureType.OrderByDescending(lt => lt.ltId).FirstOrDefault();
             lureType.ltId = (lastLureType.ltId) + 1;
-            return View(lureType);
+            return PartialView(lureType);
         }
 
         //
@@ -53,16 +53,16 @@ namespace ForTheFisherman.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(LureType luretype)
+        public ActionResult Create(LureType lureType)
         {
             if (ModelState.IsValid)
             {
-                db.LureType.Add(luretype);
+                db.LureType.Add(lureType);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CreateSuccess", lureType);
             }
 
-            return View(luretype);
+            return PartialView(lureType);
         }
 
         //
@@ -75,7 +75,7 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
-            return View(luretype);
+            return PartialView(luretype);
         }
 
         //
@@ -91,7 +91,7 @@ namespace ForTheFisherman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(luretype);
+            return PartialView(luretype);
         }
 
         //
@@ -128,6 +128,36 @@ namespace ForTheFisherman.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        // GET: /Lure/CreateSuccess
+
+        public ActionResult CreateSuccess(LureType lureType)
+        {
+            TempData["ltId"] = lureType.ltId;
+            return PartialView();
+        }
+       
+        
+        // GET: /Luretypes/List
+
+        /// <summary>
+        /// Returns an updated list of luretypes to populate the dropdown list
+        /// </summary>
+        /// <returns></returns>
+
+        public ActionResult List()
+        {
+            List<SelectListItem> lureTypes = new List<SelectListItem>();
+            lureTypes.Add(new SelectListItem { Text = "", Value = "" });
+
+            foreach (LureType lureType in db.LureType)
+            {
+                lureTypes.Add(new SelectListItem { Text = lureType.typename, Value = lureType.ltId.ToString() });
+            }
+
+            return Json(lureTypes, JsonRequestBehavior.AllowGet);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

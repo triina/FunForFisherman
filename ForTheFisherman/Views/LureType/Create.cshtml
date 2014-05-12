@@ -1,12 +1,9 @@
 ﻿@model ForTheFisherman.Models.LureType
 
-@{
-    ViewBag.Title = "Create";
-}
+<h2>New Lure type</h2>
 
-<h2>Create</h2>
-
-@using (Html.BeginForm()) {
+@using (Ajax.BeginForm("Create", "LureType", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "lureType" }, new { id = "lureTypeForm" }))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -23,7 +20,7 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.typename)
         </div>
-        <div class="editor-field">
+        <div class="editor-label">
             @Html.EditorFor(model => model.typename)
             @Html.ValidationMessageFor(model => model.typename)
         </div>
@@ -37,15 +34,17 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Add" />
         </p>
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<script>
+    $(function(){
+        $("#lureTypeForm").removeData("validator");
+        $("#lureTypeForm").removeData("unobtrusiveValidation");
+        $("#lureTypeForm").each(function () { $.data($(this)[0], 'validator', false); }); //enable to display the error messages
+        $.validator.unobtrusive.parse($("#lureTypeForm"));
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    })
+</script>

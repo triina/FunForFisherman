@@ -22,8 +22,8 @@ namespace ForTheFisherman.Controllers
             return View(lure.ToList());
         }
 
-        /*
-        // GET: /Lure/Details/5
+       
+        /*// GET: /Lure/Details/5
 
         public ActionResult Details(int id = 0)
         {
@@ -132,6 +132,7 @@ namespace ForTheFisherman.Controllers
             
             }
         }
+
 
         protected override void Dispose(bool disposing)
         {
