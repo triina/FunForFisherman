@@ -30,10 +30,10 @@ namespace ForTheFisherman.Models
         [Remote("CheckLureName", "Validation", AdditionalFields = "lId", ErrorMessage = "This lure name is already taken.")]
         public string name { get; set; }
         
-        [Required(ErrorMessage = "Lure description is necessary")]
         [DisplayName("Description of lure")]
         [StringLength(200)]
         public string description { get; set; }
+
         public int ltId { get; set; }
     
         public virtual ICollection<Catch> Catch { get; set; }

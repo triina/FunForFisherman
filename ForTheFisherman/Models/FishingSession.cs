@@ -17,7 +17,11 @@ namespace ForTheFisherman.Models
     
     public partial class FishingSession
     {
-
+        public FishingSession()
+        {
+            this.Catch = new HashSet<Catch>();
+        }
+    
         public int fsId { get; set; }
 
         [Required(ErrorMessage = "Date is required")]
@@ -26,7 +30,6 @@ namespace ForTheFisherman.Models
         [DataType(DataType.DateTime)]
         public System.DateTime date { get; set; }
 
-        [Required(ErrorMessage = "Desctiption is required")]
         [DisplayName("Session description")]
         [StringLength(200)]
         public string description { get; set; }
@@ -36,15 +39,12 @@ namespace ForTheFisherman.Models
         [DisplayName("Fishing Method")]
         public int fmId { get; set; }
 
-        [DisplayName("Catch")]
-        public int cId { get; set; }
-
         [DisplayName("Location")]
         public int lmId { get; set; }
     
-        public virtual Catch Catch { get; set; }
         public virtual Fisherman Fisherman { get; set; }
         public virtual FishingMethod FishingMethod { get; set; }
         public virtual LocationMarking LocationMarking { get; set; }
+        public virtual ICollection<Catch> Catch { get; set; }
     }
 }

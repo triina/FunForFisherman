@@ -36,7 +36,6 @@ namespace ForTheFisherman.Models
 
         [DisplayName("Description")]
         [StringLength(200)]
-        [Required(ErrorMessage = "Please enter description.")]
         public string description { get; set; }
 
         [Required(ErrorMessage = "Please select water.")]

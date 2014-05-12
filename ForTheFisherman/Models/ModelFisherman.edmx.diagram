@@ -17,13 +17,13 @@
         <EntityTypeShape EntityType="FishermanDBModel.Water" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
         <AssociationConnector Association="FishermanDBModel.fk_Catch_FishSpecies" ManuallyRouted="false" />
         <AssociationConnector Association="FishermanDBModel.fk_Catch_Lure" ManuallyRouted="false" />
-        <AssociationConnector Association="FishermanDBModel.fk_FishingSession_Catch" ManuallyRouted="false" />
         <AssociationConnector Association="FishermanDBModel.fk_FishingSession_Fisherman" ManuallyRouted="false" />
         <AssociationConnector Association="FishermanDBModel.fk_FishingSession_FishingMethod" ManuallyRouted="false" />
         <AssociationConnector Association="FishermanDBModel.fk_FishingSession_LocationMarking" ManuallyRouted="false" />
         <AssociationConnector Association="FishermanDBModel.fk_LocationMarking_GeoCoordinates" ManuallyRouted="false" />
         <AssociationConnector Association="FishermanDBModel.fk_LocationMarking_Water" ManuallyRouted="false" />
         <AssociationConnector Association="FishermanDBModel.fk_Lure_LureType" ManuallyRouted="false" />
+        <AssociationConnector Association="FishermanDBModel.fk_Catch_FishingSession" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

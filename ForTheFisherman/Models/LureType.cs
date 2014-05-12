@@ -30,7 +30,6 @@ namespace ForTheFisherman.Models
         [StringLength(100)]
         public string typename { get; set; }
 
-        [Required(ErrorMessage = "Description is necessary")]
         [DisplayName("Description of lure type")]
         [StringLength(200)]
         public string description { get; set; }
