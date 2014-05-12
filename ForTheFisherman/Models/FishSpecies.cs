@@ -30,7 +30,6 @@ namespace ForTheFisherman.Models
         [StringLength(100)]
         public string fishname { get; set; }
 
-        [Required(ErrorMessage = "Fish species description is necessary")]
         [DisplayName("Description of fish species")]
         [StringLength(200)]
         public string description { get; set; }

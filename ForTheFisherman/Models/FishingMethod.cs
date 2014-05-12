@@ -30,7 +30,6 @@ namespace ForTheFisherman.Models
         [StringLength(100)]
         public string methodname { get; set; }
 
-        [Required(ErrorMessage = "Description is required.")]
         [DisplayName("Description")]
         [StringLength(200)]
         public string description { get; set; }

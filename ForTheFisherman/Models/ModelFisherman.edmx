@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FishermanDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FishermanDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="FishermanDBModelStoreContainer">
           <EntitySet Name="Catch" EntityType="FishermanDBModel.Store.Catch" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Fisherman" EntityType="FishermanDBModel.Store.Fisherman" store:Type="Tables" Schema="dbo" />
@@ -16,6 +16,10 @@
           <EntitySet Name="Lure" EntityType="FishermanDBModel.Store.Lure" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LureType" EntityType="FishermanDBModel.Store.LureType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Water" EntityType="FishermanDBModel.Store.Water" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="fk_Catch_FishingSession" Association="FishermanDBModel.Store.fk_Catch_FishingSession">
+            <End Role="FishingSession" EntitySet="FishingSession" />
+            <End Role="Catch" EntitySet="Catch" />
+          </AssociationSet>
           <AssociationSet Name="fk_Catch_FishSpecies" Association="FishermanDBModel.Store.fk_Catch_FishSpecies">
             <End Role="FishSpecies" EntitySet="FishSpecies" />
             <End Role="Catch" EntitySet="Catch" />
@@ -23,10 +27,6 @@
           <AssociationSet Name="fk_Catch_Lure" Association="FishermanDBModel.Store.fk_Catch_Lure">
             <End Role="Lure" EntitySet="Lure" />
             <End Role="Catch" EntitySet="Catch" />
-          </AssociationSet>
-          <AssociationSet Name="fk_FishingSession_Catch" Association="FishermanDBModel.Store.fk_FishingSession_Catch">
-            <End Role="Catch" EntitySet="Catch" />
-            <End Role="FishingSession" EntitySet="FishingSession" />
           </AssociationSet>
           <AssociationSet Name="fk_FishingSession_Fisherman" Association="FishermanDBModel.Store.fk_FishingSession_Fisherman">
             <End Role="Fisherman" EntitySet="Fisherman" />
@@ -58,32 +58,33 @@
             <PropertyRef Name="cId" />
           </Key>
           <Property Name="cId" Type="int" Nullable="false" />
-          <Property Name="weight" Type="decimal" Nullable="false" />
+          <Property Name="weight" Type="decimal" Nullable="false" Precision="10" Scale="7" />
           <Property Name="lureweight" Type="int" Nullable="false" />
           <Property Name="depth" Type="int" Nullable="false" />
-          <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
           <Property Name="lId" Type="int" Nullable="false" />
           <Property Name="fiId" Type="int" Nullable="false" />
+          <Property Name="fsId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Fisherman">
           <Key>
             <PropertyRef Name="fId" />
           </Key>
           <Property Name="fId" Type="int" Nullable="false" />
-          <Property Name="firstName" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="lastName" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="phone" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="eMail" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="firstName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="lastName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="phone" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="eMail" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="gender" Type="char" Nullable="false" MaxLength="1" />
-          <Property Name="passwordHashFields" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="passwordHashFields" Type="nvarchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <EntityType Name="FishingMethod">
           <Key>
             <PropertyRef Name="fmId" />
           </Key>
           <Property Name="fmId" Type="int" Nullable="false" />
-          <Property Name="methodname" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="methodname" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="FishingSession">
           <Key>
@@ -91,10 +92,9 @@
           </Key>
           <Property Name="fsId" Type="int" Nullable="false" />
           <Property Name="date" Type="date" Nullable="false" />
-          <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
           <Property Name="fId" Type="int" Nullable="false" />
           <Property Name="fmId" Type="int" Nullable="false" />
-          <Property Name="cId" Type="int" Nullable="false" />
           <Property Name="lmId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="FishSpecies">
@@ -102,25 +102,25 @@
             <PropertyRef Name="fiId" />
           </Key>
           <Property Name="fiId" Type="int" Nullable="false" />
-          <Property Name="fishname" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="fishname" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="GeoCoordinates">
           <Key>
             <PropertyRef Name="gcId" />
           </Key>
           <Property Name="gcId" Type="int" Nullable="false" />
-          <Property Name="latitude" Type="decimal" Nullable="false" />
-          <Property Name="longitude" Type="decimal" Nullable="false" />
+          <Property Name="latitude" Type="decimal" Nullable="false" Precision="10" Scale="7" />
+          <Property Name="longitude" Type="decimal" Nullable="false" Precision="10" Scale="7" />
         </EntityType>
         <EntityType Name="LocationMarking">
           <Key>
             <PropertyRef Name="lmId" />
           </Key>
           <Property Name="lmId" Type="int" Nullable="false" />
-          <Property Name="sublocation" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="compaslocation" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="sublocation" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="compaslocation" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
           <Property Name="wId" Type="int" Nullable="false" />
           <Property Name="gcId" Type="int" />
         </EntityType>
@@ -129,8 +129,8 @@
             <PropertyRef Name="lId" />
           </Key>
           <Property Name="lId" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
           <Property Name="ltId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="LureType">
@@ -138,18 +138,32 @@
             <PropertyRef Name="ltId" />
           </Key>
           <Property Name="ltId" Type="int" Nullable="false" />
-          <Property Name="typename" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="typename" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Water">
           <Key>
             <PropertyRef Name="wId" />
           </Key>
           <Property Name="wId" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="municipality" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="description" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="municipality" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="200" />
         </EntityType>
+        <Association Name="fk_Catch_FishingSession">
+          <End Role="FishingSession" Type="FishermanDBModel.Store.FishingSession" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Catch" Type="FishermanDBModel.Store.Catch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FishingSession">
+              <PropertyRef Name="fsId" />
+            </Principal>
+            <Dependent Role="Catch">
+              <PropertyRef Name="fsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Catch_FishSpecies">
           <End Role="FishSpecies" Type="FishermanDBModel.Store.FishSpecies" Multiplicity="1" />
           <End Role="Catch" Type="FishermanDBModel.Store.Catch" Multiplicity="*" />
@@ -171,18 +185,6 @@
             </Principal>
             <Dependent Role="Catch">
               <PropertyRef Name="lId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_FishingSession_Catch">
-          <End Role="Catch" Type="FishermanDBModel.Store.Catch" Multiplicity="1" />
-          <End Role="FishingSession" Type="FishermanDBModel.Store.FishingSession" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catch">
-              <PropertyRef Name="cId" />
-            </Principal>
-            <Dependent Role="FishingSession">
-              <PropertyRef Name="cId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -262,8 +264,7 @@
         <Function Name="Drop_Tables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Insert_Test_Data" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Rebuild" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FishermanDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -285,10 +286,6 @@
           <AssociationSet Name="fk_Catch_Lure" Association="FishermanDBModel.fk_Catch_Lure">
             <End Role="Lure" EntitySet="Lure" />
             <End Role="Catch" EntitySet="Catch" />
-          </AssociationSet>
-          <AssociationSet Name="fk_FishingSession_Catch" Association="FishermanDBModel.fk_FishingSession_Catch">
-            <End Role="Catch" EntitySet="Catch" />
-            <End Role="FishingSession" EntitySet="FishingSession" />
           </AssociationSet>
           <AssociationSet Name="fk_FishingSession_Fisherman" Association="FishermanDBModel.fk_FishingSession_Fisherman">
             <End Role="Fisherman" EntitySet="Fisherman" />
@@ -318,33 +315,38 @@
           <FunctionImport Name="Drop_Tables" />
           <FunctionImport Name="Insert_Test_Data" />
           <FunctionImport Name="Rebuild" />
+          <AssociationSet Name="fk_Catch_FishingSession" Association="FishermanDBModel.fk_Catch_FishingSession">
+            <End Role="FishingSession" EntitySet="FishingSession" />
+            <End Role="Catch" EntitySet="Catch" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Catch">
           <Key>
             <PropertyRef Name="cId" />
           </Key>
           <Property Name="cId" Type="Int32" Nullable="false" />
-          <Property Name="weight" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="weight" Type="Decimal" Nullable="false" Precision="10" Scale="7" />
           <Property Name="lureweight" Type="Int32" Nullable="false" />
           <Property Name="depth" Type="Int32" Nullable="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="lId" Type="Int32" Nullable="false" />
           <Property Name="fiId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="FishSpecies" Relationship="FishermanDBModel.fk_Catch_FishSpecies" FromRole="Catch" ToRole="FishSpecies" />
           <NavigationProperty Name="Lure" Relationship="FishermanDBModel.fk_Catch_Lure" FromRole="Catch" ToRole="Lure" />
-          <NavigationProperty Name="FishingSession" Relationship="FishermanDBModel.fk_FishingSession_Catch" FromRole="Catch" ToRole="FishingSession" />
+          <Property Type="Int32" Name="fsId" Nullable="false" />
+          <NavigationProperty Name="FishingSession" Relationship="FishermanDBModel.fk_Catch_FishingSession" FromRole="Catch" ToRole="FishingSession" />
         </EntityType>
         <EntityType Name="Fisherman">
           <Key>
             <PropertyRef Name="fId" />
           </Key>
           <Property Name="fId" Type="Int32" Nullable="false" />
-          <Property Name="firstName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="lastName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="phone" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="eMail" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="eMail" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="gender" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
-          <Property Name="passwordHashFields" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="passwordHashFields" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="FishingSession" Relationship="FishermanDBModel.fk_FishingSession_Fisherman" FromRole="Fisherman" ToRole="FishingSession" />
         </EntityType>
         <EntityType Name="FishingMethod">
@@ -352,8 +354,8 @@
             <PropertyRef Name="fmId" />
           </Key>
           <Property Name="fmId" Type="Int32" Nullable="false" />
-          <Property Name="methodname" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="methodname" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="FishingSession" Relationship="FishermanDBModel.fk_FishingSession_FishingMethod" FromRole="FishingMethod" ToRole="FishingSession" />
         </EntityType>
         <EntityType Name="FishingSession">
@@ -362,23 +364,22 @@
           </Key>
           <Property Name="fsId" Type="Int32" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="fId" Type="Int32" Nullable="false" />
           <Property Name="fmId" Type="Int32" Nullable="false" />
-          <Property Name="cId" Type="Int32" Nullable="false" />
           <Property Name="lmId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Catch" Relationship="FishermanDBModel.fk_FishingSession_Catch" FromRole="FishingSession" ToRole="Catch" />
           <NavigationProperty Name="Fisherman" Relationship="FishermanDBModel.fk_FishingSession_Fisherman" FromRole="FishingSession" ToRole="Fisherman" />
           <NavigationProperty Name="FishingMethod" Relationship="FishermanDBModel.fk_FishingSession_FishingMethod" FromRole="FishingSession" ToRole="FishingMethod" />
           <NavigationProperty Name="LocationMarking" Relationship="FishermanDBModel.fk_FishingSession_LocationMarking" FromRole="FishingSession" ToRole="LocationMarking" />
+          <NavigationProperty Name="Catch" Relationship="FishermanDBModel.fk_Catch_FishingSession" FromRole="FishingSession" ToRole="Catch" />
         </EntityType>
         <EntityType Name="FishSpecies">
           <Key>
             <PropertyRef Name="fiId" />
           </Key>
           <Property Name="fiId" Type="Int32" Nullable="false" />
-          <Property Name="fishname" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="fishname" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Catch" Relationship="FishermanDBModel.fk_Catch_FishSpecies" FromRole="FishSpecies" ToRole="Catch" />
         </EntityType>
         <EntityType Name="GeoCoordinates">
@@ -386,8 +387,8 @@
             <PropertyRef Name="gcId" />
           </Key>
           <Property Name="gcId" Type="Int32" Nullable="false" />
-          <Property Name="latitude" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="longitude" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="latitude" Type="Decimal" Nullable="false" Precision="10" Scale="7" />
+          <Property Name="longitude" Type="Decimal" Nullable="false" Precision="10" Scale="7" />
           <NavigationProperty Name="LocationMarking" Relationship="FishermanDBModel.fk_LocationMarking_GeoCoordinates" FromRole="GeoCoordinates" ToRole="LocationMarking" />
         </EntityType>
         <EntityType Name="LocationMarking">
@@ -395,9 +396,9 @@
             <PropertyRef Name="lmId" />
           </Key>
           <Property Name="lmId" Type="Int32" Nullable="false" />
-          <Property Name="sublocation" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="compaslocation" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="sublocation" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="compaslocation" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="wId" Type="Int32" Nullable="false" />
           <Property Name="gcId" Type="Int32" />
           <NavigationProperty Name="FishingSession" Relationship="FishermanDBModel.fk_FishingSession_LocationMarking" FromRole="LocationMarking" ToRole="FishingSession" />
@@ -409,8 +410,8 @@
             <PropertyRef Name="lId" />
           </Key>
           <Property Name="lId" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="ltId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Catch" Relationship="FishermanDBModel.fk_Catch_Lure" FromRole="Lure" ToRole="Catch" />
           <NavigationProperty Name="LureType" Relationship="FishermanDBModel.fk_Lure_LureType" FromRole="Lure" ToRole="LureType" />
@@ -420,8 +421,8 @@
             <PropertyRef Name="ltId" />
           </Key>
           <Property Name="ltId" Type="Int32" Nullable="false" />
-          <Property Name="typename" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="typename" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Lure" Relationship="FishermanDBModel.fk_Lure_LureType" FromRole="LureType" ToRole="Lure" />
         </EntityType>
         <EntityType Name="Water">
@@ -429,9 +430,9 @@
             <PropertyRef Name="wId" />
           </Key>
           <Property Name="wId" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="municipality" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="municipality" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="LocationMarking" Relationship="FishermanDBModel.fk_LocationMarking_Water" FromRole="Water" ToRole="LocationMarking" />
         </EntityType>
         <Association Name="fk_Catch_FishSpecies">
@@ -455,18 +456,6 @@
             </Principal>
             <Dependent Role="Catch">
               <PropertyRef Name="lId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_FishingSession_Catch">
-          <End Role="Catch" Type="FishermanDBModel.Catch" Multiplicity="1" />
-          <End Role="FishingSession" Type="FishermanDBModel.FishingSession" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catch">
-              <PropertyRef Name="cId" />
-            </Principal>
-            <Dependent Role="FishingSession">
-              <PropertyRef Name="cId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -542,6 +531,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Catch_FishingSession">
+          <End Type="FishermanDBModel.FishingSession" Role="FishingSession" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FishermanDBModel.Catch" Role="Catch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FishingSession">
+              <PropertyRef Name="fsId" />
+            </Principal>
+            <Dependent Role="Catch">
+              <PropertyRef Name="fsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -551,6 +554,7 @@
           <EntitySetMapping Name="Catch">
             <EntityTypeMapping TypeName="FishermanDBModel.Catch">
               <MappingFragment StoreEntitySet="Catch">
+                <ScalarProperty Name="fsId" ColumnName="fsId" />
                 <ScalarProperty Name="cId" ColumnName="cId" />
                 <ScalarProperty Name="weight" ColumnName="weight" />
                 <ScalarProperty Name="lureweight" ColumnName="lureweight" />
@@ -591,7 +595,6 @@
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="fId" ColumnName="fId" />
                 <ScalarProperty Name="fmId" ColumnName="fmId" />
-                <ScalarProperty Name="cId" ColumnName="cId" />
                 <ScalarProperty Name="lmId" ColumnName="lmId" />
               </MappingFragment>
             </EntityTypeMapping>
