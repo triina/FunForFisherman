@@ -18,7 +18,6 @@ namespace ForTheFisherman.Models
     {
         public int cId { get; set; }
 
-        public int cId { get; set; }
         [DisplayName("Weight of catch")]
         [Required(ErrorMessage = "Weight is necessary")]
         public decimal weight { get; set; }

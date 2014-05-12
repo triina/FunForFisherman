@@ -82,7 +82,7 @@ namespace ForTheFisherman.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.cId = new SelectList(db.Catch, "cId", "description", fishingsession.cId);
+            //ViewBag.cId = new SelectList(db.Catch, "cId", "description", fishingsession.cId);
             //ViewBag.fId = new SelectList(db.Fisherman, "fId", "firstName", fishingsession.fId);
             ViewBag.fmId = new SelectList(db.FishingMethod, "fmId", "methodname", fishingsession.fmId);
             ViewBag.lmId = new SelectList(db.LocationMarking, "lmId", "sublocation", fishingsession.lmId);
@@ -99,7 +99,7 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.cId = new SelectList(db.Catch, "cId", "description", fishingsession.cId);
+            //ViewBag.cId = new SelectList(db.Catch, "cId", "description", fishingsession.cId);
             //ViewBag.fId = new SelectList(db.Fisherman, "fId", "firstName", fishingsession.fId);
             ViewBag.fmId = new SelectList(db.FishingMethod, "fmId", "methodname", fishingsession.fmId);
             ViewBag.lmId = new SelectList(db.LocationMarking, "lmId", "sublocation", fishingsession.lmId);
@@ -119,7 +119,7 @@ namespace ForTheFisherman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.cId = new SelectList(db.Catch, "cId", "description", fishingsession.cId);
+            //ViewBag.cId = new SelectList(db.Catch, "cId", "description", fishingsession.cId);
             //ViewBag.fId = new SelectList(db.Fisherman, "fId", "firstName", fishingsession.fId);
             ViewBag.fmId = new SelectList(db.FishingMethod, "fmId", "methodname", fishingsession.fmId);
             ViewBag.lmId = new SelectList(db.LocationMarking, "lmId", "sublocation", fishingsession.lmId);
