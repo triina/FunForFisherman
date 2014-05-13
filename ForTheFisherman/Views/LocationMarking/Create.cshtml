@@ -83,6 +83,12 @@
     <script>
         var id = ""; // id is set in CreateSuccess view from TempData
 
+        // Disables Ajax caching, required for IE. Another possible solution:
+        // use Response.CacheControl = "No-cache" in controller methods
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+        });
+
         $("#addButton").click(function () {
             $("#water").dialog(
             {
