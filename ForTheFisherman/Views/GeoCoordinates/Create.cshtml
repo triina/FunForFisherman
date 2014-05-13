@@ -2,7 +2,7 @@
 
 @* Old solution to the decimal comma problem: *@
 @* @{ Html.EnableClientValidation(false); } *@
-@* The new solution is validate.fix.js *@
+@* The new solution is jquery.fix.js *@
 
 @using (Ajax.BeginForm("Create", "GeoCoordinates", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "geo" }, new { id = "geoForm" }))
 {
