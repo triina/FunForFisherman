@@ -15,7 +15,7 @@ namespace ForTheFisherman.Controllers
 
         //
         // GET: /Water/
-
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Water.ToList());

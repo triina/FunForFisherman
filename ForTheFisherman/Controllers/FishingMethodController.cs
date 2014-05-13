@@ -15,7 +15,7 @@ namespace ForTheFisherman.Controllers
 
         //
         // GET: /FishingMethod/
-
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.FishingMethod.ToList());

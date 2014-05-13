@@ -15,7 +15,7 @@ namespace ForTheFisherman.Controllers
 
         //
         // GET: /GeoCoordinates/
-
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.GeoCoordinates.ToList());

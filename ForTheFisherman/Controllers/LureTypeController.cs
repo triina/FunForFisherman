@@ -15,7 +15,7 @@ namespace ForTheFisherman.Controllers
 
         //
         // GET: /LureType/
-
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.LureType.ToList());

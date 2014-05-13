@@ -15,7 +15,7 @@ namespace ForTheFisherman.Controllers
 
         //
         // GET: /Lure/
-
+        [Authorize]
         public ActionResult Index()
         {
             var lure = db.Lure.Include(l => l.LureType);

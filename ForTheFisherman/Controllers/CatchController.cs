@@ -15,7 +15,7 @@ namespace ForTheFisherman.Controllers
         private FishermanDBEntities1 db = new FishermanDBEntities1();
         //
         // GET: /Catch/
-
+        [Authorize]
         public ActionResult Index()
         {
             var fishcatch = db.Catch.Include(fi => fi.FishSpecies).Include(l => l.Lure);

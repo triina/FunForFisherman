@@ -15,7 +15,7 @@ namespace ForTheFisherman.Controllers
 
         //
         // GET: /LocationMarking/
-
+        [Authorize]
         public ActionResult Index()
         {
             var locationmarking = db.LocationMarking.Include(l => l.GeoCoordinates).Include(l => l.Water);

@@ -14,7 +14,7 @@ using ForTheFisherman.Models;
 namespace ForTheFisherman.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
+    //[InitializeSimpleMembership] disabled SImpleMembership
     public class AccountController : Controller
     {
         //

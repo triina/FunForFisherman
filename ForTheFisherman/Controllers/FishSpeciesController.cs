@@ -14,7 +14,7 @@ namespace ForTheFisherman.Controllers
         private FishermanDBEntities1 db = new FishermanDBEntities1();
         //
         // GET: /FishSpecies/
-
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.FishSpecies.ToList());
