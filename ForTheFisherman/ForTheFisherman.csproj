@@ -432,11 +432,11 @@
     <Content Include="Views\GeoCoordinates\Create.cshtml" />
     <Content Include="Views\GeoCoordinates\Edit.cshtml" />
     <Content Include="Views\GeoCoordinates\Delete.cshtml" />
-    <Content Include="Views\Catch\Create.cshtml" />
-    <Content Include="Views\Catch\Delete.cshtml" />
-    <Content Include="Views\Catch\Details.cshtml" />
-    <Content Include="Views\Catch\Edit.cshtml" />
-    <Content Include="Views\Catch\Index.cshtml" />
+    <Content Include="Views\CatchOLD\Create.cshtml" />
+    <Content Include="Views\CatchOLD\Delete.cshtml" />
+    <Content Include="Views\CatchOLD\Details.cshtml" />
+    <Content Include="Views\CatchOLD\Edit.cshtml" />
+    <Content Include="Views\CatchOLD\Index.cshtml" />
     <Content Include="Views\GeoCoordinates\GetCoordinates.cshtml" />
     <Content Include="Views\GeoCoordinates\CreateSuccess.cshtml" />
     <Content Include="Views\GeoCoordinates\Update.cshtml" />
@@ -447,6 +447,11 @@
     <Content Include="Views\FishingSession\Delete.cshtml" />
     <Content Include="Views\Water\CreateSuccess.cshtml" />
     <Content Include="Views\LureType\CreateSuccess.cshtml" />
+    <Content Include="Views\Catch\Index.cshtml" />
+    <Content Include="Views\Catch\Details.cshtml" />
+    <Content Include="Views\Catch\Create.cshtml" />
+    <Content Include="Views\Catch\Edit.cshtml" />
+    <Content Include="Views\Catch\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

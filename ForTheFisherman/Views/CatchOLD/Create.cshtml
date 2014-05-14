@@ -1,10 +1,10 @@
 ﻿@model ForTheFisherman.Models.Catch
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
 }
 
-<h2>Edit</h2>
+<h2>Create</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -13,7 +13,7 @@
     <fieldset>
         <legend>Catch</legend>
 
-       <div class="hidden">
+        <div class="hidden">
             @Html.LabelFor(model => model.cId)
             @Html.EditorFor(model => model.cId)
           
@@ -67,16 +67,8 @@
             @Html.ValidationMessageFor(model => model.fiId)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.fsId, "FishingSession")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("fsId", String.Empty)
-            @Html.ValidationMessageFor(model => model.fsId)
-        </div>
-
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Create" />
         </p>
     </fieldset>
 }
@@ -88,3 +80,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
