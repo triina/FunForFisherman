@@ -25,16 +25,24 @@ namespace ForTheFisherman.Controllers
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public JsonResult CheckEmail(string email, int fId)
+        public JsonResult CheckEmail(string email, int fId = 0)
         {
             //var result = db.Fisherman.SqlQuery("SELECT * FROM Fisherman WHERE eMail='" + email + "' AND fId <> " + fId).Count() == 0;
-            var result = db.Fisherman.SingleOrDefault(f => f.eMail == email && f.fId != fId) == null;
+            var result = false;
+            if (fId != 0)
+            {
+                result = db.Fisherman.SingleOrDefault(f => f.eMail == email && f.fId != fId) == null;
+            }
+            else
+            {
+                result = db.Fisherman.SingleOrDefault(f => f.eMail == email) == null;
+            }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult CheckLureTypeName(string typename, int ltId)
         {
-            var result = db.LureType.SingleOrDefault(lt => lt. typename== typename && lt.ltId != ltId) == null;
+            var result = db.LureType.SingleOrDefault(lt => lt.typename == typename && lt.ltId != ltId) == null;
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
