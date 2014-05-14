@@ -29,7 +29,7 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
-            return View(fishspecies);
+            return PartialView(fishspecies);
         }
 
         //
@@ -40,7 +40,7 @@ namespace ForTheFisherman.Controllers
             FishSpecies fishspecies = new FishSpecies();
             var lastFishSpecies = db.FishSpecies.OrderByDescending(fi => fi.fiId).FirstOrDefault();
             fishspecies.fiId = (lastFishSpecies.fiId) + 1;
-            return View(fishspecies);
+            return PartialView(fishspecies);
         }
 
         //
@@ -54,10 +54,10 @@ namespace ForTheFisherman.Controllers
             {
                 db.FishSpecies.Add(fishspecies);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CreateSuccess", fishspecies);
             }
 
-            return View(fishspecies);
+            return PartialView(fishspecies);
         }
 
         //
@@ -70,7 +70,7 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
-            return View(fishspecies);
+            return PartialView(fishspecies);
         }
 
         //
@@ -86,7 +86,7 @@ namespace ForTheFisherman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(fishspecies);
+            return PartialView(fishspecies);
         }
 
         //
@@ -122,6 +122,36 @@ namespace ForTheFisherman.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        // GET: /Lure/CreateSuccess
+
+        public ActionResult CreateSuccess(FishSpecies fishSpecies)
+        {
+            TempData["fiId"] = fishSpecies.fiId;
+            return PartialView();
+        }
+
+
+        // GET: /FishSpecies/List
+
+        /// <summary>
+        /// Returns an updated list of fish species to populate the dropdown list
+        /// </summary>
+        /// <returns></returns>
+
+        public ActionResult List()
+        {
+            List<SelectListItem> fishSpecieses = new List<SelectListItem>();
+            fishSpecieses.Add(new SelectListItem { Text = "", Value = "" });
+
+            foreach (FishSpecies fishSpecies in db.FishSpecies)
+            {
+                fishSpecieses.Add(new SelectListItem { Text = fishSpecies.fishname, Value = fishSpecies.fiId.ToString() });
+            }
+
+            return Json(fishSpecieses, JsonRequestBehavior.AllowGet);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

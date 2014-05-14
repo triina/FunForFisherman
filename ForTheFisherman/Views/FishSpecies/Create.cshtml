@@ -1,12 +1,9 @@
 ﻿@model ForTheFisherman.Models.FishSpecies
 
-@{
-    ViewBag.Title = "Create";
-}
 
 <h2>Create</h2>
 
-@using (Html.BeginForm())
+@using (Ajax.BeginForm("Create", "FishSpecies", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "fishSpecies" }, new { id = "fishSpeciesForm" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -36,15 +33,18 @@
 
       
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Add" />
         </p>
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script>
+    $(function(){
+        $("#fishSpeciesForm").removeData("validator");
+        $("#fishSpeciesForm").removeData("unobtrusiveValidation");
+        $("#fishSpeciesForm").each(function () { $.data($(this)[0], 'validator', false); }); //enable to display the error messages
+        $.validator.unobtrusive.parse($("#fishSpeciesForm"));
+
+    })
+</script>
