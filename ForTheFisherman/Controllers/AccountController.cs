@@ -107,23 +107,30 @@ namespace ForTheFisherman.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(Fisherman model)
         {
-            if (ModelState.IsValid)
+            using (FishermanDBEntities1 entities = new FishermanDBEntities1())
             {
-                // Attempt to register the user
-                try
+                bool userExists = entities.Fisherman.Any(f => f.eMail == model.eMail);
+                if (!userExists)
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    var fishermanT = entities.Fisherman.OrderByDescending(f => f.fId).FirstOrDefault();
+                    model.fId = fishermanT.fId + 1;
+
+                    if (ModelState.IsValid)
+                    {
+                        entities.Fisherman.Add(model);
+                        entities.SaveChanges();
+                        //User logged in
+                        FormsAuthentication.SetAuthCookie(model.eMail, false);
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
-                catch (MembershipCreateUserException e)
+                else
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                    ModelState.AddModelError("", "The user with this email already exists.");
                 }
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }

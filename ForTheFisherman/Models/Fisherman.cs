@@ -76,6 +76,8 @@ namespace ForTheFisherman.Models
 
         // passwordHashFields is required, but we'll just hide it for now
         private string _passwordHashFields;
+
+        [DisplayName("Password")]
         public string passwordHashFields
         {
             get

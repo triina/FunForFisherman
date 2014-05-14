@@ -1,4 +1,4 @@
-﻿@model ForTheFisherman.Models.RegisterModel
+﻿@model ForTheFisherman.Models.Fisherman
 @{
     ViewBag.Title = "Register";
 }
@@ -16,22 +16,40 @@
         <legend>Registration Form</legend>
         <ol>
             <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
+                @Html.LabelFor(m => m.eMail)
+                @Html.TextBoxFor(m => m.eMail)
+                @Html.ValidationMessageFor(m => m.eMail)
             </li>
             <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
+                @Html.LabelFor(m => m.passwordHashFields)
+                @Html.PasswordFor(m => m.passwordHashFields)
             </li>
-            <li>
-                @Html.LabelFor(m => m.ConfirmPassword)
-                @Html.PasswordFor(m => m.ConfirmPassword)
-            </li>
+          <li>
+            @Html.LabelFor(m => m.firstName)
+            @Html.TextBoxFor(m => m.firstName)
+          </li>
+          <li>
+            @Html.LabelFor(m => m.lastName)
+            @Html.TextBoxFor(m => m.lastName)
+          </li>
+          <li>
+            @Html.LabelFor(m => m.phone)
+            @Html.TextBoxFor(m => m.phone)
+          </li>
+          <li>
+            @{string id = ViewData.TemplateInfo.GetFullHtmlFieldId("radioM");}
+            @Html.RadioButtonFor(model => model.gender, "M", new { id })
+            @Html.LabelFor(model => model.gender, "Male", new { @for = id })
+            @{id = ViewData.TemplateInfo.GetFullHtmlFieldId("radioF");}
+            @Html.RadioButtonFor(model => model.gender, "F", new { id })
+            @Html.LabelFor(model => model.gender, "Female", new { @for = id })
+            @Html.ValidationMessageFor(model => model.gender)
+          </li>
         </ol>
         <input type="submit" value="Register" />
     </fieldset>
 }
 
-@section Scripts {
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@
