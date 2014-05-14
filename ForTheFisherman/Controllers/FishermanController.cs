@@ -17,7 +17,7 @@ namespace ForTheFisherman.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View(db.Fisherman.ToList());
+            return View(db.Fisherman.Where(f => f.eMail == User.Identity.Name).ToList());
         }
 
         //
