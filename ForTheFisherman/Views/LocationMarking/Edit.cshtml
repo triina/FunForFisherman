@@ -6,69 +6,75 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>LocationMarking</legend>
-
-        <div class="hidden">
-            @Html.HiddenFor(model => model.lmId)
-            @Html.ValidationMessageFor(model => model.lmId)
-
-            @Html.HiddenFor(model => model.gcId, new { id = "gcIdSelect" })
-            @Html.ValidationMessageFor(model => model.gcId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.sublocation)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.sublocation)
-            @Html.ValidationMessageFor(model => model.sublocation)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.compaslocation)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.compaslocation)
-            @Html.ValidationMessageFor(model => model.compaslocation)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.description)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.description)
-            @Html.ValidationMessageFor(model => model.description)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.wId, "Water")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("wId", String.Empty)
-            @Html.ValidationMessageFor(model => model.wId)
-        </div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
-<div id="geo">
-    @if (@Model.gcId != null)
+<div id="location">
+    @using (Html.BeginForm())
     {
-        @Html.Action("Details", "GeoCoordinates", new { id = @Model.gcId })
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>LocationMarking</legend>
+
+            <div class="hidden">
+                @Html.HiddenFor(model => model.lmId)
+                @Html.ValidationMessageFor(model => model.lmId)
+
+                @Html.HiddenFor(model => model.gcId, new { id = "gcIdSelect" })
+                @Html.ValidationMessageFor(model => model.gcId)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.sublocation)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.sublocation)
+                @Html.ValidationMessageFor(model => model.sublocation)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.compaslocation)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.compaslocation)
+                @Html.ValidationMessageFor(model => model.compaslocation)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.description)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.description)
+                @Html.ValidationMessageFor(model => model.description)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.wId, "Water")
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("wId", String.Empty)
+                @Html.ValidationMessageFor(model => model.wId)
+                @Ajax.ActionLink("Add", "Create", "Water", null, new AjaxOptions { UpdateTargetId = "water" }, new { id = "addButton" })
+            </div>
+
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
     }
-    else
-    {
-        @Html.Action("Create", "GeoCoordinates")
-    }
+
+    <div id="geo">
+        @if (@Model.gcId != null)
+        {
+            @Html.Action("Details", "GeoCoordinates", new { id = @Model.gcId })
+        }
+        else
+        {
+            @Html.Action("Create", "GeoCoordinates")
+        }
+    </div>
 </div>
+
+<div id="water"></div>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -76,4 +82,30 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/ListWater.js"></script>
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script>
+        var id = ""; // id is set in CreateSuccess view from TempData
+
+        // Disables Ajax caching, required for IE. Another possible solution:
+        // use Response.CacheControl = "No-cache" in controller methods
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+        });
+
+        $("#addButton").click(function () {
+            $("#water").dialog(
+            {
+                width: 400,
+                height: 600,
+                autoOpen: true,
+                modal: true,
+                title: "Add Water",
+                close: function (event, ui) { listWater() }
+            });
+        });
+    </script>
 }
