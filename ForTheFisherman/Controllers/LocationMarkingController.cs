@@ -18,8 +18,18 @@ namespace ForTheFisherman.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            //var locationmarking = db.LocationMarking.Include(l => l.GeoCoordinates).Include(l => l.Water);
+            //return View(locationmarking.ToList());
+            return View();
+        }
+
+        //
+        // GET: /LocationMarking/IndexPartial
+        //[Authorize] // Is it needed here?
+        public ActionResult IndexPartial()
+        {
             var locationmarking = db.LocationMarking.Include(l => l.GeoCoordinates).Include(l => l.Water);
-            return View(locationmarking.ToList());
+            return PartialView(locationmarking.ToList());
         }
 
         //
