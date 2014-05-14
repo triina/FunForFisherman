@@ -18,7 +18,11 @@ namespace ForTheFisherman.Controllers
 
         public ActionResult Index()
         {
-            var fishcatch = db.Catch.Include(c => c.FishSpecies).Include(c => c.Lure).Include(c => c.FishingSession);
+            var fishcatch = db.Catch
+                .Include(c => c.FishSpecies)
+                .Include(c => c.Lure)
+                .Include(c => c.FishingSession)
+                .Where(f => f.FishingSession.Fisherman.eMail == User.Identity.Name);
             return View(fishcatch.ToList());
         }
 

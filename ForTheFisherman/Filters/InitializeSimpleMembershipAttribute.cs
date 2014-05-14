@@ -11,9 +11,9 @@ namespace ForTheFisherman.Filters
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public sealed class InitializeSimpleMembershipAttribute : ActionFilterAttribute
     {
-        private static SimpleMembershipInitializer _initializer;
+        //private static SimpleMembershipInitializer _initializer;
         private static object _initializerLock = new object();
-        private static bool _isInitialized;
+        //private static bool _isInitialized;
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
