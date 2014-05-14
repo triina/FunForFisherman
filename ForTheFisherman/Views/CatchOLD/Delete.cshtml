@@ -10,11 +10,10 @@
 <fieldset>
     <legend>Catch</legend>
 
-  <div class="hidden">
-            @Html.LabelFor(model => model.cId)
-            @Html.EditorFor(model => model.cId)
-          
-        </div>
+    <div class="hidden">
+        @Html.DisplayNameFor(model => model.cId)
+        @Html.DisplayFor(model => model.cId)
+    </div>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.weight)
@@ -30,14 +29,14 @@
         @Html.DisplayFor(model => model.lureweight)
     </div>
 
-    <div class="display-label">
+     <div class="display-label">
          @Html.DisplayNameFor(model => model.depth)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.depth)
     </div>
 
-    <div class="display-label">
+     <div class="display-label">
          @Html.DisplayNameFor(model => model.description)
     </div>
     <div class="display-field">
@@ -48,21 +47,7 @@
          @Html.DisplayNameFor(model => model.Lure.name)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Lure.name)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.FishSpecies.fishname)
-    </div>
-    <div class="display-field">
         @Html.DisplayFor(model => model.FishSpecies.fishname)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.FishingSession.description)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FishingSession.description)
     </div>
 </fieldset>
 @using (Html.BeginForm()) {

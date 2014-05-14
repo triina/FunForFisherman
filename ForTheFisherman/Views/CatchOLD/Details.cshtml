@@ -1,20 +1,22 @@
-﻿@model ForTheFisherman.Models.Catch
+﻿
+
+@model ForTheFisherman.Models.Catch
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Details";
 }
 
-<h2>Delete</h2>
+<h2>Details</h2>
 
-<h3>Are you sure you want to delete this?</h3>
 <fieldset>
     <legend>Catch</legend>
 
-  <div class="hidden">
-            @Html.LabelFor(model => model.cId)
-            @Html.EditorFor(model => model.cId)
-          
-        </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cId)
+    </div>
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.weight)
@@ -48,27 +50,13 @@
          @Html.DisplayNameFor(model => model.Lure.name)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Lure.name)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.FishSpecies.fishname)
-    </div>
-    <div class="display-field">
         @Html.DisplayFor(model => model.FishSpecies.fishname)
     </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.FishingSession.description)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FishingSession.description)
-    </div>
 </fieldset>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.cId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+

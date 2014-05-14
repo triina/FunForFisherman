@@ -1,30 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data;
-using System.Data.Entity;
 using ForTheFisherman.Models;
-
 
 namespace ForTheFisherman.Controllers
 {
     public class CatchController : Controller
     {
         private FishermanDBEntities1 db = new FishermanDBEntities1();
+
         //
         // GET: /Catch/
-        [Authorize]
+
         public ActionResult Index()
         {
-            var fishcatch = db.Catch.Include(fi => fi.FishSpecies).Include(l => l.Lure);
+            var fishcatch = db.Catch.Include(c => c.FishSpecies).Include(c => c.Lure).Include(c => c.FishingSession);
             return View(fishcatch.ToList());
         }
-
-
-
-       
 
         //
         // GET: /Catch/Details/5
@@ -44,14 +40,12 @@ namespace ForTheFisherman.Controllers
 
         public ActionResult Create()
         {
-
-
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname");
             ViewBag.lId = new SelectList(db.Lure, "lId", "name");
+            ViewBag.fsId = new SelectList(db.FishingSession, "fsId", "description");
             Catch fishcatch = new Catch();
             var lastCatch = db.Catch.OrderByDescending(fi => fi.cId).OrderByDescending(fi => fi.cId).FirstOrDefault();
             fishcatch.cId = (lastCatch.cId) + 1;
-            
             return View(fishcatch);
         }
 
@@ -68,9 +62,10 @@ namespace ForTheFisherman.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
             ViewBag.lId = new SelectList(db.Lure, "lId", "name", fishcatch.lId);
-
+            ViewBag.fsId = new SelectList(db.FishingSession, "fsId", "description", fishcatch.fsId);
             return View(fishcatch);
         }
 
@@ -86,6 +81,7 @@ namespace ForTheFisherman.Controllers
             }
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
             ViewBag.lId = new SelectList(db.Lure, "lId", "name", fishcatch.lId);
+            ViewBag.fsId = new SelectList(db.FishingSession, "fsId", "description", fishcatch.fsId);
             return View(fishcatch);
         }
 
@@ -104,6 +100,7 @@ namespace ForTheFisherman.Controllers
             }
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
             ViewBag.lId = new SelectList(db.Lure, "lId", "name", fishcatch.lId);
+            ViewBag.fsId = new SelectList(db.FishingSession, "fsId", "description", fishcatch.fsId);
             return View(fishcatch);
         }
 
@@ -128,21 +125,9 @@ namespace ForTheFisherman.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Catch fishcatch = db.Catch.Find(id);
-
-            try
-            {
-                db.Catch.Remove(fishcatch);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-             /// if the delete cannot be done an error message is created and the user is redirected to the lure index page where the error is displayed.
-            catch
-            {
-                TempData["deleteErrorMessage"] = "Cannot delete this item";
-
-                return RedirectToAction("Index");
-            }
+            db.Catch.Remove(fishcatch);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
@@ -152,4 +137,3 @@ namespace ForTheFisherman.Controllers
         }
     }
 }
-

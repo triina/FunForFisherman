@@ -1,6 +1,4 @@
-﻿
-
-@model ForTheFisherman.Models.Catch
+﻿@model ForTheFisherman.Models.Catch
 
 @{
     ViewBag.Title = "Details";
@@ -50,13 +48,24 @@
          @Html.DisplayNameFor(model => model.Lure.name)
     </div>
     <div class="display-field">
+        @Html.DisplayFor(model => model.Lure.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FishSpecies.fishname)
+    </div>
+    <div class="display-field">
         @Html.DisplayFor(model => model.FishSpecies.fishname)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FishingSession.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FishingSession.description)
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.cId }) |
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
-
-
-

@@ -13,11 +13,10 @@
     <fieldset>
         <legend>Catch</legend>
 
-       <div class="hidden">
+         <div class="hidden">
             @Html.LabelFor(model => model.cId)
             @Html.EditorFor(model => model.cId)
-          
-        </div>
+        </div> 
 
         <div class="editor-label">
             @Html.LabelFor(model => model.weight)
@@ -59,20 +58,12 @@
             @Html.ValidationMessageFor(model => model.lId)
         </div>
 
-        <div class="editor-label">
+          <div class="editor-label">
             @Html.LabelFor(model => model.fiId, "FishSpecies")
         </div>
         <div class="editor-field">
             @Html.DropDownList("fiId", String.Empty)
             @Html.ValidationMessageFor(model => model.fiId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.fsId, "FishingSession")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("fsId", String.Empty)
-            @Html.ValidationMessageFor(model => model.fsId)
         </div>
 
         <p>
