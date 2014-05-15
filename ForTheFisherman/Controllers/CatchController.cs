@@ -26,6 +26,16 @@ namespace ForTheFisherman.Controllers
             return View(fishcatch.ToList());
         }
 
+        public ActionResult IndexPartial()
+        {
+            var fishcatch = db.Catch
+                .Include(c => c.FishSpecies)
+                .Include(c => c.Lure)
+                .Include(c => c.FishingSession)
+                .Where(f => f.FishingSession.Fisherman.eMail == User.Identity.Name);
+            return PartialView(fishcatch.ToList());
+        }
+
         //
         // GET: /Catch/Details/5
 
@@ -36,7 +46,8 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
-            return View(fishcatch);
+
+            return PartialView(fishcatch);
         }
 
         //
@@ -47,12 +58,12 @@ namespace ForTheFisherman.Controllers
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname");
             ViewBag.lId = new SelectList(db.Lure, "lId", "name");
             ViewBag.fsId = new SelectList(db.FishingSession
-                                        .Where(f => f.Fisherman.eMail == User.Identity.Name),
-                                        "fsId", "description");
+            .Where(f => f.Fisherman.eMail == User.Identity.Name),
+            "fsId", "description");
             Catch fishcatch = new Catch();
             var lastCatch = db.Catch.OrderByDescending(fi => fi.cId).OrderByDescending(fi => fi.cId).FirstOrDefault();
             fishcatch.cId = (lastCatch.cId) + 1;
-            return View(fishcatch);
+            return PartialView(fishcatch);
         }
 
         //
@@ -66,15 +77,16 @@ namespace ForTheFisherman.Controllers
             {
                 db.Catch.Add(fishcatch);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CreateSuccess");
             }
 
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
             ViewBag.lId = new SelectList(db.Lure, "lId", "name", fishcatch.lId);
             ViewBag.fsId = new SelectList(db.FishingSession
-                                        .Where(f => f.Fisherman.eMail == User.Identity.Name),
-                                        "fsId", "description", fishcatch.fsId);
-            return View(fishcatch);
+            .Where(f => f.Fisherman.eMail == User.Identity.Name),
+           "fsId", "description", fishcatch.fsId);
+
+            return PartialView(fishcatch);
         }
 
         //
@@ -90,7 +102,7 @@ namespace ForTheFisherman.Controllers
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
             ViewBag.lId = new SelectList(db.Lure, "lId", "name", fishcatch.lId);
             ViewBag.fsId = new SelectList(db.FishingSession, "fsId", "description", fishcatch.fsId);
-            return View(fishcatch);
+            return PartialView(fishcatch);
         }
 
         //
@@ -109,7 +121,7 @@ namespace ForTheFisherman.Controllers
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
             ViewBag.lId = new SelectList(db.Lure, "lId", "name", fishcatch.lId);
             ViewBag.fsId = new SelectList(db.FishingSession, "fsId", "description", fishcatch.fsId);
-            return View(fishcatch);
+            return PartialView(fishcatch);
         }
 
         //
@@ -137,6 +149,62 @@ namespace ForTheFisherman.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //
+        // GET: /Catch/DeleteAjax/5
+
+        public ActionResult DeleteAjax(int id = 0)
+        {
+            Catch fishcatch = db.Catch.Find(id);
+            if (fishcatch == null)
+            {
+                return HttpNotFound();
+            }
+
+            try
+            {
+                db.Catch.Remove(fishcatch);
+                db.SaveChanges();
+                return RedirectToAction("IndexPartial");
+            }
+
+            catch
+            {
+                TempData["deleteErrorMessage"] = "Cannot delete this item";
+                return RedirectToAction("IndexPartial");
+            }
+        }
+
+
+        // GET: /Catch/CreateSuccess
+
+        public ActionResult CreateSuccess(Catch fishcatch)
+        {
+            TempData["cId"] = fishcatch.cId;
+            return PartialView();
+        }
+
+
+        // GET: /Catch/List
+
+        /// <summary>
+        /// Returns an updated list of fish species to populate the dropdown list
+        /// </summary>
+        /// <returns></returns>
+
+        public ActionResult List()
+        {
+            List<SelectListItem> fishcatch = new List<SelectListItem>();
+            fishcatch.Add(new SelectListItem { Text = "", Value = "" });
+
+            foreach (Catch fishcatches in db.Catch)
+            {
+                fishcatch.Add(new SelectListItem { Text = fishcatches.description, Value = fishcatches.cId.ToString() });
+            }
+
+            return Json(fishcatch, JsonRequestBehavior.AllowGet);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

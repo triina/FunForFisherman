@@ -433,11 +433,6 @@
     <Content Include="Views\GeoCoordinates\Create.cshtml" />
     <Content Include="Views\GeoCoordinates\Edit.cshtml" />
     <Content Include="Views\GeoCoordinates\Delete.cshtml" />
-    <Content Include="Views\CatchOLD\Create.cshtml" />
-    <Content Include="Views\CatchOLD\Delete.cshtml" />
-    <Content Include="Views\CatchOLD\Details.cshtml" />
-    <Content Include="Views\CatchOLD\Edit.cshtml" />
-    <Content Include="Views\CatchOLD\Index.cshtml" />
     <Content Include="Views\GeoCoordinates\GetCoordinates.cshtml" />
     <Content Include="Views\GeoCoordinates\CreateSuccess.cshtml" />
     <Content Include="Views\GeoCoordinates\Update.cshtml" />
@@ -456,6 +451,8 @@
     <Content Include="Views\FishSpecies\CreateSuccess.cshtml" />
     <Content Include="Views\LocationMarking\IndexPartial.cshtml" />
     <Content Include="Views\Water\IndexPartial.cshtml" />
+    <Content Include="Views\Catch\IndexPartial.cshtml" />
+    <Content Include="Views\FishingSession\IndexPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
