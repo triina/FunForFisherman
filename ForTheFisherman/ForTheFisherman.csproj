@@ -443,7 +443,6 @@
     <Content Include="Views\FishingSession\Delete.cshtml" />
     <Content Include="Views\Water\CreateSuccess.cshtml" />
     <Content Include="Views\LureType\CreateSuccess.cshtml" />
-    <Content Include="Views\Catch\Index.cshtml" />
     <Content Include="Views\Catch\Details.cshtml" />
     <Content Include="Views\Catch\Create.cshtml" />
     <Content Include="Views\Catch\Edit.cshtml" />
@@ -454,6 +453,8 @@
     <Content Include="Views\Catch\IndexPartial.cshtml" />
     <Content Include="Views\FishingSession\IndexPartial.cshtml" />
     <Content Include="Views\Catch\CreateSuccess.cshtml" />
+    <Content Include="Views\Catch\ListCatch.cshtml" />
+    <Content Include="Views\Catch\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

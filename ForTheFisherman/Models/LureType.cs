@@ -25,12 +25,12 @@ namespace ForTheFisherman.Models
         public int ltId { get; set; }
 
         [Required(ErrorMessage = "Lure type name is necessary")]
-        [DisplayName("Lure type name")]
+        [DisplayName("Lure type")]
         [Remote("CheckLureTypeName", "Validation", AdditionalFields = "ltId", ErrorMessage = "This lure type name is already taken.")]
         [StringLength(100)]
         public string typename { get; set; }
 
-        [DisplayName("Description of lure type")]
+        [DisplayName("Lure type description")]
         [StringLength(200)]
         public string description { get; set; }
     

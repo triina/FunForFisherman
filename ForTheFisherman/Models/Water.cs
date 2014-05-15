@@ -25,7 +25,7 @@ namespace ForTheFisherman.Models
         public int wId { get; set; }
 
         [Required(ErrorMessage = "Water name is necessary")]
-        [DisplayName("Water name")]
+        [DisplayName("Water")]
         [StringLength(100)]
         public string name { get; set; }
 

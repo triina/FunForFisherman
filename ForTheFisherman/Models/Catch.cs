@@ -13,16 +13,16 @@ namespace ForTheFisherman.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class Catch
     {
         public int cId { get; set; }
 
-        [DisplayName("Weight of catch")]
+        [DisplayName("Catch weight")]
         [Required(ErrorMessage = "Weight is necessary")]
         public decimal weight { get; set; }
 
-        [DisplayName("Weight of lure")]
+        [DisplayName("Lure weight")]
         [Required(ErrorMessage = "Weight is necessary")]
         public int lureweight { get; set; }
 
@@ -30,7 +30,7 @@ namespace ForTheFisherman.Models
         [Required(ErrorMessage = "Depth is necessary")]
         public int depth { get; set; }
 
-        [DisplayName("Description of catch")]
+        [DisplayName("Catch description")]
         [StringLength(200)]
         public string description { get; set; }
 
@@ -45,7 +45,7 @@ namespace ForTheFisherman.Models
         [DisplayName("Fishing session")]
         [Required(ErrorMessage = "Fishing session is necessary")]
         public int fsId { get; set; }
-    
+
         public virtual FishSpecies FishSpecies { get; set; }
         public virtual Lure Lure { get; set; }
         public virtual FishingSession FishingSession { get; set; }

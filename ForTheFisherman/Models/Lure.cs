@@ -25,12 +25,12 @@ namespace ForTheFisherman.Models
         public int lId { get; set; }
         
         [Required(ErrorMessage = "Lure name is necessary")]
-        [DisplayName("Lure name")]
+        [DisplayName("Lure")]
         [StringLength(100)]
         [Remote("CheckLureName", "Validation", AdditionalFields = "lId", ErrorMessage = "This lure name is already taken.")]
         public string name { get; set; }
         
-        [DisplayName("Description of lure")]
+        [DisplayName("Lure description")]
         [StringLength(200)]
         public string description { get; set; }
 

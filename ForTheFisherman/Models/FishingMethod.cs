@@ -25,7 +25,7 @@ namespace ForTheFisherman.Models
         public int fmId { get; set; }
 
         [Required(ErrorMessage = "Method name is required.")]
-        [DisplayName("Method Name")]
+        [DisplayName("Fishing method")]
         [Remote("CheckMethodName", "Validation", AdditionalFields = "fmId", ErrorMessage = "This fishing method name is already used.")]
         [StringLength(100)]
         public string methodname { get; set; }
