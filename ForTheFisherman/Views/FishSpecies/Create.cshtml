@@ -1,7 +1,6 @@
 ﻿@model ForTheFisherman.Models.FishSpecies
 
-
-<h2>Create</h2>
+<h2>New Fish Species</h2>
 
 @using (Ajax.BeginForm("Create", "FishSpecies", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "fishSpecies" }, new { id = "fishSpeciesForm" }))
 {
@@ -30,7 +29,6 @@
             @Html.EditorFor(model => model.description)
             @Html.ValidationMessageFor(model => model.description)
         </div>
-
       
         <p>
             <input type="submit" value="Add" />
@@ -38,13 +36,11 @@
     </fieldset>
 }
 
-
 <script>
     $(function(){
         $("#fishSpeciesForm").removeData("validator");
         $("#fishSpeciesForm").removeData("unobtrusiveValidation");
         $("#fishSpeciesForm").each(function () { $.data($(this)[0], 'validator', false); }); //enable to display the error messages
         $.validator.unobtrusive.parse($("#fishSpeciesForm"));
-
     })
 </script>

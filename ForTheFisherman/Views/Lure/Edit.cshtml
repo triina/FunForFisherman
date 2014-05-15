@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Lure</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -35,12 +35,12 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ltId, "LureType")
+            @Html.LabelFor(model => model.ltId)
         </div>
         <div class="editor-field">
             @Html.DropDownList("ltId", String.Empty)
             @Html.ValidationMessageFor(model => model.ltId)
-             @Ajax.ActionLink("Add", "Create", "LureType", null, new AjaxOptions { UpdateTargetId = "lureType" }, new { id = "addButton" })
+            @Ajax.ActionLink("Add", "Create", "LureType", null, new AjaxOptions { UpdateTargetId = "lureType" }, new { id = "addButton" })
         </div>
 
         <p>
@@ -73,20 +73,15 @@
         });
 
         $("#addButton").click(function () {
-
             $("#lureType").dialog(
             {
-
                 width: 400,
                 height: 600,
                 autoOpen: true,
                 modal: true,
-                title: "Add lure type",
+                title: "Add Lure Type",
                 close: function (event, ui) { listLureType() }
             });
         });
-    </script>
-    <script>
-        jQuery.validator.unobtrusive.parse("#lureType");
     </script>
 }

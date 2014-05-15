@@ -4,7 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-
 <div id="fishingSessionIndex">
     @Html.Action("IndexPartial")
 </div>
@@ -14,13 +13,18 @@
 </div>
 
 <div id="catch"></div>
+<div id="fishSpecies"></div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval") @* Necessary for partial views! *@
+    <script src="~/Scripts/ListFishSpecies.js"></script>
+
     @Scripts.Render("~/bundles/jqueryui")
     @Styles.Render("~/Content/themes/base/css")
 
     <script>
+        var id = ""; // id is set in CreateSuccess view from TempData
+
         // Disables Ajax caching, required for IE. Another possible solution:
         // use Response.CacheControl = "No-cache" in controller methods
         $(document).ready(function () {
@@ -73,6 +77,18 @@
                 modal: true,
                 title: "Edit Catch",
                 close: function (event, ui) { updateCatch() }
+            });
+        });
+
+        $(document).on("click", "#addSpecies", function () {
+            $("#fishSpecies").dialog(
+            {
+                width: 400,
+                height: 600,
+                autoOpen: true,
+                modal: true,
+                title: "Add fish species",
+                close: function (event, ui) { listFishSpecies() }
             });
         });
     </script>

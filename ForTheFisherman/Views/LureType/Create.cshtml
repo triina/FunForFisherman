@@ -1,6 +1,6 @@
 ﻿@model ForTheFisherman.Models.LureType
 
-<h2>New Lure type</h2>
+<h2>New Lure Type</h2>
 
 @using (Ajax.BeginForm("Create", "LureType", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "lureType" }, new { id = "lureTypeForm" }))
 {
@@ -45,6 +45,5 @@
         $("#lureTypeForm").removeData("unobtrusiveValidation");
         $("#lureTypeForm").each(function () { $.data($(this)[0], 'validator', false); }); //enable to display the error messages
         $.validator.unobtrusive.parse($("#lureTypeForm"));
-
     })
 </script>

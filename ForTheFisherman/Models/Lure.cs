@@ -34,6 +34,7 @@ namespace ForTheFisherman.Models
         [StringLength(200)]
         public string description { get; set; }
 
+        [DisplayName("Lure type")]
         public int ltId { get; set; }
     
         public virtual ICollection<Catch> Catch { get; set; }

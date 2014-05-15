@@ -61,7 +61,7 @@
             </td>
             <td>
                 <span class="editDelete">
-                    @Ajax.ActionLink("Edit", "Edit", new { id = item.cId }, new AjaxOptions { UpdateTargetId = "catch" }, new { @class = "editCatch" }) |
+                    @Ajax.ActionLink("Edit", "Edit", new { id = item.cId }, new AjaxOptions { UpdateTargetId = "catch" }, new { @class = "editCatch", onclick="return false" }) |
                     <a href="#" onclick="return false" class="deleteLink">Delete</a>
 
                     @*@Html.ActionLink("Edit", "Edit", new { id = item.cId }) |
