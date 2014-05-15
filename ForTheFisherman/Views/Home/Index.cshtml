@@ -1,5 +1,5 @@
 ﻿@{
-  ViewBag.Title = "Home Page";
+  ViewBag.Title = "Home";
 }
 
 @*      commented that weird header.
@@ -70,11 +70,16 @@ They make the net stay in place and upright. Fish will try to swim through it bu
 </ol>
     }
     else
-    {
+    {       
+       
+ 
         <ol class="round">
-            <li class="one"><a class="clear-fix" href="~/LocationMarking/">Go to Location Marking</a></li>
-            <li class="two"><a class="clear-fix" href="~/Lure/">Go to Lure</a></li>
-            <li class="three"><a class="clear-fix" href="~/FishSpecies/">Go to Fish Species</a></li>
-            <li class="four"><a class="clear-fix" href="~/FishingSession/">START your Session!</a></li>
+
+            <li class="one"> @Html.ActionLink("Add location", "Create", "LocationMarking", new {returnToHomePage=true}, new { @class="clear-fix"})</li>
+            <li class="two">@Html.ActionLink("Add lure", "Create", "Lure", new { returnToHomePage = true }, new { @class="clear-fix"})</li>
+            <!-- we dont need fish species here. they can be added in catch!-->
+            <li class="three"><a class="clear-fix" href="~/FishingSession/">START your Session!</a></li>
         </ol>
     }
+
+
