@@ -2,24 +2,29 @@
     ViewBag.Title = "Index";
 }
 
-<!-- If the user is redirected to this page after trying to delete a location unsuccessfully a message box is displayed -->
-@{if (null != TempData["deleteErrorMessage"])
-  {
-    <script type="text/javascript">
-        alert("@TempData["deleteErrorMessage"]");
-    </script>
-  }}
-
-<h2>Locations</h2>
-
 <div id="locationIndex">
     @Html.Action("IndexPartial")
 </div>
 
+<div id="waterIndex">
+    @Html.Action("IndexPartial", "Water")
+</div>
+
+<div id="water"></div>
+
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval") @* Necessary for partial views! *@
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
     <script>
-        $(".deleteLink").click(function () {
+        // Disables Ajax caching, required for IE. Another possible solution:
+        // use Response.CacheControl = "No-cache" in controller methods
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+        });
+
+        $(document).on("click", ".deleteLink", function () {
             $(this).parents(".editDelete").hide();
             $(this).parents().siblings(".yesNo").show();
 
@@ -28,9 +33,44 @@
             $(".deleteLink").not(this).parents(".editDelete").show();
         });
 
-        $(".noLink").click(function () {
+        $(document).on("click", ".noLink", function () {
             $(this).parents(".yesNo").hide();
             $(this).parents().siblings(".editDelete").show();
+        });
+
+        // Refreshes the water list after you add a new water or edit an existing one
+        function updateWaters() {
+            $.ajax({
+                url: "/Water/IndexPartial",
+                cache: false,
+            })
+            .done(function (html) {
+                $("#waterIndex").html(html);
+            });
+        }
+
+        $(document).on("click", "#addWater", function () {
+            $("#water").dialog(
+            {
+                width: 400,
+                height: 600,
+                autoOpen: true,
+                modal: true,
+                title: "Add Water",
+                close: function (event, ui) { updateWaters() }
+            });
+        });
+
+        $(document).on("click", ".editWater", function () {
+            $("#water").dialog(
+            {
+                width: 400,
+                height: 600,
+                autoOpen: true,
+                modal: true,
+                title: "Edit Water",
+                close: function (event, ui) { updateWaters() }
+            });
         });
     </script>
 }

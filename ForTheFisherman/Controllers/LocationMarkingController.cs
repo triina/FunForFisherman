@@ -156,6 +156,7 @@ namespace ForTheFisherman.Controllers
             {
                 return HttpNotFound();
             }
+
             try
             {
                 db.LocationMarking.Remove(locationmarking);

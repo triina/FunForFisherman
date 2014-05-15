@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ForTheFisherman.Models.Water>
+
+<!-- If the user is redirected to this page after trying to delete a lure unsuccessfully a message box is displayed -->
+@{if (null != TempData["deleteErrorMessage"])
+  {
+    <script type="text/javascript">
+        alert("@TempData["deleteErrorMessage"]");
+    </script>
+  }}
+
+<h2>Waters</h2>
+
+<p>
+    @Ajax.ActionLink("Add", "Create", "Water", null, new AjaxOptions { UpdateTargetId = "water" }, new { id = "addWater" })
+</p>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.municipality)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.municipality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                <span class="editDelete">
+                    @Ajax.ActionLink("Edit", "Edit", new { id = item.wId }, new AjaxOptions { UpdateTargetId = "water" }, new { @class = "editWater" }) |
+                    <a href="#" onclick="return false" class="deleteLink">Delete</a>
+
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.wId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.lmId })*@
+                </span>
+                <span class="yesNo hidden">
+                    <a href="#" onclick="return false" class="noLink">No</a> |
+                    @Ajax.ActionLink("Yes", "DeleteAjax", new { id = item.wId }, new AjaxOptions { UpdateTargetId = "waterIndex" }, new { @class = "yesLink" })
+                </span>
+            </td>
+        </tr>
+    }
+
+</table>

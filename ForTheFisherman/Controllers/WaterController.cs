@@ -22,6 +22,14 @@ namespace ForTheFisherman.Controllers
         }
 
         //
+        // GET: /Water/IndexPartial
+        //[Authorize] // Is it needed here?
+        public ActionResult IndexPartial()
+        {
+            return PartialView(db.Water.ToList());
+        }
+
+        //
         // GET: /Water/Details/5
 
         public ActionResult Details(int id = 0)
@@ -87,7 +95,7 @@ namespace ForTheFisherman.Controllers
             {
                 db.Entry(water).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CreateSuccess");
             }
             return PartialView(water);
         }
@@ -126,6 +134,31 @@ namespace ForTheFisherman.Controllers
             }
         }
 
+        //
+        // GET: /Water/DeleteAjax/5
+
+        public ActionResult DeleteAjax(int id = 0)
+        {
+            Water water = db.Water.Find(id);
+            if (water == null)
+            {
+                return HttpNotFound();
+            }
+
+            try
+            {
+                db.Water.Remove(water);
+                db.SaveChanges();
+                return RedirectToAction("IndexPartial");
+            }
+
+            catch
+            {
+                TempData["deleteErrorMessage"] = "Cannot delete this item";
+                return RedirectToAction("IndexPartial");
+            }
+        }
+        
         //
         // GET: /Water/CreateSuccess
 

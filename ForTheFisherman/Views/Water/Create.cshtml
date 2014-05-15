@@ -2,7 +2,7 @@
 
 <h2>New Water</h2>
 
-@using (Ajax.BeginForm("Create", "Water", null, new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "water" }, new { id = "waterForm" }))
+@using (Ajax.BeginForm("Create", "Water", null, new AjaxOptions { UpdateTargetId = "water" }, new { id = "waterForm" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -14,7 +14,6 @@
             @Html.DisplayNameFor(model => model.wId)
             @Html.EditorFor(model => model.wId)
         </div>
-
 
         <div class="editor-label">
             @Html.LabelFor(model => model.name)

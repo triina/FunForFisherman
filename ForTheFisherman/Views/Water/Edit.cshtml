@@ -1,21 +1,18 @@
 ﻿@model ForTheFisherman.Models.Water
 
-@{
-    ViewBag.Title = "Edit";
-}
-
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Ajax.BeginForm("Edit", "Water", null, new AjaxOptions { UpdateTargetId = "water" }, new { id = "waterForm" }))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>Water</legend>
 
-         <div class="hidden">
-              @Html.DisplayNameFor(model => model.wId)
-              @Html.EditorFor(model => model.wId)
+        <div class="hidden">
+            @Html.DisplayNameFor(model => model.wId)
+            @Html.EditorFor(model => model.wId)
         </div>
 
         <div class="editor-label">
@@ -46,12 +43,4 @@
             <input type="submit" value="Save" />
         </p>
     </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }
