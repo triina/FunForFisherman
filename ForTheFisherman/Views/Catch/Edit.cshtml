@@ -1,12 +1,10 @@
 ﻿@model ForTheFisherman.Models.Catch
 
-@{
-    ViewBag.Title = "Edit";
-}
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Ajax.BeginForm("Edit", "Catch", null, new AjaxOptions { UpdateTargetId = "catch" }, new { id = "catchForm" }))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -79,12 +77,4 @@
             <input type="submit" value="Save" />
         </p>
     </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }

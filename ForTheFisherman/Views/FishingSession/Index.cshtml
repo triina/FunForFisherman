@@ -4,59 +4,76 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th class="hidden">
-            @Html.DisplayNameFor(model => model.fsId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th class="hidden">
-            @Html.DisplayNameFor(model => model.Fisherman.firstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fmId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lmId)
-        </th>
-        <th></th>
-    </tr>
+<div id="fishingSessionIndex">
+    @Html.Action("IndexPartial")
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td class="hidden">
-            @Html.DisplayFor(modelItem => item.fsId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td class="hidden">
-            @Html.DisplayFor(modelItem => item.Fisherman.firstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FishingMethod.methodname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LocationMarking.sublocation)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.fsId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.fsId })
-        </td>
-    </tr>
+<div id="catchIndex">
+    @Html.Action("IndexPartial", "Catch")
+</div>
+
+<div id="water"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval") @* Necessary for partial views! *@
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script>
+        // Disables Ajax caching, required for IE. Another possible solution:
+        // use Response.CacheControl = "No-cache" in controller methods
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+        });
+
+        $(document).on("click", ".deleteLink", function () {
+            $(this).parents(".editDelete").hide();
+            $(this).parents().siblings(".yesNo").show();
+
+            // If a different Delete link is clicked, show Yes/No only for that link
+            $(".deleteLink").not(this).parents().siblings(".yesNo").hide();
+            $(".deleteLink").not(this).parents(".editDelete").show();
+        });
+
+        $(document).on("click", ".noLink", function () {
+            $(this).parents(".yesNo").hide();
+            $(this).parents().siblings(".editDelete").show();
+        });
+
+        // Refreshes the water list after you add a new water or edit an existing one
+        function updateCatch() {
+            $.ajax({
+                url: "/Catch/IndexPartial",
+                cache: false,
+            })
+            .done(function (html) {
+                $("#catchIndex").html(html);
+            });
+        }
+
+        $(document).on("click", "#addCatch", function () {
+            $("#catch").dialog(
+            {
+                width: 400,
+                height: 600,
+                autoOpen: true,
+                modal: true,
+                title: "Add Catch",
+                close: function (event, ui) { updateCatch() }
+            });
+        });
+
+        $(document).on("click", ".editCatch", function () {
+            $("#catch").dialog(
+            {
+                width: 400,
+                height: 600,
+                autoOpen: true,
+                modal: true,
+                title: "Edit Catch",
+                close: function (event, ui) { updateCatch() }
+            });
+        });
+    </script>
 }
-
-</table>

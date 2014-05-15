@@ -18,14 +18,23 @@ namespace ForTheFisherman.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            return View();
+        }
+
+        //
+        // GET: /LocationMarking/IndexPartial
+        //[Authorize] // Is it needed here?
+        public ActionResult IndexPartial()
+        {
             var fishingsession = db.FishingSession
                 .Include(f => f.Catch)
                 .Include(f => f.Fisherman)
                 .Include(f => f.FishingMethod)
                 .Include(f => f.LocationMarking)
                 .Where(f => f.Fisherman.eMail == User.Identity.Name);
-            return View(fishingsession.ToList());
+            return PartialView(fishingsession.ToList());
         }
+
 
         //
         // GET: /FishingSession/Details/5
@@ -50,7 +59,7 @@ namespace ForTheFisherman.Controllers
             //ViewBag.fmId = new SelectList(db.FishingMethod, "fmId", "methodname");
             //ViewBag.lmId = new SelectList(db.LocationMarking, "lmId", "sublocation");
             //return View();
-             
+
 
             ViewBag.cId = new SelectList(db.Catch, "cId", "description");
             //ViewBag.fId = new SelectList(db.Fisherman, "fId", "firstName");
@@ -150,6 +159,32 @@ namespace ForTheFisherman.Controllers
             db.FishingSession.Remove(fishingsession);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        //
+        // GET: /LocationMarking/DeleteAjax/5
+
+        public ActionResult DeleteAjax(int id = 0)
+        {
+            FishingSession fishingsession = db.FishingSession.Find(id);
+            if (fishingsession == null)
+            {
+                return HttpNotFound();
+            }
+
+            try
+            {
+                db.FishingSession.Remove(fishingsession);
+                db.SaveChanges();
+                return RedirectToAction("IndexPartial");
+            }
+
+            catch
+            {
+                TempData["deleteErrorMessage"] = "Cannot delete this item";
+                return RedirectToAction("IndexPartial");
+            }
         }
 
         protected override void Dispose(bool disposing)
