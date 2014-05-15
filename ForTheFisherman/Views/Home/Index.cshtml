@@ -1,5 +1,5 @@
 ﻿@{
-  ViewBag.Title = "Home Page";
+  ViewBag.Title = "Home";
 }
 
 @*      commented that weird header.
@@ -23,9 +23,11 @@
   </section>
 }*@
 
+
+    @if (!Request.IsAuthenticated) {
 <h1>Fishing methods</h1>
 <ol class="round">
-  <li>
+    <li>
     <h5>Casting</h5>
     <div class="text-wrap temp-outer">
       <img class="temp-inner" src="../../Images/icon-trolling.png" />
@@ -39,7 +41,6 @@
     You use the same equipment as in Casting, but you fix the fishing rod at the end of the boat and either row or use small motor to move the boat so that the lure "swims" following the boat.
     <div class="clear-fix"></div>
   </li>
-
   <li>
     <h5>Fly Fishing</h5>
     <div class="text-wrap temp-outer">
@@ -48,7 +49,6 @@
     You typically do this standing in the water (river, stream). Typical is the back, forward, back, forward movement of the visible fishing line before finally releasing the throw. The lure is called perho in finnish, maybe moth or small butterfly in English. 
     <div class="clear-fix"></div>
   </li>
-
   <li>
     <h5>Winter Fishing</h5>
     <div class="text-wrap  temp-outer">
@@ -68,3 +68,18 @@ They make the net stay in place and upright. Fish will try to swim through it bu
     <div class="clear-fix"></div>
   </li>
 </ol>
+    }
+    else
+    {       
+       
+ 
+        <ol class="round">
+
+            <li class="one"> @Html.ActionLink("Add location", "Create", "LocationMarking", new {returnToHomePage=true}, new { @class="clear-fix"})</li>
+            <li class="two">@Html.ActionLink("Add lure", "Create", "Lure", new { returnToHomePage = true }, new { @class="clear-fix"})</li>
+            <!-- we dont need fish species here. they can be added in catch!-->
+            <li class="three"><a class="clear-fix" href="~/FishingSession/">START your Session!</a></li>
+        </ol>
+    }
+
+

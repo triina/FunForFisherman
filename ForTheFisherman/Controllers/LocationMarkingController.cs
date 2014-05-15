@@ -64,13 +64,19 @@ namespace ForTheFisherman.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(LocationMarking locationmarking)
+        public ActionResult Create(LocationMarking locationmarking, bool returnToHomePage = false)
         {
             if (ModelState.IsValid)
             {
                 db.LocationMarking.Add(locationmarking);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                if (returnToHomePage == true)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else {
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.gcId = new SelectList(db.GeoCoordinates, "gcId", "gcId", locationmarking.gcId);

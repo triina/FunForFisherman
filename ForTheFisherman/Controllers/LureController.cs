@@ -53,13 +53,21 @@ namespace ForTheFisherman.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Lure lure)
+        public ActionResult Create(Lure lure, bool returnToHomePage = false)
         {
             if (ModelState.IsValid)
             {
                 db.Lure.Add(lure);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+    
+                if (returnToHomePage == true) //if the request came from the homepage the user gets redirected to it, else the list of lures is shown
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.ltId = new SelectList(db.LureType, "ltId", "typename", lure.ltId);
