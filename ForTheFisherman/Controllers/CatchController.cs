@@ -116,7 +116,7 @@ namespace ForTheFisherman.Controllers
             {
                 db.Entry(fishcatch).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CreateSuccess");
             }
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
             ViewBag.lId = new SelectList(db.Lure, "lId", "name", fishcatch.lId);

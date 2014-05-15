@@ -453,6 +453,7 @@
     <Content Include="Views\Water\IndexPartial.cshtml" />
     <Content Include="Views\Catch\IndexPartial.cshtml" />
     <Content Include="Views\FishingSession\IndexPartial.cshtml" />
+    <Content Include="Views\Catch\CreateSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
