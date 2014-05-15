@@ -2,6 +2,35 @@
     ViewBag.Title = "Index";
 }
 
-<div id="index">
+<!-- If the user is redirected to this page after trying to delete a location unsuccessfully a message box is displayed -->
+@{if (null != TempData["deleteErrorMessage"])
+  {
+    <script type="text/javascript">
+        alert("@TempData["deleteErrorMessage"]");
+    </script>
+  }}
+
+<h2>Locations</h2>
+
+<div id="locationIndex">
     @Html.Action("IndexPartial")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(".deleteLink").click(function () {
+            $(this).parents(".editDelete").hide();
+            $(this).parents().siblings(".yesNo").show();
+
+            // If a different Delete link is clicked, show Yes/No only for that link
+            $(".deleteLink").not(this).parents().siblings(".yesNo").hide();
+            $(".deleteLink").not(this).parents(".editDelete").show();
+        });
+
+        $(".noLink").click(function () {
+            $(this).parents(".yesNo").hide();
+            $(this).parents().siblings(".editDelete").show();
+        });
+    </script>
+}

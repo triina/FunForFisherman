@@ -146,6 +146,30 @@ namespace ForTheFisherman.Controllers
             }
         }
 
+        //
+        // GET: /LocationMarking/DeleteAjax/5
+
+        public ActionResult DeleteAjax(int id = 0)
+        {
+            LocationMarking locationmarking = db.LocationMarking.Find(id);
+            if (locationmarking == null)
+            {
+                return HttpNotFound();
+            }
+            try
+            {
+                db.LocationMarking.Remove(locationmarking);
+                db.SaveChanges();
+                return RedirectToAction("IndexPartial");
+            }
+
+            catch
+            {
+                TempData["deleteErrorMessage"] = "Cannot delete this item";
+                return RedirectToAction("IndexPartial");
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

@@ -1,16 +1,9 @@
 ﻿@model IEnumerable<ForTheFisherman.Models.LocationMarking>
 
-<!-- If the user is redirected to this page after trying to delete a location unsuccessfully a message box is displayed-->
-@{if (null != TempData["deleteErrorMessage"])
-  {
-    <script type="text/javascript">
-        alert("@TempData["deleteErrorMessage"]");
-    </script>
-  }}
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
 <table>
     <tr>
         <th>
@@ -56,10 +49,17 @@
                 @Html.DisplayFor(modelItem => item.GeoCoordinates.longitude)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.lmId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.lmId })
+                <span class="editDelete">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.lmId }) |
+                    <a href="#" onclick="return false" class="deleteLink">Delete</a>
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.lmId })*@
+                </span>
+                <span class="yesNo hidden">
+                    <a href="#" onclick="return false" class="noLink">No</a> |
+                    @Ajax.ActionLink("Yes", "DeleteAjax", new { id = item.lmId }, new AjaxOptions { UpdateTargetId = "locationIndex" }, new { id = "yesLink" })
+                </span>
             </td>
         </tr>
-    }
+        }
 
 </table>
