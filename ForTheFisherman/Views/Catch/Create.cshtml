@@ -63,6 +63,7 @@
         <div class="editor-field">
             @Html.DropDownList("fiId", String.Empty)
             @Html.ValidationMessageFor(model => model.fiId)
+             @Ajax.ActionLink("Add", "Create", "FishSpecies", null, new AjaxOptions { UpdateTargetId = "fishSpecies" }, new { id = "addButton" })
             
         </div>
 
@@ -80,3 +81,42 @@
         </p>
     </fieldset>
 }
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<div id="fishSpecies"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/ListFishSpecies.js"></script>
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script>
+        var id = ""; // id is set in CreateSuccess view from TempData
+
+        // Disables Ajax caching, required for IE. Another possible solution:
+        // use Response.CacheControl = "No-cache" in controller methods
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+        });
+
+        $("#addButton").click(function () {
+
+            $("#fishSpecies").dialog(
+            {
+
+                width: 400,
+                height: 600,
+                autoOpen: true,
+                modal: true,
+                title: "Add fish species",
+                close: function (event, ui) { listFishSpecies() }
+            });
+        });
+    </script>
+    <script>
+        jQuery.validator.unobtrusive.parse("#fishSpecies");
+    </script>
+    }
