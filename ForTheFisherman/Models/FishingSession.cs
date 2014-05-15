@@ -14,14 +14,14 @@ namespace ForTheFisherman.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
-    
+
     public partial class FishingSession
     {
         public FishingSession()
         {
             this.Catch = new HashSet<Catch>();
         }
-    
+
         public int fsId { get; set; }
 
         [Required(ErrorMessage = "Date is required")]
@@ -36,12 +36,12 @@ namespace ForTheFisherman.Models
 
         public int fId { get; set; }
 
-        [DisplayName("Fishing Method")]
+        [DisplayName("Fishing method")]
         public int fmId { get; set; }
 
         [DisplayName("Location")]
         public int lmId { get; set; }
-    
+
         public virtual Fisherman Fisherman { get; set; }
         public virtual FishingMethod FishingMethod { get; set; }
         public virtual LocationMarking LocationMarking { get; set; }

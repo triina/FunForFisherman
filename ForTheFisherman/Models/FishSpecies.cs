@@ -21,16 +21,16 @@ namespace ForTheFisherman.Models
         {
             this.Catch = new HashSet<Catch>();
         }
-    
+
         public int fiId { get; set; }
 
         [Required(ErrorMessage = "Fish name is necessary")]
-        [DisplayName("Fish name")]
+        [DisplayName("Fish species")]
         [Remote("CheckFishName", "Validation", AdditionalFields = "fiId", ErrorMessage = "This fish name is already taken.")]
         [StringLength(100)]
         public string fishname { get; set; }
 
-        [DisplayName("Description of fish species")]
+        [DisplayName("Species description")]
         [StringLength(200)]
         public string description { get; set; }
         

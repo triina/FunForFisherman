@@ -26,7 +26,24 @@ namespace ForTheFisherman.Controllers
             return View(fishcatch.ToList());
         }
 
+        //
+        // GET: /Catch/IndexPartial
+
         public ActionResult IndexPartial()
+        {
+            var fishcatch = db.Catch
+                .Include(c => c.FishSpecies)
+                .Include(c => c.Lure)
+                .Include(c => c.FishingSession)
+                .Where(f => f.FishingSession.Fisherman.eMail == User.Identity.Name);
+
+            return PartialView(fishcatch.ToList());
+        }
+
+        //
+        // GET: /Catch/ListCatch
+
+        public ActionResult ListCatch()
         {
             var fishcatch = db.Catch
                 .Include(c => c.FishSpecies)
@@ -101,7 +118,9 @@ namespace ForTheFisherman.Controllers
             }
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
             ViewBag.lId = new SelectList(db.Lure, "lId", "name", fishcatch.lId);
-            ViewBag.fsId = new SelectList(db.FishingSession, "fsId", "description", fishcatch.fsId);
+            ViewBag.fsId = new SelectList(db.FishingSession
+            .Where(f => f.Fisherman.eMail == User.Identity.Name),
+            "fsId", "description", fishcatch.fsId);
             return PartialView(fishcatch);
         }
 
@@ -153,7 +172,7 @@ namespace ForTheFisherman.Controllers
         //
         // GET: /Catch/DeleteAjax/5
 
-        public ActionResult DeleteAjax(int id = 0)
+        public ActionResult DeleteAjax(int id = 0, string view = "")
         {
             Catch fishcatch = db.Catch.Find(id);
             if (fishcatch == null)
@@ -165,12 +184,19 @@ namespace ForTheFisherman.Controllers
             {
                 db.Catch.Remove(fishcatch);
                 db.SaveChanges();
-                return RedirectToAction("IndexPartial");
             }
 
             catch
             {
                 TempData["deleteErrorMessage"] = "Cannot delete this item";
+            }
+
+            if (view == "ListCatch")
+            {
+                return RedirectToAction("ListCatch");
+            }
+            else
+            {
                 return RedirectToAction("IndexPartial");
             }
         }

@@ -21,7 +21,6 @@ namespace ForTheFisherman.Models
             this.FishingSession = new HashSet<FishingSession>();
         }
 
-        [DisplayName("Id")]
         public int lmId { get; set; }
 
         [DisplayName("Sublocation")]
@@ -29,7 +28,7 @@ namespace ForTheFisherman.Models
         [Required(ErrorMessage = "Please enter sublocation name.")]
         public string sublocation { get; set; }
 
-        [DisplayName("Compass Location")]
+        [DisplayName("Compass location")]
         [StringLength(100)]
         [Required(ErrorMessage = "Please enter compass location.")]
         public string compaslocation { get; set; }

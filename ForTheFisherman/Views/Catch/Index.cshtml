@@ -1,80 +1,60 @@
-﻿@model IEnumerable<ForTheFisherman.Models.Catch>
-
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
- <!-- If the user is redirected to this page after trying to delete a catch unsuccessfully a message box is displayed-->
-   @{if(null != TempData["deleteErrorMessage"])
-   {
-      <script type="text/javascript">
-          alert("@TempData["deleteErrorMessage"]");
-      </script>
-   }}
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-         <th class="hidden">
-            @Html.DisplayNameFor(model => model.cId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.weight)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lureweight)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.depth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lure.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FishSpecies.fishname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FishingSession.description)
-        </th>
-        <th></th>
-    </tr>
+<div id="catchIndex">
+    @Html.Action("ListCatch", "Catch")
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td class="hidden">
-            @Html.DisplayFor(modelItem => item.cId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.weight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lureweight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.depth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lure.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FishSpecies.fishname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FishingSession.description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.cId })
-            @Html.ActionLink("Delete", "Delete", new { id=item.cId })
-        </td>
-    </tr>
+<div id="catch"></div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval") @* Necessary for partial views! *@
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script>
+        // Disables Ajax caching, required for IE. Another possible solution:
+        // use Response.CacheControl = "No-cache" in controller methods
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+        });
+
+        $(document).on("click", ".deleteLink", function () {
+            $(this).parents(".editDelete").hide();
+            $(this).parents().siblings(".yesNo").show();
+
+            // If a different Delete link is clicked, show Yes/No only for that link
+            $(".deleteLink").not(this).parents().siblings(".yesNo").hide();
+            $(".deleteLink").not(this).parents(".editDelete").show();
+        });
+
+        $(document).on("click", ".noLink", function () {
+            $(this).parents(".yesNo").hide();
+            $(this).parents().siblings(".editDelete").show();
+        });
+
+        // Refreshes the catch list after you add a new water or edit an existing one
+        function updateCatch() {
+            $.ajax({
+                url: "/Catch/ListCatch",
+                cache: false,
+            })
+            .done(function (html) {
+                $("#catchIndex").html(html);
+            });
+        }
+
+        $(document).on("click", ".editCatch", function () {
+            $("#catch").dialog(
+            {
+                width: 400,
+                height: 600,
+                autoOpen: true,
+                modal: true,
+                title: "Edit Catch",
+                close: function (event, ui) { updateCatch() }
+            });
+        });
+    </script>
 }
-
-</table>
