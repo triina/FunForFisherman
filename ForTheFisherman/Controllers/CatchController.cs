@@ -46,7 +46,9 @@ namespace ForTheFisherman.Controllers
         {
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname");
             ViewBag.lId = new SelectList(db.Lure, "lId", "name");
-            ViewBag.fsId = new SelectList(db.FishingSession, "fsId", "description");
+            ViewBag.fsId = new SelectList(db.FishingSession
+                                        .Where(f => f.Fisherman.eMail == User.Identity.Name),
+                                        "fsId", "description");
             Catch fishcatch = new Catch();
             var lastCatch = db.Catch.OrderByDescending(fi => fi.cId).OrderByDescending(fi => fi.cId).FirstOrDefault();
             fishcatch.cId = (lastCatch.cId) + 1;
@@ -69,7 +71,9 @@ namespace ForTheFisherman.Controllers
 
             ViewBag.fiId = new SelectList(db.FishSpecies, "fiId", "fishname", fishcatch.fiId);
             ViewBag.lId = new SelectList(db.Lure, "lId", "name", fishcatch.lId);
-            ViewBag.fsId = new SelectList(db.FishingSession, "fsId", "description", fishcatch.fsId);
+            ViewBag.fsId = new SelectList(db.FishingSession
+                                        .Where(f => f.Fisherman.eMail == User.Identity.Name),
+                                        "fsId", "description", fishcatch.fsId);
             return View(fishcatch);
         }
 
