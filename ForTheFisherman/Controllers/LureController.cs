@@ -44,7 +44,7 @@ namespace ForTheFisherman.Controllers
             ViewBag.ltId = new SelectList(db.LureType, "ltId", "typename");
             Lure lure = new Lure();
             var lastLure = db.Lure.OrderByDescending(lt => lt.lId).FirstOrDefault();
-            lure.lId = (lastLure.ltId) + 1;
+            lure.lId = (lastLure.lId) + 1;
             return View(lure);
         }
 

@@ -70,16 +70,45 @@ They make the net stay in place and upright. Fish will try to swim through it bu
 </ol>
     }
     else
-    {       
-       
- 
-        <ol class="round">
-
-            <li class="one"> @Html.ActionLink("Add location", "Create", "LocationMarking", new {returnToHomePage=true}, new { @class="clear-fix"})</li>
-            <li class="two">@Html.ActionLink("Add lure", "Create", "Lure", new { returnToHomePage = true }, new { @class="clear-fix"})</li>
-            <!-- we dont need fish species here. they can be added in catch!-->
-            <li class="three"><a class="clear-fix" href="~/FishingSession/">START your Session!</a></li>
-        </ol>
+    {
+@*      <ol class="round">
+        <li class="one">@Html.ActionLink("Add location", "Create", "LocationMarking", new { returnToHomePage = true }, new { @class = "clear-fix" })</li>
+        <li class="two">@Html.ActionLink("Add lure", "Create", "Lure", new { returnToHomePage = true }, new { @class = "clear-fix" })</li>
+        <!-- we dont need fish species here. they can be added in catch!-->
+        <li class="three"><a class="clear-fix" href="~/FishingSession/">START your Session!</a></li>
+      </ol>*@
+      <h1>Welcome!</h1>
+      <h4>Start keeping track of catches from here by following three easy steps</h4>
+      
+      
+      <ul class="dashboard">
+        <li class="dashboard-item">
+          <a href="/LocationMarking/Create?returnToHomePage=True">
+            <div class="dashboard-description">
+              <h2>Add Location</h2>
+              <p>to keep in mind favourite ones</p>
+            </div>
+            <span class="step-number">1</span>
+          </a>
+        </li>
+        <li class="dashboard-item">
+          <a href="/Lure/Create?returnToHomePage=True">
+            <div class="dashboard-description">
+              <h2>Add Lure</h2>
+              <p>list new lures you used</p>
+            </div>
+            <span class="step-number">2</span>
+          </a>
+        </li>
+        <li class="dashboard-item">
+          <a href="/FishingSession/Create/">
+            <div class="dashboard-description">
+              <h2>Start Session!</h2>
+              <p>and have fun!</p>
+            </div>
+            <span class="step-number">3</span>
+          </a>
+        </li>
+      </ul>
     }
-
 

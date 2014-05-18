@@ -798,3 +798,57 @@ table {
 .hidden {
     display: none;
 }
+
+/*dashboard*/
+.dashboard {
+    list-style: none;
+}
+
+.dashboard-item {
+    display: inline-block;
+    width: 220px;
+    height: 220px;
+    border-radius: 15px;
+    background-color: #d3dce0;
+    margin: 10px;
+    position: relative;
+}
+
+    .dashboard-item a {
+        display: block;
+        text-decoration: none;
+        width: 220px;
+        height: 220px;
+        box-sizing: border-box;
+    }
+        .dashboard-item a:hover {
+            border-radius: 15px;
+        }
+
+.dashboard-description h2 {
+    text-align: center;
+    margin: 0;
+    padding: 80px 0 50px 0;
+}
+
+.dashboard-description p {
+    text-align: center;
+    padding: 0 10px 0 10px;
+    margin: 0;
+}
+
+.dashboard-item .step-number {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    padding: 10px;
+    text-align: center;
+    line-height: 15px;
+    background: #000000;
+    color: #ffffff;
+    font-size: 15px;
+}
