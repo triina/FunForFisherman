@@ -7,3 +7,11 @@
     display: inline;
     margin-right: 20px;
 }
+
+.temp-inner {
+    border-radius: 10px;
+}
+
+    .temp-inner:hover {
+        opacity: 0.6;
+    }
