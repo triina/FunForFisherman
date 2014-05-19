@@ -320,6 +320,7 @@
     <Content Include="Images\icon-ice.png" />
     <Content Include="Images\icon-net.png" />
     <Content Include="Images\icon-trolling.png" />
+    <Content Include="Images\logo.png" />
     <Content Include="Models\ModelFisherman.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelFisherman.edmx</DependentUpon>

@@ -99,7 +99,7 @@ h5, h6 {
 }
 
 #body {
-    background-color: #efeeef;
+    background-color: #CCFFFF;
     clear: both;
     padding-bottom: 35px;
 }
@@ -122,9 +122,13 @@ header .content-wrapper {
 
 footer {
     clear: both;
-    background-color: #e2e2e2;
+    background-color: #CCFFFF;
     font-size: .8em;
-    height: 100px;
+    position: absolute;
+    bottom: 0;
+    width: 644px;
+    height: 20px;
+    margin: 0 auto;
 }
 
 
@@ -211,7 +215,7 @@ ul#menu {
 ----------------------------------------------------------*/
 /* featured */
 .featured {
-    background-color: #fff;
+    background-color: #CCFFFF;
 }
 
     .featured .content-wrapper {
